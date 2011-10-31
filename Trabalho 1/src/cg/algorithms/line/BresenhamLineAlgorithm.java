@@ -15,9 +15,9 @@ public class BresenhamLineAlgorithm implements IScanLineAlgorithm
 	
 	public void drawLine(IRasterDevice dc, Point start, Point end, Color color) 
 	{
-        if()
 
-		int dx=end.x-start.x,dy=end.y-start.y;
+        int m = (end.y - start.y) / (end.x - start.x);
+		int dx=end.x-start.x, dy=end.y-start.y;
 		 
 		int e=0;
 		int y=start.y;
