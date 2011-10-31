@@ -3,19 +3,11 @@
  */
 package cg.GUI;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import javax.swing.JPanel;
 
 /**
  * @author cguedes
@@ -113,11 +105,11 @@ public class GridView extends JPanel implements IRasterDevice {
 			// Desenhar o EIXO de COORDENADAS
 			g.setColor(Color.RED);
 			Point axisCenter = translate(0, 0);
-			Point axisX = translate(1, 0);
+			Point axisX = translate(ncols / 2, 0);
 			g.drawLine(axisCenter.x, axisCenter.y, axisX.x, axisX.y);
 			g.drawString("X", axisX.x, axisX.y);
 			g.setColor(Color.GREEN);
-			Point axisY = translate(0, 1); 
+			Point axisY = translate(0, nlines / 2);
 			g.drawLine(axisCenter.x, axisCenter.y, axisY.x, axisY.y);
 			g.drawString("Y", axisY.x, axisY.y);
 		

@@ -1,0 +1,119 @@
+#VRML V2.0 utf8
+
+
+PROTO Arrow [ 
+	field SFRotation rotation 0 0 0 0
+	field SFColor color 0 0 0				 
+] {
+
+	Transform {
+
+		rotation IS	rotation
+		
+		children [
+
+			Transform {
+	
+				translation	0 2.5 0
+
+				children [
+		
+					Shape {
+
+						geometry Cone { 
+		
+							bottomRadius 0.2
+
+							height 0.5
+
+						}
+
+						appearance Appearance { 
+		
+							material Material { 
+							
+								diffuseColor IS	color
+
+							}
+
+						}
+
+					}
+
+				]
+
+			}
+
+
+			Transform {
+
+				translation	0 1.25 0
+
+				children [
+		
+					Shape {
+
+						geometry Cylinder { 
+			
+							height 2.5
+
+							radius 0.1
+
+						}
+
+						appearance Appearance {
+
+							material Material { 
+							
+								diffuseColor IS	color
+
+							}
+
+						} 
+
+					}
+
+				]
+
+			}
+
+			Shape {
+
+				geometry Cylinder {
+
+					radius 0.01
+
+					height 100
+
+				}
+
+				appearance Appearance {
+
+					material Material {
+
+						diffuseColor IS	color
+
+					}
+
+				}
+
+			}
+
+		]
+		
+	}
+
+}
+
+
+Arrow { color 1 0 0 }							   
+
+Arrow { rotation 1 0 0 1.57 color 0 1 0}
+
+Arrow { rotation 0 0 1 -1.57 color 0 0 1} 
+
+Shape {
+
+	geometry Sphere	{ radius 0.2 }
+
+}
