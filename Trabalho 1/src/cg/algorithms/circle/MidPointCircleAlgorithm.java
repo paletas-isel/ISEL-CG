@@ -1,11 +1,9 @@
 package cg.algorithms.circle;
 
-import java.awt.Color;
-import java.awt.Point;
-
+import cg.GUI.IRasterDevice;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import cg.GUI.IRasterDevice;
+import java.awt.*;
 
 public class MidPointCircleAlgorithm implements ICircleAlgorithm {
 
@@ -15,16 +13,16 @@ public class MidPointCircleAlgorithm implements ICircleAlgorithm {
 	 * com 1º Octante (x,y)
 	 * 
 	 * */
-	private void writeCirclePixel(IRasterDevice dc,int x,int y, Color color)
+	private void writeCirclePixel(IRasterDevice dc,int x,int y, Color color, Point center)
 	{
-		dc.writePixel(+ x, + y, color);
-		dc.writePixel(+ y, + x, color);
-		dc.writePixel(+ y, - x, color);
-		dc.writePixel(+ x, - y, color);
-		dc.writePixel(- x, - y, color);
-		dc.writePixel(- y, - x, color);
-		dc.writePixel(- y, + x, color);
-		dc.writePixel(- x, + y, color);
+		dc.writePixel(+ x + center.x, + y + center.y, color);
+		dc.writePixel(+ y + center.x, + x + center.y, color);
+		dc.writePixel(+ y + center.x, - x + center.y, color);
+		dc.writePixel(+ x + center.x, - y + center.y, color);
+		dc.writePixel(- x + center.x, - y + center.y, color);
+		dc.writePixel(- y + center.x, - x + center.y, color);
+		dc.writePixel(- y + center.x, + x + center.y, color);
+		dc.writePixel(- x + center.x, + y + center.y, color);
 	}
 	public void drawCircle(IRasterDevice dc, Point center, int radius) {
 		drawCircle(dc, center, radius, Color.BLACK);
@@ -36,7 +34,7 @@ public class MidPointCircleAlgorithm implements ICircleAlgorithm {
 		int y=radius;
 		int d=1-radius;
 		
-		writeCirclePixel(dc,x,y,color);
+		writeCirclePixel(dc,x,y,color, center);
 		while( y > x)
 		{
 			if(d<0) //choose E
@@ -49,7 +47,7 @@ public class MidPointCircleAlgorithm implements ICircleAlgorithm {
 				--y;				
 			}
 			++x;
-			writeCirclePixel(dc,x,y,color);
+			writeCirclePixel(dc,x,y,color, center);
 		}
 
 	}
