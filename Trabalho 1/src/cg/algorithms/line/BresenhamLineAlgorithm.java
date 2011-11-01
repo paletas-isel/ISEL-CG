@@ -27,8 +27,6 @@ public class BresenhamLineAlgorithm implements IScanLineAlgorithm
         int dy = end.y - start.y;
 		 
 		int e=0;
-		int y=start.y;
-		int x= start.x;
 
         int dif;
 
@@ -45,30 +43,46 @@ public class BresenhamLineAlgorithm implements IScanLineAlgorithm
         }
 
         if(dec >= -1 && dec <= 1)
-            for( ; x < end.x; ++x)
-            {
-                dc.writePixel(x, y, color);
-
-                e+=dy;
-                if(2*e >= dx)
-                {
-                    y += dif;
-                    e-=dx;
-                }
-            }
+            iterateByX(dc, color, start, end, dx, dy, e, dif);
         else
-            for( ; y < end.y; ++y)
-            {
-                dc.writePixel(x, y, color);
+            iterateByY(dc, color, start, end, dx, dy, e, dif);
 
-                e+=dx;
-                if(2*e >= dy)
-                {
-                    x += dif;
-                    e-=dy;
-                }
-            }
     }
+
+    private void iterateByX(IRasterDevice dc, Color color, Point start, Point end, int dx, int dy, int e, int dif) {
+		int y = start.y;
+		int x= start.x;
+
+        for( ; x < end.x; ++x)
+        {
+            dc.writePixel(x, y, color);
+
+            e+=dy;
+            if(2*e >= dx)
+            {
+                y += dif;
+                e-=dx;
+            }
+        }
+    }
+
+    private void iterateByY(IRasterDevice dc, Color color, Point start, Point end, int dx, int dy, int e, int dif) {
+        int y = start.y;
+        int x= start.x;
+
+        for( ; y < end.y; ++y)
+        {
+            dc.writePixel(x, y, color);
+
+            e+=dx;
+            if(2*e >= dy)
+            {
+                x += dif;
+                e-=dy;
+            }
+        }
+    }
+
 
     private double getGradient(Point start, Point end) {
         return (end.getY() - start.getY()) / (end.getX() - start.getX());
