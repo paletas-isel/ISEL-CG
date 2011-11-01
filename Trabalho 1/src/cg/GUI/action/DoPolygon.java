@@ -1,11 +1,10 @@
 package cg.GUI.action;
 
-import java.awt.Color;
-import java.awt.Point;
-import java.util.LinkedList;
-
 import cg.GUI.CGPaint;
 import cg.common.ColorPoint;
+
+import java.awt.*;
+import java.util.LinkedList;
 
 /**
  * ... 
@@ -16,7 +15,10 @@ public abstract class DoPolygon implements IPerformAction {
 	private Color[] colors = null;
 	private LinkedList<ColorPoint> colorPointsList; 
 	private ColorPoint firstPoint;
-	
+
+    //For Debug Proposes
+    private boolean repeatNext = false;
+
 	public DoPolygon() {
 		colorPointsList = new LinkedList<ColorPoint>();
 	}
@@ -28,7 +30,7 @@ public abstract class DoPolygon implements IPerformAction {
 		colorPointsList.add( new ColorPoint(pos, color) );
 		cg.getRasterDisplay().writePixel(pos.x, pos.y, Color.GREEN);
 		
-		if( colorPointsList.size() > 1 && pos.equals(firstPoint.point) ) {
+		if( repeatNext || (colorPointsList.size() > 1 && pos.equals(firstPoint.point)) ) {
 			points = new Point[colorPointsList.size()-1];
 			colors = new Color[colorPointsList.size()-1];
 			for(int i = 0; i < colorPointsList.size()-1; ++i) 
@@ -36,8 +38,12 @@ public abstract class DoPolygon implements IPerformAction {
 				points[i] = colorPointsList.get(i).point;
 				colors[i] = colorPointsList.get(i).color;
 			}
-			
-			colorPointsList.clear();
+
+            //repeatNext = !repeatNext;
+
+            //if(!repeatNext)
+                colorPointsList.clear();
+
 			doAction(cg, points, colors);
 			
 		}

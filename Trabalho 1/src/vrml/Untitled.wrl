@@ -1,119 +1,176 @@
 #VRML V2.0 utf8
 
 
-PROTO Arrow [ 
-	field SFRotation rotation 0 0 0 0
-	field SFColor color 0 0 0				 
-] {
+PROTO Axis [ 
 
-	Transform {
+]
+{
 
-		rotation IS	rotation
+	PROTO XAxis [						 
+		field SFColor color 1 0 0
+		field MFString	AxisName "X"		 
+	] {			
+		
+		Group {
+
+			children [
+
+				
+				Transform {
+	
+					translation	2.5 0 0
+
+					rotation 0 0 1 -1.57
+
+					children [
+		
+						Shape {
+
+							geometry Cone { 
+		
+								bottomRadius 0.2
+
+								height 0.5
+
+							}
+
+							appearance DEF	Appea Appearance { 
+		
+								material Material { 
+		
+									diffuseColor IS	color
+				
+								} 
+
+							}
+
+						}
+
+					]
+
+				}
+
+
+				Transform {
+
+					translation	1.25 0 0
+
+					rotation 0 0 1 -1.57
+
+					children [
+		
+						Shape {
+
+							geometry Cylinder { 
+			
+								height 2.5
+
+								radius 0.1
+
+							}
+
+							appearance USE Appea
+
+						}
+
+						Shape {
+
+							geometry Cylinder {
+
+								radius 0.01
+
+								height 100
+
+							}
+
+							appearance USE Appea
+
+						}
+
+					]
+
+				}			
+
+				Billboard {
+
+					axisOfRotation 1 0 0
+
+					children Transform {
+					
+						translation	3 0 0
+					
+						children Shape {
+
+							geometry Text {
+
+								string IS AxisName
+
+								fontStyle FontStyle	{
+
+									size 0.2
+
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+
+			]
+		
+		}
+
+
+
+	}
+
+	Group { 
 		
 		children [
 
+			XAxis { }							   
+	   
 			Transform {
-	
-				translation	0 2.5 0
-
-				children [
-		
-					Shape {
-
-						geometry Cone { 
-		
-							bottomRadius 0.2
-
-							height 0.5
-
-						}
-
-						appearance Appearance { 
-		
-							material Material { 
-							
-								diffuseColor IS	color
-
-							}
-
-						}
-
-					}
-
-				]
-
+			    
+				rotation	0 0 1 1.57    
+				
+				children XAxis	{ color 0 1 0 AxisName "Y" } 
 			}
 
-
 			Transform {
 
-				translation	0 1.25 0
-
-				children [
-		
-					Shape {
-
-						geometry Cylinder { 
+				rotation	0 1 0 -1.57
 			
-							height 2.5
+				children XAxis	{ color 0 0 1 AxisName "Z" }
 
-							radius 0.1
-
-						}
-
-						appearance Appearance {
-
-							material Material { 
-							
-								diffuseColor IS	color
-
-							}
-
-						} 
-
-					}
-
-				]
 
 			}
 
 			Shape {
 
-				geometry Cylinder {
+				geometry Sphere	{ radius 0.2 }
 
-					radius 0.01
-
-					height 100
-
-				}
-
-				appearance Appearance {
-
-					material Material {
-
-						diffuseColor IS	color
-
-					}
-
-				}
+				appearance Appearance { material Material { diffuseColor 1 1 1 } }
 
 			}
-
+	
 		]
-		
+
 	}
 
 }
 
+Axis { }
 
-Arrow { color 1 0 0 }							   
+Viewpoint {
 
-Arrow { rotation 1 0 0 1.57 color 0 1 0}
+	position 5 0 10
 
-Arrow { rotation 0 0 1 -1.57 color 0 0 1} 
+	orientation 0 1 0 0.6
 
-Shape {
-
-	geometry Sphere	{ radius 0.2 }
+	fieldOfView	0.785398
 
 }
