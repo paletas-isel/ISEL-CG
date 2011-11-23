@@ -10,6 +10,8 @@ PROTO CircleExtrusion [
 	
 	field SFBool caps FALSE
 
+	field SFFloat angle 1
+
 ]{
 
 	Shape {
@@ -28,7 +30,7 @@ PROTO CircleExtrusion [
 
 			scale IS scale
 
-			creaseAngle	1
+			creaseAngle	IS angle
 		}
 
 		appearance Appearance {
@@ -36,6 +38,47 @@ PROTO CircleExtrusion [
 			material Material {
 
 				diffuseColor IS color
+
+			}
+
+		}
+
+	}
+
+}
+
+PROTO Hexagon [
+	field MFVec3f spine [0 0 0, 0 1 0]
+	field MFVec2f scale 1 1
+	field SFBool wallsOutside TRUE
+	field SFBool endCap TRUE
+	field SFBool beginCap TRUE
+]
+{
+
+	Shape {
+
+		geometry Extrusion {
+
+			crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4 ]
+			
+			spine IS spine
+
+			scale IS scale
+
+			ccw	IS wallsOutside
+
+			endCap IS endCap
+
+			beginCap IS	beginCap
+
+		}
+
+		appearance Appearance {
+
+			material Material {
+
+				diffuseColor 0.2 0.2 0.2
 
 			}
 
@@ -58,9 +101,9 @@ PROTO LighthouseBase [
 
 					crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4, 0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
 				  
-					spine [0 0 0, 0 0.3 0, 0 0.6 0, 0 0.9 0, 0 1.2 0, 0 3.5 0, 0 3.8 0, 0 3.9 0, 0 4 0] 
+					spine [0 0 0,   0 0.3 0, 0 0.3 0, 0 0.6 0, 0 0.6 0, 0 0.9 0, 0 0.9 0, 0 1.2 0, 0 1.2 0, 0 3.5 0, 0 3.5 0,   0 3.8 0,   0 3.9 0, 0 3.9 0,   0 4 0] 
 
-					scale [8.8 8.8, 8.7 8.7, 8.6 8.6, 8.5 8.5, 8.3 8.3, 8.4 8.4, 8.5 8.5, 8.6 8.6, 8.65 8.65] 					
+					scale [8.8 8.8, 8.8 8.8, 8.7 8.7, 8.7 8.7, 8.6 8.6, 8.6 8.6, 8.5 8.5, 8.5 8.5, 8.3 8.3, 8.3 8.3, 8.37 8.37, 8.37 8.37, 8.6 8.6, 8.65 8.65, 8.65 8.65] 					
 				}
 
 				appearance Appearance {
@@ -75,30 +118,15 @@ PROTO LighthouseBase [
 
 			}
 
-			Shape {
-
-			  geometry Extrusion {
-
-					crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4]
+			Hexagon	{
 				  
-					spine [0 0 0, 0 4 0] 
+				spine [0 0 0, 0 4 0] 
 
-					scale 6.8 6.8	
-	
-					ccw	FALSE	
+				scale 6.8 6.8	
 
-					endCap	FALSE							
-				}
+				wallsOutside FALSE
 
-				appearance Appearance {
-
-					material Material {
-
-						diffuseColor 1 1 0
-
-					}
-
-				}
+				endCap	FALSE	 
 
 			}
 
@@ -181,8 +209,69 @@ PROTO LighthouseTower [
 PROTO PorchFenceAndSupport [
 ]
 {	
+  	PROTO ScaledSphere [
+		exposedField SFVec3f scale 1 1 1
+	]
+	{
+		Transform {
 
-#	CircleExtrusion	{ spine	[0 0 0, 1 1 0, 0 2 0, 0.5 3 0, 0 0 0]  }
+			scale IS scale
+
+			children Shape {
+
+				geometry Sphere	{
+
+					radius 0.01
+
+				}
+
+				appearance Appearance {
+
+					material Material {
+
+						diffuseColor 1 0 1
+
+					}
+
+				}
+
+			}
+		}
+	}
+
+	Group 
+	{
+
+		children [
+
+			Hexagon	{
+			
+				spine [ 0 0 0, 0 0.1 0 ]
+
+				scale 0.1 0.1
+
+			}	
+
+			
+			Transform {
+
+				translation	0 0.25 0
+
+				children ScaledSphere { scale 10 3 10 }
+
+			}
+
+			Transform {
+
+				translation	0 0.25 0
+
+				children ScaledSphere { scale 8 1 8 }
+
+			} 
+
+		]
+
+	}
 
 }
 
@@ -205,27 +294,29 @@ PROTO PorchBase [
 
 }
 
+
+
 Group {
 
 	children [
 
-		LighthouseBase { }
+#		LighthouseBase { }
 
-		Transform {
+#		Transform {
 		
-			translation 0 4 0
+#			translation 0 4 0
 
-			children LighthouseTower { }
+#			children LighthouseTower { }
 			
-		}
+#		}
 
-		Transform {
+#		Transform {
 
-			translation	0 56 0
+#			translation	0 56 0
 		   
-			children PorchBase { }
+#			children PorchBase { }
 
-		}
+#		}
 
 #		LighthouseStrip { }
 
@@ -235,6 +326,8 @@ Group {
 
 #			children LighthouseStrip	{ color 0 1 0 }
 #		}
+
+		PorchFenceAndSupport { }
 
 	]
 
