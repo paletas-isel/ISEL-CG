@@ -1,0 +1,1475 @@
+#VRML V2.0 utf8
+
+PROTO CircleExtrusion [
+
+	field MFVec2f scale 1 1
+
+	field SFColor color 1 0 0
+
+	field MFVec3f spine [0 0 0, 0 1 0] 
+	
+	field SFBool caps FALSE
+
+	field SFFloat angle 1
+
+]{
+
+	Shape {
+
+		geometry Extrusion {
+
+			crossSection [1 0, 0.966 0.259, 0.866 0.5, 0.707 0.707, 0.5 0.866, 0.259 0.966, 0 1, -0.259 0.966, -0.5 0.866, -0.707 0.707, -0.866 0.5, -0.966 0.259, -1 0, -0.966 -0.259, -0.866 -0.5, -0.707 -0.707, -0.5 -0.866, -0.259 -0.966, 0 -1, 0.259 -0.966, 0.5 -0.866, 0.707 -0.707, 0.866 -0.5, 0.966 -0.259, 1 0]	
+	 
+			spine IS spine
+
+			ccw	FALSE
+
+			endCap IS caps
+
+			beginCap IS caps
+
+			scale IS scale
+
+			creaseAngle	IS angle
+		}
+
+		appearance Appearance {
+
+			material Material {
+
+				diffuseColor IS color
+
+			}
+
+		}
+
+	}
+
+}
+
+PROTO Octagon [
+	field MFVec3f spine [0 0 0, 0 1 0]
+	field MFVec2f scale 1 1
+	field SFBool wallsOutside TRUE
+	field SFBool endCap TRUE
+	field SFBool beginCap TRUE
+]
+{
+
+	Shape {
+
+		geometry Extrusion {
+
+			crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4 ]
+			
+			spine IS spine
+
+			scale IS scale
+
+			ccw	IS wallsOutside
+
+			endCap IS endCap
+
+			beginCap IS	beginCap
+
+		}
+
+		appearance Appearance {
+
+			material Material {
+
+				diffuseColor 0.2 0.2 0.2
+
+			}
+
+		}
+
+	}
+
+}
+
+PROTO LighthouseBase [
+]
+{
+	Group {
+
+		children [
+
+			Shape {
+
+				geometry Extrusion {
+
+					crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4, 0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
+				  
+					spine [0 0 0,   0 0.3 0, 0 0.3 0, 0 0.6 0, 0 0.6 0, 0 0.9 0, 0 0.9 0, 0 1.2 0, 0 1.2 0, 0 4.5 0, 0 4.5 0,   0 4.8 0,   0 4.9 0, 0 4.9 0,   0 5 0] 
+
+					scale [5.8 5.8, 5.8 5.8, 5.7 5.7, 5.7 5.7, 5.6 5.6, 5.6 5.6, 5.5 5.5, 5.5 5.5, 5.3 5.3, 5.3 5.3, 5.37 5.37, 5.37 5.37, 5.6 5.6, 5.65 5.65, 5.65 5.65] 					
+				}
+
+				appearance Appearance {
+
+					material Material {
+
+						diffuseColor 1 1 0
+
+					}
+
+				}
+
+			}
+
+			Octagon	{
+				  
+				spine [0 0 0, 0 5 0] 
+
+				scale 4.8 4.8	
+
+				wallsOutside FALSE
+
+				endCap	FALSE	 
+
+			}
+
+			Transform {
+
+				translation	0 1.2 5.1
+				
+				children [
+					
+					Shape {
+
+						geometry Extrusion {
+
+							crossSection [ 0.65 0, 0.65 -2.80, -0.65 -2.80, -0.65 0, -0.40 0, -0.40 -2.50, 0.40 -2.50, 0.40 0, 0.65 0 ]
+					   
+							spine [ 0 0 0, 0 0 0.30 ]
+
+						}
+
+						appearance Appearance {
+
+							material Material {
+
+								diffuseColor 0.2 0.2 0.2
+
+							}
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 2.80 0
+
+						children Shape {
+
+							geometry Extrusion {
+
+								crossSection [ 0.65 0, 0.75 -0.2, 0 -0.3, -0.75 -0.2, -0.65 0, 0.65 0 ]
+					   
+								spine [ 0 0 0, 0 0 0.50 ]								
+
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 0.2 0.2 0.2
+
+								}
+
+							}
+
+						}
+
+					}
+					
+					Transform {
+
+						translation	-0.55 2.80 0.42							
+
+						children DEF BaseDoorSupport Transform {
+
+							rotation 0 0 1 3.14
+
+							children Transform {	 
+
+								rotation 1 0 0 1.57
+
+								children Shape {
+
+									geometry Extrusion {
+
+										crossSection [ 0 0, 0.13 0, 0.13 -0.38, 0.09 -0.35, 0.07 -0.32, 0.04 -0.26, 0.02 -0.21,  0 0 ]
+					   
+										spine [ 0 0 0, 0.1 0 0 ]				
+
+									}
+
+									appearance Appearance {
+
+										material Material {
+
+											diffuseColor 0.2 0.2 0.2
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+					}
+
+					Transform {
+
+						translation	0.65 2.80 0.42							
+
+						children USE BaseDoorSupport  
+
+					}
+
+				]
+
+			}
+
+			Group {					 
+
+				PROTO	StairWall [
+				] 
+				{
+					
+					Transform	{
+
+						translation 0 0 5.8
+
+						PROTO	TopBotBlock [
+							field MFVec3f spine [0 0 0, 0 1 0]
+
+							 
+
+						] 
+						{
+
+							Shape {
+
+								geometry Extrusion {
+
+									crossSection [1 1, 1 -1, -1 -1, -1 1, 1 1]
+
+									spine IS spine
+
+									scale [0.20 0.8, 0.20 0.8, 0.13 0.73]
+
+								}
+
+								appearance Appearance {
+
+									material Material {
+
+										diffuseColor 0.3 0.3 0.3
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+						children [
+												
+							TopBotBlock	{ spine [0 0 0, 0 0.26 0, 0 0.28 0] }
+
+							Transform {
+
+								translation	0 0.68 0.365
+
+								children Shape {
+
+									geometry Box {
+
+										size 0.26 0.80 0.73
+
+									}
+
+									appearance Appearance {
+
+										material Material {
+
+											diffuseColor 0.3 0.3 0.3
+
+										}
+
+									}
+
+								}
+
+							}
+
+							TopBotBlock { spine [0 1.08 0, 0 1.20 0, 0 1.22 0] }
+
+						]
+
+					}
+				}
+
+				children [
+
+					Transform {
+
+						translation	-0.80 0 0
+					
+						children StairWall { }
+
+					}
+
+					Transform {
+
+						translation	0.80 0 0
+					
+						children StairWall { }
+
+					}
+
+					DEF	OutsideStair Transform {
+
+						translation 0 0.07 6.3
+
+						children Shape	{
+			
+							geometry Box {
+
+								size 1.45 0.14 0.12
+
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 0.4 0.4 0.4
+
+								}
+
+							}
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 0.135 -0.10
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.275 -0.20
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.405 -0.30
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.535 -0.40
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.665 -0.50
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.795 -0.60
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.925 -0.70
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 1.065 -0.80
+
+						children USE OutsideStair
+
+					}
+
+				]
+
+			}
+				
+		]
+	}
+}
+
+PROTO LighthouseStrip [
+	field SFColor color 0 0 1
+]
+{
+
+	Shape {
+
+		geometry Extrusion {
+
+			crossSection [0 0, 0.3 1, 0.6 1, 0.3 0, 0 0]
+		   
+		    spine[1 0 0, 0.966 0.16 0.259, 0.866 0.32 0.5, 0.707 0.48 0.707, 0.5 0.64 0.866, 0.259 0.80 0.966, 0 0.96 1, -0.259 1.12 0.966, -0.5 1.28 0.866, -0.707 1.44 0.707, -0.866 1.60 0.5, -0.966 1.76 0.259, -1 1.92 0, -0.966 2.08 -0.259, -0.866 2.24 -0.5, -0.707 2.40 -0.707, -0.5 2.56 -0.866, -0.259 2.72 -0.966, 0 2.88 -1, 0.259 3.04 -0.966, 0.5 3.20 -0.866, 0.707 3.36 -0.707, 0.866 3.52 -0.5, 0.966 3.68 -0.259, 1 3.82 0]
+					
+
+			scale []
+		}
+
+		appearance Appearance {
+
+			material Material {
+
+				diffuseColor IS color
+
+			}
+
+		}
+
+	}
+
+}
+
+PROTO LighthouseTower [
+]
+{
+	CircleExtrusion { 
+		
+		scale [5.5 5.5, 4.5 4.5, 4.3 4.3, 5.3 5.3]
+	
+		spine [0 0 0, 0 52 0, 0 52 0, 0 0 0]
+
+	}
+}
+
+
+PROTO PorchFenceAndSupport [
+	field SFVec3f translation 0 0 0
+]
+{	
+  	PROTO ScaledSphere [
+		exposedField SFVec3f scale 1 1 1
+	]
+	{
+		Transform {
+
+			scale IS scale
+
+			children Shape {
+
+				geometry Sphere	{
+
+					radius 0.01
+
+				}
+
+				appearance Appearance {
+
+					material Material {
+
+						diffuseColor 1 0 1
+
+					}
+
+				}
+
+			}
+		}
+	}
+
+	Transform {
+
+		translation	0 0.1 0
+
+		children [
+
+			Transform 
+			{
+
+				translation	IS translation					
+
+				children [
+
+					Octagon	{
+			
+						spine [ 0 0 0, 0 0.1 0 ]
+
+						scale 0.1 0.1
+
+					}	
+
+			
+					Transform {
+
+						translation	0 0.120 0
+
+						children ScaledSphere { scale 10 3 10 }
+
+					}
+
+					Transform {
+
+						translation	0 0.150 0
+
+						children ScaledSphere { scale 8 1 8 }
+
+					} 
+
+					Transform {
+
+						translation	0 0.22 0
+
+						children ScaledSphere  { scale 10 7 10 }
+
+					}
+
+					Transform {
+
+						translation	0 0.29 0
+
+						children ScaledSphere { scale 6 1 6 }
+
+					}
+
+					Transform {
+
+						translation	0 0.30 0
+
+						children ScaledSphere { scale 7 1 7 }
+
+					}
+
+					Transform {
+
+						translation	0 0.31 0   
+
+						scale 10 2 10
+
+						children DEF PolePiece1 Shape {
+
+							geometry Cylinder {
+
+								radius 0.01
+
+								height 0.01
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 1 0.5 1
+
+								}
+
+							}
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 0.33 0
+
+						children ScaledSphere { scale 7 1 7 }
+
+					}
+
+					Transform {
+
+						translation	0 0.34 0
+
+						children ScaledSphere { scale 6 1 6 }
+
+					}
+
+					CircleExtrusion {	 		
+	
+						spine [0 0.35 0,  0 0.37 0,  0 0.37 0,    0 0.59 0,  0 0.60 0 ]
+
+						scale [0.08 0.08, 0.08 0.08, 0.075 0.075, 0.04 0.04, 0.04 0.04]
+
+						caps TRUE
+
+					}
+
+
+					Transform {
+
+						translation	0 0.61 0
+
+						children ScaledSphere { scale 5 1 5 }
+
+					}
+
+					CircleExtrusion {	 		
+	
+						spine [0 0.615 0,  0 0.6210 0,  0 0.6225 0,    0 0.63 0,  0 0.6320 0 , 0 0.6330 0, 0 0.6350 0]
+
+						scale [0.042 0.042, 0.035 0.035, 0.03 0.03, 0.04 0.04, 0.048 0.048, 0.05 0.05, 0.05 0.05]
+
+						caps TRUE
+
+					}
+
+
+					Transform {
+
+						translation	0 0.675 0
+
+						children Shape {
+
+							geometry Box {
+
+								size 0.11 0.08 0.11
+
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 0.1 0.1 0.1
+
+								}
+						
+							}
+
+						}					
+
+					}  
+
+					DEF	PolePiece2 CircleExtrusion {
+
+						spine [	0 0.715 0, 0 0.725 0, 0 0.73 0, 0 0.735 0 ]
+
+						scale [ 0.05 0.05, 0.05 0.05, 0.045 0.045, 0.035 0.035 ]
+
+						caps TRUE
+
+					}
+
+					Transform {
+
+						translation	0 0.73 0
+
+						scale 0.8 0.5 0.8	
+
+						children Transform {
+
+							translation	0 -0.715 0
+
+							children USE PolePiece2	 
+				
+						}
+
+					}
+
+					CircleExtrusion	{
+
+						spine [ 0 0.735 0, 0 0.74 0,  0 0.755 0, 0 0.77 0, 0 0.83 0,     0 0.84 0,  0 0.85 0 ]
+			  
+						scale [ 0.03 0.03, 0.04 0.04, 0.05 0.05, 0.048 0.048, 0.03 0.03, 0.035 0.035, 0.04 0.04 ]  
+			   
+						caps TRUE	
+
+					}
+
+					Transform {
+
+						translation	0 0.85 0
+
+						children ScaledSphere { scale 5 1.5 5 }
+
+					}
+
+					Transform {
+
+						translation	0 0.86 0
+
+						scale 4 0.8 4
+
+						children USE PolePiece1
+
+					}
+
+					Transform {
+
+						translation	0 0.88 0
+
+						children ScaledSphere { scale 5 2.5 5 }
+
+					}
+
+					Transform {
+
+						translation	0 0.90 0
+
+						scale 6 1 6
+
+						children USE PolePiece1
+
+					}
+
+					Transform {
+
+						translation	0 0.91 0  	
+				
+						children ScaledSphere { scale 8 2 8 }
+
+					} 
+
+
+					Transform {
+
+						translation	0 0.93 0
+
+						scale 3 1 3
+
+						children USE PolePiece1
+
+					}
+
+					CircleExtrusion	{
+
+						spine [ 0 0.93 0, 0 0.945 0, 0 0.97 0, 0 0.98 0 ]
+			  
+						scale [ 0.01 0.01, 0.02 0.02, 0.02 0.02, 0.015 0.015 ]  
+			   
+						caps TRUE	
+
+					}
+
+					# Post ended, Fence start	  
+
+					CircleExtrusion	{
+
+						spine [ 0 0.91 0, -0.3272 0.91 1.9450 ]
+	  
+						scale 0.02 0.02
+
+					}
+
+					CircleExtrusion	{
+
+						spine [ 0 0.695 0, -0.3272 0.695 1.9450 ]
+	  
+						scale 0.02 0.02 	
+
+					}  
+				]
+
+			}			
+
+			Transform {
+
+				rotation 0 1 0 -0.0303
+		
+				children Transform {
+
+					translation	IS translation
+
+					children DEF BigVerticals CircleExtrusion	{
+
+						spine [ 0 0 0, 0 0.91 0]
+
+						scale 0.02 0.02  
+
+						caps TRUE	
+
+					}
+	
+				}
+
+			}
+
+			Transform {
+
+				rotation 0 1 0 -0.0606
+
+				children Transform {
+
+					translation	IS translation
+
+					children DEF SmallVerticals CircleExtrusion	{
+
+						spine [ 0 0 0, 0 0.695 0]
+
+						scale 0.02 0.02  
+
+						caps TRUE	
+
+					}
+	
+				}
+
+			} 
+			
+			Transform {
+
+				rotation 0 1 0 -0.0909
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1202
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.0909
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1202
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1505
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1808
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.2101
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.2404
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.2707
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+		]
+
+	} 
+
+}
+
+PROTO PorchBase
+[
+	field MFVec2f scale 6 6 
+	field SFColor color 1 0.5 1
+
+]
+{
+	
+	CircleExtrusion 
+	{ 
+		
+		spine	[ 0 0 0, 0 0.1 0 ] 
+		
+		color IS color
+
+		scale IS scale
+
+		caps TRUE
+	
+	}
+
+}
+
+PROTO LanternHouse 
+[
+]
+{
+	
+	PROTO LanternBar
+	[]
+	{
+
+		CircleExtrusion
+		{
+			spine [0 0 0, 0 1.5 0]
+			color 1 1 1
+			scale 0.05 0.05
+			caps TRUE	
+		}
+	}
+
+	PROTO LanternFence
+	[]
+	{
+	
+		Group
+		{
+			children
+			[
+				
+				Transform
+				{
+					translation	0 0 0
+					children
+					[
+						LanternBar{}
+					]
+				}
+
+				Transform
+				{
+					translation	0 1.5 0
+					rotation 1 0 0 1.57
+					children
+					[
+						LanternBar{}	
+					]
+				}
+				Transform
+				{
+					translation	0 1.5 0
+					children 
+					[
+						Shape
+						{
+							geometry Sphere
+							{
+								radius 0.08
+							}
+							appearance Appearance
+							{
+								material Material
+								{
+									diffuseColor 0 0 1
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+
+
+	PROTO LanternFenceGroup
+	[]
+	{
+		Group
+		{
+			children 
+			[
+				LanternFence{}
+				Transform	
+				{
+					translation	0 0 1.5
+					children
+					[
+						LanternFence {}
+					]
+				}
+
+			]
+		}
+	}
+
+	PROTO LanternFenceGroupTransformation
+	[
+		field SFVec3f translation 0 0 0
+		field SFRotation rotation 0 0 0 0
+	]
+	{
+		Group
+		{
+			children 
+			[
+				
+				Transform	
+				{
+					translation	IS translation
+					rotation IS	rotation
+					children
+					[
+						LanternFenceGroup {}
+					]
+				}
+
+			]
+		}	
+	}
+
+	Group
+	{
+		children
+		[
+			
+			#LanternBase
+			Group
+			{
+				children 
+				[
+					CircleExtrusion
+					{
+						spine [ 0 0 0, 0 4 0 ]
+						color 0 0 1
+						scale 4 4
+						caps TRUE
+					}
+
+					Transform
+					{
+						translation	0 3.5 0
+						children
+						[
+							CircleExtrusion
+							{
+								spine [ 0 0 0 , 0 0.5 0]
+								color 0 0 1
+								scale 4.3 4.3
+								caps TRUE
+							}
+						]
+					}
+
+					Transform
+					{
+						translation	0 4 0
+						children 
+						[
+							PorchBase 
+							{
+								scale  4.5 4.5
+								color 0 1 0
+							}
+						]
+					}
+				]
+			}
+			 
+
+			#LanterFence
+			Group
+			{
+				children
+				[
+					Transform
+					{
+						translation	 -3.45 0 -1.35
+						children
+						[
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 0
+								translation	0 4 0   
+							}
+
+										
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 0.785
+								translation	0 4 3   
+							}
+
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 1.57
+								translation	2.121 4 5.121 
+							}
+
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 2.355
+								translation	5 4 5.121 
+							}
+
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 3.14
+								translation	7.121 4 3
+							}
+
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 3.925
+								translation	7.121 4 0   
+							}
+
+
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 4.71
+								translation	5 4 -2.121   
+							}
+
+							LanternFenceGroupTransformation
+							{
+
+								rotation 0 1 0 5.495
+								translation	2.121 4 -2.121   
+							}	
+						]
+					}
+				
+				]
+			}
+
+			#lightroom
+			Group
+			{
+				
+				children 
+				[
+					Transform
+					{
+						translation	0 4 0
+						children
+						[
+							CircleExtrusion
+							{
+								spine [0 0 0, 0 5 0]
+								scale 3 3 
+								caps TRUE
+								color 1 0.6 0.3
+							}
+					]
+					}
+				]
+			}
+			
+		]
+	}
+}
+
+
+
+Group {
+
+	children [
+
+		LighthouseBase { }
+
+		Transform {
+		
+			translation 0 5 0
+
+			children LighthouseTower { }
+			
+		}
+
+		Transform {
+
+			translation	0 57 0
+		   
+			children [
+				
+				PorchBase { }
+
+				DEF PorchOnEdge Transform {
+				
+					children PorchFenceAndSupport { translation 5.8 0 0 }
+				
+				}
+
+				Transform {
+
+					rotation 0 1 0 0.3333
+				
+					children USE	PorchOnEdge
+
+				}
+
+				Transform {
+
+					rotation 0 1 0 0.6666
+				
+					children USE	PorchOnEdge
+
+				}
+
+				Transform {
+
+					rotation 0 1 0 0.9999
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 1.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 1.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 1.9999
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 2.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 2.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 2.9999
+				
+					children USE	PorchOnEdge
+
+				}  
+
+				Transform {
+
+					rotation 0 1 0 3.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 3.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 3.9999
+				
+					children USE	PorchOnEdge
+
+				}  
+
+				Transform {
+
+					rotation 0 1 0 4.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 4.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 4.9999
+				
+					children USE	PorchOnEdge
+
+				}	 
+
+				Transform {
+
+					rotation 0 1 0 5.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 5.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 5.9999
+				
+					children USE	PorchOnEdge
+
+				}
+			   
+				LanternHouse {}
+
+			]
+
+		}
+
+#		LighthouseStrip { }
+
+#		Transform {
+
+#			translation	0 1 -0.3
+
+#			children LighthouseStrip	{ color 0 1 0 }
+#		}
+
+#		PorchFenceAndSupport { }
+
+	]
+
+}
+ 
+
+Viewpoint {
+
+	position 0 58 0
+
+	description	"LighthousePorch"
+
+}	  
+
+Viewpoint {
+
+	position 0 2 12
+
+	description	"LighthouseDoor"
+
+}  
