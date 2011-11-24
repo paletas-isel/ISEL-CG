@@ -47,7 +47,7 @@ PROTO CircleExtrusion [
 
 }
 
-PROTO Hexagon [
+PROTO Octagon [
 	field MFVec3f spine [0 0 0, 0 1 0]
 	field MFVec2f scale 1 1
 	field SFBool wallsOutside TRUE
@@ -103,7 +103,7 @@ PROTO LighthouseBase [
 				  
 					spine [0 0 0,   0 0.3 0, 0 0.3 0, 0 0.6 0, 0 0.6 0, 0 0.9 0, 0 0.9 0, 0 1.2 0, 0 1.2 0, 0 3.5 0, 0 3.5 0,   0 3.8 0,   0 3.9 0, 0 3.9 0,   0 4 0] 
 
-					scale [8.8 8.8, 8.8 8.8, 8.7 8.7, 8.7 8.7, 8.6 8.6, 8.6 8.6, 8.5 8.5, 8.5 8.5, 8.3 8.3, 8.3 8.3, 8.37 8.37, 8.37 8.37, 8.6 8.6, 8.65 8.65, 8.65 8.65] 					
+					scale [7.8 7.8, 7.8 7.8, 7.7 7.7, 7.7 7.7, 7.6 7.6, 7.6 7.6, 7.5 7.5, 7.5 7.5, 7.3 7.3, 7.3 7.3, 7.37 7.37, 7.37 7.37, 7.6 7.6, 7.65 7.65, 7.65 7.65] 					
 				}
 
 				appearance Appearance {
@@ -118,7 +118,7 @@ PROTO LighthouseBase [
 
 			}
 
-			Hexagon	{
+			Octagon	{
 				  
 				spine [0 0 0, 0 4 0] 
 
@@ -198,7 +198,7 @@ PROTO LighthouseTower [
 {
 	CircleExtrusion { 
 		
-		scale [8.5 8.5, 6 8, 5.8, 5.8, 8.3 8.3]
+		scale [7.5 7.5, 5 5, 4.8 4.8, 7.3 7.3]
 	
 		spine [0 0 0, 0 52 0, 0 52 0, 0 0 0]
 
@@ -207,6 +207,7 @@ PROTO LighthouseTower [
 
 
 PROTO PorchFenceAndSupport [
+	field SFVec3f translation 0 0 0
 ]
 {	
   	PROTO ScaledSphere [
@@ -239,39 +240,461 @@ PROTO PorchFenceAndSupport [
 		}
 	}
 
-	Group 
-	{
+	Group {
 
 		children [
 
-			Hexagon	{
+			Transform 
+			{
+
+				translation	IS translation					
+
+				children [
+
+					Octagon	{
 			
-				spine [ 0 0 0, 0 0.1 0 ]
+						spine [ 0 0 0, 0 0.1 0 ]
 
-				scale 0.1 0.1
+						scale 0.1 0.1
 
-			}	
+					}	
 
 			
+					Transform {
+
+						translation	0 0.120 0
+
+						children ScaledSphere { scale 10 3 10 }
+
+					}
+
+					Transform {
+
+						translation	0 0.150 0
+
+						children ScaledSphere { scale 8 1 8 }
+
+					} 
+
+					Transform {
+
+						translation	0 0.22 0
+
+						children ScaledSphere  { scale 10 7 10 }
+
+					}
+
+					Transform {
+
+						translation	0 0.29 0
+
+						children ScaledSphere { scale 6 1 6 }
+
+					}
+
+					Transform {
+
+						translation	0 0.30 0
+
+						children ScaledSphere { scale 7 1 7 }
+
+					}
+
+					Transform {
+
+						translation	0 0.31 0   
+
+						scale 10 2 10
+
+						children DEF PolePiece1 Shape {
+
+							geometry Cylinder {
+
+								radius 0.01
+
+								height 0.01
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 1 0.5 1
+
+								}
+
+							}
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 0.33 0
+
+						children ScaledSphere { scale 7 1 7 }
+
+					}
+
+					Transform {
+
+						translation	0 0.34 0
+
+						children ScaledSphere { scale 6 1 6 }
+
+					}
+
+					CircleExtrusion {	 		
+	
+						spine [0 0.35 0,  0 0.37 0,  0 0.37 0,    0 0.59 0,  0 0.60 0 ]
+
+						scale [0.08 0.08, 0.08 0.08, 0.075 0.075, 0.04 0.04, 0.04 0.04]
+
+						caps TRUE
+
+					}
+
+
+					Transform {
+
+						translation	0 0.61 0
+
+						children ScaledSphere { scale 5 1 5 }
+
+					}
+
+					CircleExtrusion {	 		
+	
+						spine [0 0.615 0,  0 0.6210 0,  0 0.6225 0,    0 0.63 0,  0 0.6320 0 , 0 0.6330 0, 0 0.6350 0]
+
+						scale [0.042 0.042, 0.035 0.035, 0.03 0.03, 0.04 0.04, 0.048 0.048, 0.05 0.05, 0.05 0.05]
+
+						caps TRUE
+
+					}
+
+
+					Transform {
+
+						translation	0 0.675 0
+
+						children Shape {
+
+							geometry Box {
+
+								size 0.11 0.08 0.11
+
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 0.1 0.1 0.1
+
+								}
+						
+							}
+
+						}					
+
+					}  
+
+					DEF	PolePiece2 CircleExtrusion {
+
+						spine [	0 0.715 0, 0 0.725 0, 0 0.73 0, 0 0.735 0 ]
+
+						scale [ 0.05 0.05, 0.05 0.05, 0.045 0.045, 0.035 0.035 ]
+
+						caps TRUE
+
+					}
+
+					Transform {
+
+						translation	0 0.73 0
+
+						scale 0.8 0.5 0.8	
+
+						children Transform {
+
+							translation	0 -0.715 0
+
+							children USE PolePiece2	 
+				
+						}
+
+					}
+
+					CircleExtrusion	{
+
+						spine [ 0 0.735 0, 0 0.74 0,  0 0.755 0, 0 0.77 0, 0 0.83 0,     0 0.84 0,  0 0.85 0 ]
+			  
+						scale [ 0.03 0.03, 0.04 0.04, 0.05 0.05, 0.048 0.048, 0.03 0.03, 0.035 0.035, 0.04 0.04 ]  
+			   
+						caps TRUE	
+
+					}
+
+					Transform {
+
+						translation	0 0.85 0
+
+						children ScaledSphere { scale 5 1.5 5 }
+
+					}
+
+					Transform {
+
+						translation	0 0.86 0
+
+						scale 4 0.8 4
+
+						children USE PolePiece1
+
+					}
+
+					Transform {
+
+						translation	0 0.88 0
+
+						children ScaledSphere { scale 5 2.5 5 }
+
+					}
+
+					Transform {
+
+						translation	0 0.90 0
+
+						scale 6 1 6
+
+						children USE PolePiece1
+
+					}
+
+					Transform {
+
+						translation	0 0.91 0  	
+				
+						children ScaledSphere { scale 8 2 8 }
+
+					} 
+
+
+					Transform {
+
+						translation	0 0.93 0
+
+						scale 3 1 3
+
+						children USE PolePiece1
+
+					}
+
+					CircleExtrusion	{
+
+						spine [ 0 0.93 0, 0 0.945 0, 0 0.97 0, 0 0.98 0 ]
+			  
+						scale [ 0.01 0.01, 0.02 0.02, 0.02 0.02, 0.015 0.015 ]  
+			   
+						caps TRUE	
+
+					}
+
+					# Post ended, Fence start	  
+
+					CircleExtrusion	{
+
+						spine [ 0 0.91 0, -0.3272 0.91 1.9450 ]
+	  
+						scale 0.02 0.02
+
+					}
+
+					CircleExtrusion	{
+
+						spine [ 0 0.695 0, -0.3272 0.695 1.9450 ]
+	  
+						scale 0.02 0.02 	
+
+					}  
+				]
+
+			}			
+
 			Transform {
 
-				translation	0 0.25 0
+				rotation 0 1 0 -0.0303
+		
+				children Transform {
 
-				children ScaledSphere { scale 10 3 10 }
+					translation	IS translation
+
+					children DEF BigVerticals CircleExtrusion	{
+
+						spine [ 0 0 0, 0 0.91 0]
+
+						scale 0.02 0.02  
+
+						caps TRUE	
+
+					}
+	
+				}
 
 			}
 
 			Transform {
 
-				translation	0 0.25 0
+				rotation 0 1 0 -0.0606
 
-				children ScaledSphere { scale 8 1 8 }
+				children Transform {
+
+					translation	IS translation
+
+					children DEF SmallVerticals CircleExtrusion	{
+
+						spine [ 0 0 0, 0 0.695 0]
+
+						scale 0.02 0.02  
+
+						caps TRUE	
+
+					}
+	
+				}
 
 			} 
+			
+			Transform {
 
+				rotation 0 1 0 -0.0909
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1202
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.0909
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1202
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1505
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.1808
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.2101
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.2404
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	SmallVerticals
+	
+				}
+
+			}
+			
+			Transform {
+
+				rotation 0 1 0 -0.2707
+
+				children Transform {
+
+					translation	IS translation
+
+					children USE	BigVerticals
+	
+				}
+
+			}
 		]
 
-	}
+	} 
 
 }
 
@@ -286,7 +709,7 @@ PROTO PorchBase [
 		
 		color 1 0.5 1 
 
-		scale 3.8 3.8
+		scale 6 6
 
 		caps TRUE
 	
@@ -314,21 +737,182 @@ Group {
 
 			translation	0 56 0
 		   
-			children PorchBase { }
+			children [
+				
+				PorchBase { }
+
+				DEF PorchOnEdge Transform {
+				
+					children PorchFenceAndSupport { translation 5.8 0 0 }
+				
+				}
+
+				Transform {
+
+					rotation 0 1 0 0.3333
+				
+					children USE	PorchOnEdge
+
+				}
+
+				Transform {
+
+					rotation 0 1 0 0.6666
+				
+					children USE	PorchOnEdge
+
+				}
+
+				Transform {
+
+					rotation 0 1 0 0.9999
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 1.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 1.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 1.9999
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 2.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 2.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 2.9999
+				
+					children USE	PorchOnEdge
+
+				}  
+
+				Transform {
+
+					rotation 0 1 0 3.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 3.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 3.9999
+				
+					children USE	PorchOnEdge
+
+				}  
+
+				Transform {
+
+					rotation 0 1 0 4.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 4.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 4.9999
+				
+					children USE	PorchOnEdge
+
+				}	 
+
+				Transform {
+
+					rotation 0 1 0 5.3333
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 5.6666
+				
+					children USE	PorchOnEdge
+
+				} 
+
+				Transform {
+
+					rotation 0 1 0 5.9999
+				
+					children USE	PorchOnEdge
+
+				} 
+
+			]
 
 		}
 
-		LighthouseStrip { }
+#		LighthouseStrip { }
 
-		Transform {
+#		Transform {
 
-			translation	0 1 -0.3
+#			translation	0 1 -0.3
 
-			children LighthouseStrip	{ color 0 1 0 }
-		}
+#			children LighthouseStrip	{ color 0 1 0 }
+#		}
 
-		PorchFenceAndSupport { }
+#		PorchFenceAndSupport { }
 
 	]
+
+}
+
+
+Viewpoint {
+
+	position 0 58 0
 
 }
