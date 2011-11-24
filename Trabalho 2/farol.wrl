@@ -300,32 +300,32 @@ Group {
 
 	children [
 
-#		LighthouseBase { }
+		LighthouseBase { }
 
-#		Transform {
+		Transform {
 		
-#			translation 0 4 0
+			translation 0 4 0
 
-#			children LighthouseTower { }
+			children LighthouseTower { }
 			
-#		}
+		}
 
-#		Transform {
+		Transform {
 
-#			translation	0 56 0
+			translation	0 56 0
 		   
-#			children PorchBase { }
+			children PorchBase { }
 
-#		}
+		}
 
-#		LighthouseStrip { }
+		LighthouseStrip { }
 
-#		Transform {
+		Transform {
 
-#			translation	0 1 -0.3
+			translation	0 1 -0.3
 
-#			children LighthouseStrip	{ color 0 1 0 }
-#		}
+			children LighthouseStrip	{ color 0 1 0 }
+		}
 
 		PorchFenceAndSupport { }
 
