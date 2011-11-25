@@ -720,11 +720,10 @@ PROTO PorchFenceAndSupport [
 ]
 {	
   	PROTO ScaledSphere [
-		exposedField SFVec3f scale 1 1 1
-
 		field SFColor color 0 0 0
 		field SFColor specularColor 0 0 0
 		field SFFloat shininess 0.2
+		field SFVec3f scale 1 1 1
 	]
 	{
 		Transform {
@@ -759,615 +758,734 @@ PROTO PorchFenceAndSupport [
 		}
 	}
 
-	Transform {
-
-		translation	0 0.1 0
+	Group {
 
 		children [
 
-			Transform 
-			{
+			Transform {
 
-				translation	IS translation					
+				translation	0 0.1 0
 
 				children [
 
-					LOD {
+					Transform 
+					{
 
-						range [ 20, 70 ]
+						translation	IS translation					
+
+						children [
+
+							LOD {
+
+								range [ 20, 70 ]
 					
-						level [
+								level [
 
-							Group {
+									Group {
 
-								children [
+										children [
 					
-									Octagon	{
+											Octagon	{
 
-										spine [ 0 0 0, 0 0.1 0 ]
+												spine [ 0 0 0, 0 0.1 0 ]
 
-										scale 0.1 0.1
+												scale 0.1 0.1
 
-										color IS color
+												color IS color
 
-										specularColor IS specularColor
+												specularColor IS specularColor
 
-										shininess IS shininess
+												shininess IS shininess
 
-									}	
+											}	
 
 
-									Transform {
+											Transform {
 
-										translation	0 0.120 0
+												translation	0 0.120 0
 
-										children ScaledSphere {
+												children ScaledSphere {
 										    
-											scale 10 3 10
+													scale 10 3 10
 
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									}
-
-									Transform {
-
-										translation	0 0.150 0
-
-										children ScaledSphere { 
-											
-											scale 8 1 8
-
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									} 
-
-									Transform {
-
-										translation	0 0.22 0
-
-										children ScaledSphere  { 
-											
-											scale 10 7 10
-
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									}
-
-									Transform {
-
-										translation	0 0.29 0
-
-										children ScaledSphere { 
-											
-											scale 6 1 6
-
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									}
-
-									Transform {
-
-										translation	0 0.30 0
-
-										children ScaledSphere { 
-											
-											scale 7 1 7
-
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									}
-
-									Transform {
-
-										translation	0 0.31 0   
-
-										scale 10 2 10
-
-										children DEF PolePiece1 Shape {
-
-											geometry Cylinder {
-
-												radius 0.01
-
-												height 0.01
-											}
-
-											appearance DEF PoleApp Appearance {
-
-												material Material {
-
-													diffuseColor IS	color 
+													color IS color
 
 													specularColor IS specularColor
 
 													shininess IS shininess
+								    			}
 
-													emissiveColor IS color								    
+											}
+
+											Transform {
+
+												translation	0 0.150 0
+
+												children ScaledSphere { 
+											
+													scale 8 1 8
+
+													color IS color
+
+													specularColor IS specularColor
+
+													shininess IS shininess
+								    			}
+
+											} 
+
+											Transform {
+
+												translation	0 0.22 0
+
+												children ScaledSphere  { 
+											
+													scale 10 7 10
+
+													color IS color
+
+													specularColor IS specularColor
+
+													shininess IS shininess
+								    			}
+
+											}
+
+											Transform {
+
+												translation	0 0.29 0
+
+												children ScaledSphere { 
+											
+													scale 6 1 6
+
+													color IS color
+
+													specularColor IS specularColor
+
+													shininess IS shininess
+								    			}
+
+											}
+
+											Transform {
+
+												translation	0 0.30 0
+
+												children ScaledSphere { 
+											
+													scale 7 1 7
+
+													color IS color
+
+													specularColor IS specularColor
+
+													shininess IS shininess
+								    			}
+
+											}
+
+											Transform {
+
+												translation	0 0.31 0   
+
+												scale 10 2 10
+
+												children DEF PolePiece1 Shape {
+
+													geometry Cylinder {
+
+														radius 0.01
+
+														height 0.01
+													}
+
+													appearance DEF PoleApp Appearance {
+
+														material Material {
+
+															diffuseColor IS	color 
+
+															specularColor IS specularColor
+
+															shininess IS shininess
+
+															emissiveColor IS color								    
+
+														}
+
+													}
 
 												}
 
 											}
 
-										}
+											Transform {
 
-									}
+												translation	0 0.33 0
 
-									Transform {
-
-										translation	0 0.33 0
-
-										children ScaledSphere { 
+												children ScaledSphere { 
 											
-											scale 7 1 7
+													scale 7 1 7
 
-											color IS color
+													color IS color
 
-											specularColor IS specularColor
+													specularColor IS specularColor
 
-											shininess IS shininess
-								    	}
-
-									}
-
-									Transform {
-
-										translation	0 0.34 0
-
-										children ScaledSphere { 
-											
-											scale 6 1 6 
-
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									}
-
-									CircleExtrusion {	 		
-
-										spine [0 0.35 0,  0 0.37 0,  0 0.37 0,    0 0.59 0,  0 0.60 0 ]
-
-										scale [0.08 0.08, 0.08 0.08, 0.075 0.075, 0.04 0.04, 0.04 0.04]
-
-										caps TRUE
-
-										color IS color
-
-									}
-
-
-									Transform {
-
-										translation	0 0.61 0
-
-										children ScaledSphere { 
-											
-											scale 5 1 5
-
-											color IS color
-
-											specularColor IS specularColor
-
-											shininess IS shininess
-								    	}
-
-									}
-
-									CircleExtrusion {	 		
-
-										spine [0 0.615 0,  0 0.6210 0,  0 0.6225 0,    0 0.63 0,  0 0.6320 0 , 0 0.6330 0, 0 0.6350 0]
-
-										scale [0.042 0.042, 0.035 0.035, 0.03 0.03, 0.04 0.04, 0.048 0.048, 0.05 0.05, 0.05 0.05]
-
-										caps TRUE
-
-										color IS color		 
-
-										specularColor IS specularColor
-
-										shininess IS shininess 
-
-									}
-
-
-									Transform {
-
-										translation	0 0.675 0
-
-										children Shape {
-
-											geometry Box {
-
-												size 0.11 0.08 0.11
+													shininess IS shininess
+								    			}
 
 											}
 
-											appearance USE PoleApp
+											Transform {
 
-										}					
+												translation	0 0.34 0
 
-									}  
-
-									DEF	PolePiece2 CircleExtrusion {
-
-										spine [	0 0.715 0, 0 0.725 0, 0 0.73 0, 0 0.735 0 ]
-
-										scale [ 0.05 0.05, 0.05 0.05, 0.045 0.045, 0.035 0.035 ]
-
-										caps TRUE
-
-										color IS color		 
-
-										specularColor IS specularColor
-
-										shininess IS shininess
-
-									}
-
-									Transform {
-
-										translation	0 0.73 0
-
-										scale 0.8 0.5 0.8	
-
-										children Transform {
-
-											translation	0 -0.715 0
-
-											children USE PolePiece2	 
-
-										}
-
-									}
-
-									CircleExtrusion	{
-
-										spine [ 0 0.735 0, 0 0.74 0,  0 0.755 0, 0 0.77 0, 0 0.83 0,     0 0.84 0,  0 0.85 0 ]
-
-										scale [ 0.03 0.03, 0.04 0.04, 0.05 0.05, 0.048 0.048, 0.03 0.03, 0.035 0.035, 0.04 0.04 ]  
-
-										caps TRUE
-				
-										color	IS color  
-
-										specularColor IS specularColor
-
-										shininess IS shininess
-				
-									}
-
-									Transform {
-
-										translation	0 0.85 0
-
-										children ScaledSphere { 
+												children ScaledSphere { 
 											
-											scale 5 1.5 5
+													scale 6 1 6 
 
-											color IS color
+													color IS color
 
-											specularColor IS specularColor
+													specularColor IS specularColor
 
-											shininess IS shininess
+													shininess IS shininess
+								    			}
+
+											}
+
+											CircleExtrusion {	 		
+
+												spine [0 0.35 0,  0 0.37 0,  0 0.37 0,    0 0.59 0,  0 0.60 0 ]
+
+												scale [0.08 0.08, 0.08 0.08, 0.075 0.075, 0.04 0.04, 0.04 0.04]
+
+												caps TRUE
+
+												color IS color
+
+											}
+
+
+											Transform {
+
+												translation	0 0.61 0
+
+												children ScaledSphere { 
+											
+													scale 5 1 5
+
+													color IS color
+
+													specularColor IS specularColor
+
+													shininess IS shininess
+								    			}
+
+											}
+
+											CircleExtrusion {	 		
+
+												spine [0 0.615 0,  0 0.6210 0,  0 0.6225 0,    0 0.63 0,  0 0.6320 0 , 0 0.6330 0, 0 0.6350 0]
+
+												scale [0.042 0.042, 0.035 0.035, 0.03 0.03, 0.04 0.04, 0.048 0.048, 0.05 0.05, 0.05 0.05]
+
+												caps TRUE
+
+												color IS color		 
+
+												specularColor IS specularColor
+
+												shininess IS shininess 
+
+											}
+
+
+											Transform {
+
+												translation	0 0.675 0
+
+												children Shape {
+
+													geometry Box {
+
+														size 0.11 0.08 0.11
+
+													}
+
+													appearance USE PoleApp
+
+												}					
+
+											}  
+
+											DEF	PolePiece2 CircleExtrusion {
+
+												spine [	0 0.715 0, 0 0.725 0, 0 0.73 0, 0 0.735 0 ]
+
+												scale [ 0.05 0.05, 0.05 0.05, 0.045 0.045, 0.035 0.035 ]
+
+												caps TRUE
+
+												color IS color		 
+
+												specularColor IS specularColor
+
+												shininess IS shininess
+
+											}
+
+											Transform {
+
+												translation	0 0.73 0
+
+												scale 0.8 0.5 0.8	
+
+												children Transform {
+
+													translation	0 -0.715 0
+
+													children USE PolePiece2	 
+
+												}
+
+											}
+
+											CircleExtrusion	{
+
+												spine [ 0 0.735 0, 0 0.74 0,  0 0.755 0, 0 0.77 0, 0 0.83 0,     0 0.84 0,  0 0.85 0 ]
+
+												scale [ 0.03 0.03, 0.04 0.04, 0.05 0.05, 0.048 0.048, 0.03 0.03, 0.035 0.035, 0.04 0.04 ]  
+
+												caps TRUE
+				
+												color	IS color  
+
+												specularColor IS specularColor
+
+												shininess IS shininess
+				
+											}
+
+											Transform {
+
+												translation	0 0.85 0
+
+												children ScaledSphere { 
+											
+													scale 5 1.5 5
+
+													color IS color
+
+													specularColor IS specularColor
+
+													shininess IS shininess
 								    	
+												}
+
+											}
+
+											Transform {
+
+												translation	0 0.86 0
+
+												scale 4 0.8 4
+
+												children USE PolePiece1
+
+											}
+
+											Transform {
+
+												translation	0 0.88 0
+
+												children ScaledSphere { scale 5 2.5 5 color	IS color }
+
+											}
+
+											Transform {
+
+												translation	0 0.90 0
+
+												scale 6 1 6
+
+												children USE PolePiece1
+
+											}
+
+											Transform {
+
+												translation	0 0.91 0  	
+
+												children ScaledSphere { scale 8 2 8 color	IS color }
+
+											} 
+
+
+											Transform {
+
+												translation	0 0.93 0
+
+												scale 3 1 3
+
+												children USE PolePiece1
+
+											}
+
+											Transform {
+
+												translation	0 0.93 0
+
+												children DEF TopOfPole CircleExtrusion	{
+
+													spine [ 0 0 0, 0 0.045 0, 0 0.07 0, 0 0.08 0 ]
+
+													scale [ 0.01 0.01, 0.02 0.02, 0.02 0.02, 0.015 0.015 ]  
+
+													caps TRUE	
+
+													color	IS color
+
+												}
+
+											}
+
+										]
+									}
+							
+									Transform {
+
+										translation	0 0.5 0
+
+										children Shape {
+
+											geometry Cylinder {
+				
+												radius 0.1
+
+												height 1
+
+											}		
+
+
+											appearance USE PoleApp
 										}
-
-									}
-
-									Transform {
-
-										translation	0 0.86 0
-
-										scale 4 0.8 4
-
-										children USE PolePiece1
-
-									}
-
-									Transform {
-
-										translation	0 0.88 0
-
-										children ScaledSphere { scale 5 2.5 5 color	IS color }
-
-									}
-
-									Transform {
-
-										translation	0 0.90 0
-
-										scale 6 1 6
-
-										children USE PolePiece1
-
-									}
-
-									Transform {
-
-										translation	0 0.91 0  	
-
-										children ScaledSphere { scale 8 2 8 color	IS color }
-
-									} 
-
-
-									Transform {
-
-										translation	0 0.93 0
-
-										scale 3 1 3
-
-										children USE PolePiece1
-
-									}
-
-									CircleExtrusion	{
-
-										spine [ 0 0.93 0, 0 0.945 0, 0 0.97 0, 0 0.98 0 ]
-
-										scale [ 0.01 0.01, 0.02 0.02, 0.02 0.02, 0.015 0.015 ]  
-
-										caps TRUE	
-
-										color	IS color
 
 									}
 
 								]
 							}
-							
-							Transform {
+							# Post ended, Fence start	  
 
-								translation	0 0.5 0
+							CircleExtrusion	{
 
-								children Shape {
+								spine [ 0 0.91 0, -0.3272 0.91 1.92 ]
 
-									geometry Cylinder {
+								scale 0.02 0.02
+
+								color	IS color
+
+							}
+
+							CircleExtrusion	{
+
+								spine [ 0 0.695 0, -0.3272 0.695 1.92 ]
+
+								scale 0.02 0.02 
 				
-										radius 0.1
+								color	IS color	
 
-										height 1
+							}  
+						]
 
-									}		
+					}			
 
+					Transform {
 
-									appearance USE PoleApp
+						rotation 0 1 0 -0.0303
+
+						children Transform {
+
+							translation	IS translation
+
+							children DEF BigVerticals CircleExtrusion	{
+
+								spine [ 0 0 0, 0 0.91 0]
+
+								scale 0.02 0.02  
+
+								caps TRUE
+				
+								color	IS color	
+
+							}
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.0606
+
+						children Transform {
+
+							translation	IS translation
+
+							children DEF SmallVerticals CircleExtrusion	{
+
+								spine [ 0 0 0, 0 0.695 0]
+
+								scale 0.02 0.02  
+
+								caps TRUE
+				
+								color	IS color	
+
+							}
+
+						}
+
+					} 
+
+					Transform {
+
+						rotation 0 1 0 -0.0909
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	BigVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.1202
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	SmallVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.0909
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	BigVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.1202
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	SmallVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.1505
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	BigVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.1808
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	SmallVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.2101
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	BigVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.2404
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	SmallVerticals
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 -0.2707
+
+						children Transform {
+
+							translation	IS translation
+
+							children USE	BigVerticals
+
+						}
+
+					}
+				]
+
+			} 	
+	
+			Transform {
+
+				translation	IS translation
+
+				children [
+
+					Transform {
+
+						translation	0 -0.4 0
+
+						children Shape {
+
+							geometry Cylinder {
+
+								radius 0.1
+
+								height 0.8
+
+							}
+
+							appearance USE PoleApp
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 -0.80 0
+
+						children ScaledSphere {
+
+							color IS color
+
+							shininess IS shininess
+
+							specularColor IS specularColor
+
+							scale 15 10 15
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 -0.90 0
+
+						children ScaledSphere {
+
+							color IS color
+
+							shininess IS shininess
+
+							specularColor IS specularColor
+
+							scale 15 15 15
+
+						}
+
+					}
+
+					Transform {
+
+						rotation 0 0 1 3.14
+
+						translation	0 -1.05 0
+
+						children USE	TopOfPole
+
+					}
+
+					Transform {
+
+						rotation 0 1 0 1.57
+
+						translation	-0.5 0 0
+
+						children Shape {
+
+							geometry Extrusion {
+
+								crossSection [ 0 0, 0 -0.8, -0.8 -0.8, -0.6 -0.6, -0.4 -0.4, -0.2 -0.2, -0.1 -0.1,  0 0 ]
+		   
+								spine [ 0 0 0, 0.3 0 0 ]	
+											
+
+							}
+
+							appearance Appearance {
+
+								material Material {
+
+									diffuseColor 0.2 0.2 0.2
+
 								}
 
 							}
 
-						]
-					}
-					# Post ended, Fence start	  
-
-					CircleExtrusion	{
-
-						spine [ 0 0.91 0, -0.3272 0.91 1.92 ]
-
-						scale 0.02 0.02
-
-						color	IS color
+						}
 
 					}
 
-					CircleExtrusion	{
-
-						spine [ 0 0.695 0, -0.3272 0.695 1.92 ]
-
-						scale 0.02 0.02 
-				
-						color	IS color	
-
-					}  
-				]
-
-			}			
-
-			Transform {
-
-				rotation 0 1 0 -0.0303
-
-				children Transform {
-
-					translation	IS translation
-
-					children DEF BigVerticals CircleExtrusion	{
-
-						spine [ 0 0 0, 0 0.91 0]
-
-						scale 0.02 0.02  
-
-						caps TRUE
-				
-						color	IS color	
-
-					}
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.0606
-
-				children Transform {
-
-					translation	IS translation
-
-					children DEF SmallVerticals CircleExtrusion	{
-
-						spine [ 0 0 0, 0 0.695 0]
-
-						scale 0.02 0.02  
-
-						caps TRUE
-				
-						color	IS color	
-
-					}
-
-				}
-
-			} 
-
-			Transform {
-
-				rotation 0 1 0 -0.0909
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	BigVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.1202
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	SmallVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.0909
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	BigVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.1202
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	SmallVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.1505
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	BigVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.1808
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	SmallVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.2101
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	BigVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.2404
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	SmallVerticals
-
-				}
-
-			}
-
-			Transform {
-
-				rotation 0 1 0 -0.2707
-
-				children Transform {
-
-					translation	IS translation
-
-					children USE	BigVerticals
-
-				}
-
+				]  
 			}
 		]
 
-	} 	
-	
+	}
+
 }
 
 PROTO PorchBase
@@ -1456,7 +1574,7 @@ PROTO LanternHouse
 							{
 								material Material
 								{
-									diffuseColor 0 0 1
+									diffuseColor 1 0 1
 								}
 							}
 						}
