@@ -1002,7 +1002,8 @@ PROTO LanternHouse
 {
 	
 	PROTO LanternBar
-	[]
+	[
+	]
 	{
 
 		CircleExtrusion
@@ -1074,10 +1075,17 @@ PROTO LanternHouse
 		{
 			children 
 			[
-				LanternFence{}
+				Transform
+				{
+
+					translation	-0.3 0 0
+					children LanternFence{}
+					
+				}
+				
 				Transform	
 				{
-					translation	0 0 1.5
+					translation	-0.5 0 1.8
 					children
 					[
 						LanternFence {}
@@ -1165,16 +1173,20 @@ PROTO LanternHouse
 			#LanterFence
 			Group
 			{
+				
+				
 				children
 				[
+
+
 					Transform
 					{
-						translation	 -3.45 0 -1.35
+						translation	 4.4 0 0
 						children
 						[
 							LanternFenceGroupTransformation
 							{
-
+										   
 								rotation 0 1 0 0
 								translation	0 4 0   
 							}
@@ -1183,7 +1195,7 @@ PROTO LanternHouse
 							LanternFenceGroupTransformation
 							{
 
-								rotation 0 1 0 0.785
+								rotation 0 1 0 0.13
 								translation	0 4 3   
 							}
 
@@ -1249,10 +1261,11 @@ PROTO LanternHouse
 							CircleExtrusion
 							{
 								spine [0 0 0, 0 5 0]
-								scale 3 3 
+								scale 0 0 
 								caps TRUE
 								color 1 0.6 0.3
 							}
+							
 					]
 					}
 				]
@@ -1456,7 +1469,16 @@ Group {
 	]
 
 }
- 
+
+
+Viewpoint {
+
+	position 0 88 0
+	orientation	1 0 0 -1.57
+
+	description	"Up"
+
+} 
 
 Viewpoint {
 
