@@ -3,17 +3,15 @@
 
 PROTO CircleExtrusion [
 
-	field MFVec2f scale 1 1
-
-	field SFColor color 1 0 0
+	field MFVec2f scale 1 1		
 
 	field MFVec3f spine [0 0 0, 0 1 0] 
 	
 	field SFBool caps FALSE
 
-	field SFFloat angle 1
-	field SFColor specularColor 0 0 0
-	field SFFloat shininess 0.2		  
+	field SFFloat angle 1		
+
+	field SFNode appearance NULL  
 
 ]{
 
@@ -36,22 +34,65 @@ PROTO CircleExtrusion [
 			creaseAngle	IS angle
 		}
 
-		appearance Appearance {
+		appearance IS appearance
 
-			material Material {
+	}
 
-				diffuseColor IS color
+}
 
-				emissiveColor IS color
+PROTO DonutExtrusion
+[
+	field SFVec3f scale 1 1 1
+	field MFVec2f extrusionScale 0.05 0.05
 
-				specularColor IS specularColor
+	field SFNode appearance NULL  
+]
+{
+	Transform
+	{
+		scale IS scale
+		children
+		[
+			Shape 
+			{
+			 
 
-				shininess IS shininess
+				appearance IS appearance
 
+				geometry Extrusion 
+				{
+					scale IS extrusionScale
+					creaseAngle 30
+					beginCap FALSE
+					endCap   FALSE
+					crossSection [
+					# Circle
+						 1.00  0.00,   0.92 -0.38,
+						 0.71 -0.71,   0.38 -0.92,
+						 0.00 -1.00,  -0.38 -0.92,
+						-0.71 -0.71,  -0.92 -0.38,
+						-1.00 -0.00,  -0.92  0.38,
+						-0.71  0.71,  -0.38  0.92,
+						 0.00  1.00,   0.38  0.92,
+						 0.71  0.71,   0.92  0.38,
+						 1.00  0.00
+					]
+
+					spine [
+					# Circle
+						 2.00 0.0  0.00,   1.85 0.0 0.77,
+						 1.41 0.0  1.41,   0.77 0.0 1.85,
+						 0.00 0.0  2.00,  -0.77 0.0 1.85,
+						-1.41 0.0  1.41,  -1.85 0.0 0.77,
+						-2.00 0.0  0.00,  -1.85 0.0 -0.77,
+						-1.41 0.0 -1.41,  -0.77 0.0 -1.85,
+						 0.00 0.0 -2.00,   0.77 0.0 -1.85,
+						 1.41 0.0 -1.41,   1.85 0.0 -0.77,
+						 2.00 0.0  0.00,
+					]
+				}
 			}
-
-		}
-
+		]
 	}
 
 }
@@ -61,10 +102,9 @@ PROTO Octagon [
 	field MFVec2f scale 1 1
 	field SFBool wallsOutside TRUE
 	field SFBool endCap TRUE
-	field SFBool beginCap TRUE
-	field SFColor color 0 0 0
-	field SFColor specularColor 0 0 0
-	field SFFloat shininess 0.2
+	field SFBool beginCap TRUE	  
+
+	field SFNode appearance NULL  
 ]
 {
 
@@ -86,17 +126,29 @@ PROTO Octagon [
 
 		}
 
-		appearance Appearance {
+		appearance IS appearance
 
-			material Material {
+	}
 
-				diffuseColor IS	color
+}
 
-				specularColor IS specularColor
+PROTO LighthouseBase [
 
-				emissiveColor IS color
+	field SFNode OutterWallApp NULL
+	field SFNode StoneApp NULL
 
-				shininess IS shininess
+]
+{
+	PROTO WallRocks [
+		field SFNode StoneApp NULL
+	]
+	{
+		
+		Shape {
+
+			geometry Extrusion {
+
+				crossSection [  ] 
 
 			}
 
@@ -104,11 +156,7 @@ PROTO Octagon [
 
 	}
 
-}
 
-PROTO LighthouseBase [
-]
-{
 	Group {
 
 		children [
@@ -117,24 +165,45 @@ PROTO LighthouseBase [
 
 				geometry Extrusion {
 
-					crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4, 0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
+					crossSection [ 1 0.4, 1 -0.4,  0.4 -1,  -0.4 -1, -1 -0.4, -1 0.4,  -0.4 1,  0.4 1,   1 0.4,   0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
 				  
-					spine [0 0 0,   0 0.3 0, 0 0.3 0, 0 0.6 0, 0 0.6 0, 0 0.9 0, 0 0.9 0, 0 1.2 0, 0 1.2 0, 0 4.5 0, 0 4.5 0,   0 4.8 0,   0 4.9 0, 0 4.9 0, 0 5 0] 
+					spine		 [0 0 0,   0 0.3 0, 0 0.3 0, 0 0.6 0, 0 0.6 0, 0 0.9 0, 0 0.9 0, 0 1.2 0, 0 1.2 0] 
 
-					scale [5.8 5.8, 5.8 5.8, 5.7 5.7, 5.7 5.7, 5.6 5.6, 5.6 5.6, 5.5 5.5, 5.5 5.5, 5.3 5.3, 5.3 5.3, 5.37 5.37, 5.37 5.37, 5.6 5.6, 5.65 5.65, 5.65 5.65 ] 					
+					scale        [5.8 5.8, 5.8 5.8, 5.7 5.7, 5.7 5.7, 5.6 5.6, 5.6 5.6, 5.5 5.5, 5.5 5.5, 5.2 5.2 ] 					
 				}
 
-				appearance Appearance {
+				appearance IS StoneApp
 
-					material Material {
+			}
+			
+			Shape {
 
-						diffuseColor 1 1 0
+				geometry Extrusion {
 
-					}
+					crossSection [ 1 0.4, 1 -0.4,  0.4 -1,  -0.4 -1, -1 -0.4, -1 0.4,  -0.4 1,  0.4 1,   1 0.4,   0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
+				  
+					spine		 [0 4.5 0, 0 4.5 0,   0 4.8 0,   0 4.9 0, 0 4.9 0,   0 5 0] 
 
+					scale        [5.2 5.2, 5.37 5.37, 5.37 5.37, 5.6 5.6, 5.65 5.65, 5.65 5.65 ] 					
 				}
 
-			} 
+				appearance IS StoneApp
+
+			}  
+
+			Octagon	{
+
+				spine [0 1.2 0, 0 4.5 0]
+
+				scale 5.3 5.3
+
+				wallsOutside TRUE
+
+				endCap FALSE
+
+				appearance IS OutterWallApp
+
+			}
 
 			Octagon	{
 				  
@@ -144,7 +213,17 @@ PROTO LighthouseBase [
 
 				wallsOutside FALSE
 
-				endCap	FALSE	 
+				endCap	FALSE
+		   
+				appearance	Appearance {
+
+					material Material {
+
+						diffuseColor 0 0 0
+
+					}
+
+				}
 
 			}
 
@@ -699,30 +778,30 @@ PROTO LighthouseBase [
 }
 
 PROTO LighthouseTower [
+	field SFNode appearance NULL
 ]
 {
 	CircleExtrusion { 
 		
 		scale [5.5 5.5, 4.5 4.5, 4.3 4.3, 5.3 5.3]
 	
-		spine [0 0 0, 0 52 0, 0 52 0, 0 0 0]
+		spine [0 0 0, 0 49 0, 0 49 0, 0 0 0]
+
+		appearance IS appearance
 
 	}
 }
 
 
 PROTO PorchFenceAndSupport [
-	field SFVec3f translation 0 0 0
-
-	field SFColor color 0 0 0
-	field SFColor specularColor 0 0 0
-	field SFFloat shininess 0.2
+	field SFVec3f translation 0 0 0	   
+	
+	field SFNode appearance NULL 
 ]
 {	
-  	PROTO ScaledSphere [
-		field SFColor color 0 0 0
-		field SFColor specularColor 0 0 0
-		field SFFloat shininess 0.2
+  	PROTO ScaledSphere [		
+
+		field SFNode appearance NULL  
 		field SFVec3f scale 1 1 1
 	]
 	{
@@ -738,21 +817,7 @@ PROTO PorchFenceAndSupport [
 
 				}
 
-				appearance Appearance {
-
-					material Material {
-
-						diffuseColor IS color
-
-						emissiveColor IS color
-
-						specularColor IS specularColor
-
-						shininess IS shininess
-
-					}
-
-				}
+				appearance IS appearance
 
 			}
 		}
@@ -789,13 +854,9 @@ PROTO PorchFenceAndSupport [
 
 												spine [ 0 0 0, 0 0.1 0 ]
 
-												scale 0.1 0.1
+												scale 0.1 0.1 
 
-												color IS color
-
-												specularColor IS specularColor
-
-												shininess IS shininess
+												appearance IS appearance
 
 											}	
 
@@ -808,11 +869,7 @@ PROTO PorchFenceAndSupport [
 										    
 													scale 10 3 10
 
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													appearance IS appearance
 								    			}
 
 											}
@@ -823,13 +880,10 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 8 1 8
+													scale 8 1 8	
+										   		 
+													appearance IS appearance
 
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
 								    			}
 
 											} 
@@ -840,13 +894,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere  { 
 											
-													scale 10 7 10
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 10 7 10	
+										   		 
+													appearance IS appearance
 								    			}
 
 											}
@@ -857,13 +907,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 6 1 6
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 6 1 6			
+										   		 
+													appearance IS appearance
 								    			}
 
 											}
@@ -874,13 +920,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 7 1 7
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 7 1 7			
+										   		 
+													appearance IS appearance
 								    			}
 
 											}
@@ -900,21 +942,7 @@ PROTO PorchFenceAndSupport [
 														height 0.01
 													}
 
-													appearance DEF PoleApp Appearance {
-
-														material Material {
-
-															diffuseColor IS	color 
-
-															specularColor IS specularColor
-
-															shininess IS shininess
-
-															emissiveColor IS color								    
-
-														}
-
-													}
+													appearance IS appearance
 
 												}
 
@@ -926,13 +954,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 7 1 7
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 7 1 7			 	
+										   		 
+													appearance IS appearance
 								    			}
 
 											}
@@ -943,13 +967,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 6 1 6 
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 6 1 6 		 	
+										   		 
+													appearance IS appearance
 								    			}
 
 											}
@@ -960,9 +980,9 @@ PROTO PorchFenceAndSupport [
 
 												scale [0.08 0.08, 0.08 0.08, 0.075 0.075, 0.04 0.04, 0.04 0.04]
 
-												caps TRUE
-
-												color IS color
+												caps TRUE	  	
+										   		 
+												appearance IS appearance
 
 											}
 
@@ -973,13 +993,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 5 1 5
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 5 1 5				
+										   		 
+													appearance IS appearance
 								    			}
 
 											}
@@ -990,13 +1006,9 @@ PROTO PorchFenceAndSupport [
 
 												scale [0.042 0.042, 0.035 0.035, 0.03 0.03, 0.04 0.04, 0.048 0.048, 0.05 0.05, 0.05 0.05]
 
-												caps TRUE
-
-												color IS color		 
-
-												specularColor IS specularColor
-
-												shininess IS shininess 
+												caps TRUE			  	
+										   		 
+												appearance IS appearance 
 
 											}
 
@@ -1013,7 +1025,7 @@ PROTO PorchFenceAndSupport [
 
 													}
 
-													appearance USE PoleApp
+													appearance IS appearance
 
 												}					
 
@@ -1025,13 +1037,9 @@ PROTO PorchFenceAndSupport [
 
 												scale [ 0.05 0.05, 0.05 0.05, 0.045 0.045, 0.035 0.035 ]
 
-												caps TRUE
-
-												color IS color		 
-
-												specularColor IS specularColor
-
-												shininess IS shininess
+												caps TRUE				
+										   		 
+												appearance IS appearance
 
 											}
 
@@ -1057,13 +1065,9 @@ PROTO PorchFenceAndSupport [
 
 												scale [ 0.03 0.03, 0.04 0.04, 0.05 0.05, 0.048 0.048, 0.03 0.03, 0.035 0.035, 0.04 0.04 ]  
 
-												caps TRUE
-				
-												color	IS color  
-
-												specularColor IS specularColor
-
-												shininess IS shininess
+												caps TRUE		   	
+										   		 
+												appearance IS appearance
 				
 											}
 
@@ -1073,13 +1077,9 @@ PROTO PorchFenceAndSupport [
 
 												children ScaledSphere { 
 											
-													scale 5 1.5 5
-
-													color IS color
-
-													specularColor IS specularColor
-
-													shininess IS shininess
+													scale 5 1.5 5		 	
+										   		 
+													appearance IS appearance
 								    	
 												}
 
@@ -1099,7 +1099,7 @@ PROTO PorchFenceAndSupport [
 
 												translation	0 0.88 0
 
-												children ScaledSphere { scale 5 2.5 5 color	IS color }
+												children ScaledSphere { scale 5 2.5 5 appearance IS appearance }
 
 											}
 
@@ -1117,7 +1117,7 @@ PROTO PorchFenceAndSupport [
 
 												translation	0 0.91 0  	
 
-												children ScaledSphere { scale 8 2 8 color	IS color }
+												children ScaledSphere { scale 8 2 8 appearance IS appearance }
 
 											} 
 
@@ -1142,9 +1142,9 @@ PROTO PorchFenceAndSupport [
 
 													scale [ 0.01 0.01, 0.02 0.02, 0.02 0.02, 0.015 0.015 ]  
 
-													caps TRUE	
-
-													color	IS color
+													caps TRUE	   	
+										   		 
+													appearance IS appearance
 
 												}
 
@@ -1168,7 +1168,7 @@ PROTO PorchFenceAndSupport [
 											}		
 
 
-											appearance USE PoleApp
+											appearance IS appearance
 										}
 
 									}
@@ -1181,9 +1181,9 @@ PROTO PorchFenceAndSupport [
 
 								spine [ 0 0.91 0, -0.3272 0.91 1.92 ]
 
-								scale 0.02 0.02
-
-								color	IS color
+								scale 0.02 0.02	 	
+										   		 
+								appearance IS appearance
 
 							}
 
@@ -1191,9 +1191,9 @@ PROTO PorchFenceAndSupport [
 
 								spine [ 0 0.695 0, -0.3272 0.695 1.92 ]
 
-								scale 0.02 0.02 
-				
-								color	IS color	
+								scale 0.02 0.02  	
+										   		 
+								appearance IS appearance	
 
 							}  
 						]
@@ -1214,9 +1214,9 @@ PROTO PorchFenceAndSupport [
 
 								scale 0.02 0.02  
 
-								caps TRUE
-				
-								color	IS color	
+								caps TRUE		  	
+										   		 
+								appearance IS appearance	
 
 							}
 
@@ -1238,9 +1238,9 @@ PROTO PorchFenceAndSupport [
 
 								scale 0.02 0.02  
 
-								caps TRUE
-				
-								color	IS color	
+								caps TRUE		 	
+										   		 
+								appearance IS appearance	
 
 							}
 
@@ -1375,7 +1375,7 @@ PROTO PorchFenceAndSupport [
 					}
 				]
 
-			} 	
+			} 
 	
 			Transform {
 
@@ -1397,7 +1397,7 @@ PROTO PorchFenceAndSupport [
 
 							}
 
-							appearance USE PoleApp
+							appearance IS appearance
 
 						}
 
@@ -1407,13 +1407,9 @@ PROTO PorchFenceAndSupport [
 
 						translation	0 -0.80 0
 
-						children ScaledSphere {
-
-							color IS color
-
-							shininess IS shininess
-
-							specularColor IS specularColor
+						children ScaledSphere {															
+										   		 
+							appearance IS appearance
 
 							scale 15 10 15
 
@@ -1425,13 +1421,9 @@ PROTO PorchFenceAndSupport [
 
 						translation	0 -0.90 0
 
-						children ScaledSphere {
-
-							color IS color
-
-							shininess IS shininess
-
-							specularColor IS specularColor
+						children ScaledSphere {									
+										   		 
+							appearance IS appearance
 
 							scale 15 15 15
 
@@ -1453,28 +1445,20 @@ PROTO PorchFenceAndSupport [
 
 						rotation 0 1 0 1.57
 
-						translation	-0.5 0 0
+						translation	-1.6 0 0.075
 
 						children Shape {
 
 							geometry Extrusion {
 
-								crossSection [ 0 0, 0 -0.8, -0.8 -0.8, -0.6 -0.6, -0.4 -0.4, -0.2 -0.2, -0.1 -0.1,  0 0 ]
+								crossSection [ 0 0, 0 1.5, 0.80 1.50, 3 0.2, 2 0, 0 0 ]
 		   
-								spine [ 0 0 0, 0.3 0 0 ]	
+								spine [ 0 0 0, 0.15 0 0 ]	
 											
 
 							}
 
-							appearance Appearance {
-
-								material Material {
-
-									diffuseColor 0.2 0.2 0.2
-
-								}
-
-							}
+							appearance IS appearance
 
 						}
 
@@ -1482,6 +1466,7 @@ PROTO PorchFenceAndSupport [
 
 				]  
 			}
+
 		]
 
 	}
@@ -1490,8 +1475,9 @@ PROTO PorchFenceAndSupport [
 
 PROTO PorchBase
 [
-	field MFVec2f scale 6 6 
-	field SFColor color 1 0.5 1
+	field MFVec2f scale 6 6 	 
+
+	field SFNode appearance NULL
 
 ]
 {
@@ -1501,13 +1487,11 @@ PROTO PorchBase
 		
 		spine	[ 0 0 0, 0 0.1 0 ] 
 		
-		color IS color
-
 		scale IS scale
 
-		caps TRUE
+		caps TRUE	
 
-		shininess 0
+		appearance IS appearance
 	
 	}
 
@@ -1516,24 +1500,36 @@ PROTO PorchBase
 
 PROTO LanternHouse 
 [
+	field SFNode appearance NULL
+	field SFNode lanternAppearance NULL
 ]
 {
 	
 	PROTO LanternBar
-	[]
+	[
+		field MFVec2f scale 0.05 0.05
+		field MFVec3f spine [0 0 0, 0 1.5 0]
+		field SFNode appearance NULL
+	]
 	{
 
 		CircleExtrusion
 		{
-			spine [0 0 0, 0 1.5 0]
-			color 1 1 1
-			scale 0.05 0.05
-			caps TRUE	
-		}
-	}
+			spine IS spine 
 
+			appearance IS appearance
+
+			scale IS scale
+			caps TRUE	   	
+		}
+
+		
+	}
+					   
 	PROTO LanternFence
-	[]
+	[
+		field SFNode appearance NULL		  
+	]
 	{
 	
 		Group
@@ -1546,19 +1542,10 @@ PROTO LanternHouse
 					translation	0 0 0
 					children
 					[
-						LanternBar{}
+						LanternBar{ appearance IS appearance }
 					]
 				}
 
-				Transform
-				{
-					translation	0 1.5 0
-					rotation 1 0 0 1.57
-					children
-					[
-						LanternBar{}	
-					]
-				}
 				Transform
 				{
 					translation	0 1.5 0
@@ -1570,13 +1557,7 @@ PROTO LanternHouse
 							{
 								radius 0.08
 							}
-							appearance Appearance
-							{
-								material Material
-								{
-									diffuseColor 1 0 1
-								}
-							}
+							appearance IS appearance
 						}
 					]
 				}
@@ -1585,31 +1566,12 @@ PROTO LanternHouse
 	}
 
 
-	PROTO LanternFenceGroup
-	[]
-	{
-		Group
-		{
-			children 
-			[
-				LanternFence{}
-				Transform	
-				{
-					translation	0 0 1.5
-					children
-					[
-						LanternFence {}
-					]
-				}
-
-			]
-		}
-	}
 
 	PROTO LanternFenceGroupTransformation
 	[
 		field SFVec3f translation 0 0 0
 		field SFRotation rotation 0 0 0 0
+		field SFNode appearance NULL		 
 	]
 	{
 		Group
@@ -1623,7 +1585,7 @@ PROTO LanternHouse
 					rotation IS	rotation
 					children
 					[
-						LanternFenceGroup {}
+						LanternFence {appearance IS appearance }
 					]
 				}
 
@@ -1641,14 +1603,154 @@ PROTO LanternHouse
 			{
 				children 
 				[
+
+					
 					CircleExtrusion
 					{
-						spine [ 0 0 0, 0 4 0 ]
-						color 0 0 1
+						spine [ 0 0 0, 0 3.5 0 ]
+						appearance IS appearance
 						scale 4 4
 						caps TRUE
 					}
 
+					Transform
+					{
+						translation	0 3 0
+						children
+						[
+							CircleExtrusion
+							{
+								spine [ 0 0 0 , 0 0.5 0] 
+								appearance IS appearance
+								scale 4.3 4.3
+								caps TRUE
+							}
+
+
+						]
+					}
+
+					Transform
+					{
+						translation	0 3.5 0
+						children 
+						[
+							PorchBase 
+							{
+								scale  4.5 4.5 
+								appearance IS appearance
+							}
+						]
+					}
+				]
+			}
+
+			#
+			#
+			#lightroom
+			#
+			#
+			Group
+			{
+				
+				children 
+				[
+
+					#LanterFence
+					DEF	LanternFencePorch Transform
+					{
+						translation	4.0 0 0
+						children LanternFenceGroupTransformation
+						{
+							translation	0 3.5  0
+							appearance IS appearance
+							
+						}
+					}		  
+					Transform
+					{
+						rotation 0 1 0 0.5226
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 1.0452
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 1.5678
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 2.0904
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 2.613
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 3.1356
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 3.6582
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 4.1808
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 4.7034
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 5.226
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 5.7486
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						translation	0 4.9 0
+						children DEF UpperPorchBar DonutExtrusion 
+						{
+							scale 2.1 1 2.1
+
+							appearance IS appearance
+						}
+					}
+
+					Transform
+					{
+						translation	0 3.8 0
+						children USE UpperPorchBar
+					}
+
+			
 					Transform
 					{
 						translation	0 3.5 0
@@ -1656,126 +1758,368 @@ PROTO LanternHouse
 						[
 							CircleExtrusion
 							{
-								spine [ 0 0 0 , 0 0.5 0]
-								color 0 0 1
-								scale 4.3 4.3
-								caps TRUE
-							}
-						]
-					}
-
-					Transform
-					{
-						translation	0 4 0
-						children 
-						[
-							PorchBase 
-							{
-								scale  4.5 4.5
-								color 0 1 0
+								spine [0 0 0, 0 2 0]
+								scale 0 0 
+								caps TRUE		
+								appearance IS appearance
 							}
 						]
 					}
 				]
 			}
+						   
+			###
+			###	LanterCage
+			###
 
-			#LanterFence
+	
 			Group
 			{
-				children
-				[
-					Transform
-					{
-						translation	 -3.45 0 -1.35
-						children
-						[
+				children Transform
+				{ 
+					translation	0 3.9 0
+					children
+					[
 
-
-							LanternFenceGroupTransformation
+						##
+						## Bars
+						##
+						DEF	LanternHouseFence Transform
+						{
+							translation	2.8 0 0
+							children LanternBar
 							{
-
-								rotation 0 1 0 0
-								translation	0 4 0   
+								spine [0 0 0, 0 4 0]	
+								appearance IS appearance
+							
 							}
+						}
+		  
+						Transform
+						{
+							rotation 0 1 0 0.7648
+							children USE LanternHouseFence
+						}
+		  
+						Transform
+						{
+							rotation 0 1 0 1.5296
+							children USE LanternHouseFence
+						}
+		  
+		  				Transform
+						{
+							rotation 0 1 0 2.2945
+							children USE LanternHouseFence
+						}
+		  
+		  				Transform
+						{
+							rotation 0 1 0 3.0593
+							children USE LanternHouseFence
+						}		  		  
 
-										
-							LanternFenceGroupTransformation
+		  				Transform
+						{
+							rotation 0 1 0 3.8242
+							children USE LanternHouseFence
+						}
+
+		  				Transform
+						{
+							rotation 0 1 0 4.589
+							children USE LanternHouseFence
+						}
+
+		  				Transform
+						{
+							rotation 0 1 0 5.3538
+							children USE LanternHouseFence
+						}
+
+						##
+						## Bars Cage
+						##
+
+ 						Transform
+						{
+							translation	0 0 0
+							children DEF Bar DonutExtrusion 
 							{
+								scale 1.4 1 1.4
 
-								rotation 0 1 0 0.785
-								translation	0 4 3   
+								appearance IS appearance
+
 							}
+						}
+   					
+						Transform
+						{
+							translation	0 1 0
+							children USE Bar
+						}
+   					
+						Transform
+						{
+							translation	0 2 0
+							children  USE Bar
+						}
 
-							LanternFenceGroupTransformation
-							{
+						Transform
+						{
+							
+							translation	0 3 0
+							children  USE Bar
+						}
 
-								rotation 0 1 0 1.57
-								translation	2.121 4 5.121 
-							}
+						Group {
 
-							LanternFenceGroupTransformation
-							{
+							children [
 
-								rotation 0 1 0 2.355
-								translation	5 4 5.121 
-							}
+								Shape {
 
-							LanternFenceGroupTransformation
-							{
+									geometry Box {
 
-								rotation 0 1 0 3.14
-								translation	7.121 4 3
-							}
+										size 0.5 0.7 0.5
 
-							LanternFenceGroupTransformation
-							{
+									}
 
-								rotation 0 1 0 3.925
-								translation	7.121 4 0   
-							}
+									appearance IS lanternAppearance
 
+								}
+								
+								DEF SpotlightRotator Transform { 
 
-							LanternFenceGroupTransformation
-							{
+									children [
 
-								rotation 0 1 0 4.71
-								translation	5 4 -2.121   
-							}
+										Transform {
 
-							LanternFenceGroupTransformation
-							{
+											translation	0 0.35 0
 
-								rotation 0 1 0 5.495
-								translation	2.121 4 -2.121   
-							}	
-						]
-					}
-				
-				]
-			}
+											rotation 1 0 0 1.57
 
-			#lightroom
-			Group
-			{
-				
-				children 
-				[
-					Transform
-					{
-						translation	0 4 0
-						children
-						[
-							CircleExtrusion
-							{
-								spine [0 0 0, 0 5 0]
-								scale 3 3 
-								caps TRUE
-								color 1 0.6 0.3
-							}
+											children Shape {
+
+												geometry Extrusion {
+
+													crossSection [ 0.8 0, 0.8 -0.5, 0.6 -0.5, 0.6 -0.2, -0.6 -0.2, -0.6 -0.5, -0.8 -0.5, -0.8 0, 0.8 0 ]
+										   
+													spine [ 0 -0.1 0, 0 0.1 0 ]
+
+												}
+
+												appearance IS lanternAppearance
+
+											}
+
+										}
+
+										Transform {
+									
+											center -0.55 1.3 0
+									
+											children Transform {
+
+												translation	-0.55 1.3 0
+
+												children DEF Spotlight Group {
+												   
+													children [
+														
+														CircleExtrusion {
+
+															spine [ 0 0 0, -0.5 0 0, -0.5 0 0, 0 0 0 ]
+
+															scale [ 0.5 0.5, 0.5 0.5, 0.4 0.4, 0.4 0.4 ]
+
+															caps TRUE
+
+															appearance IS lanternAppearance
+
+														}
+
+														Transform { 
+
+															translation	-0.5 0 0
+
+															rotation 0 0 1 1.57
+															
+															children Shape {
+
+																geometry Cylinder {
+
+																	radius 0.4
+
+																	height 0.05
+
+																}
+
+															}
+
+														}
+													]
+										   
+												} 
+
+											}
+
+										}
+
+										Transform {
+									
+											center 0.55 1.3 0
+									
+											children Transform {
+
+												translation	0.55 1.3 0
+
+												rotation 0 1 0 3.14
+
+												children USE Spotlight
+
+											}
+
+										}
+
+										DEF LeftSpot SpotLight {
+
+											direction -1 0 0
+
+											intensity 3
+
+											color 1 1 1
+
+											beamWidth 1.270796
+
+										} 
+
+										DEF RightSpot Transform	{
+
+											rotation 0 1 0 3.14
+
+											children USE LeftSpot
+
+										} 
+
+									]
+								
+								}
+
+								#Animations
+								DEF spotAnimation TimeSensor {
+
+									cycleInterval 6.000
+
+									loop TRUE	
+								   
+									enabled TRUE
+
+									startTime 0
+
+								}
+
+								DEF spotlightRotation OrientationInterpolator {
+							
+									key [0 0.33 0.66 1]
+									keyValue [ 0 1 0 0, 0 1 0 2.094, 0 1 0 4.189, 0 1 0 6.283185307]
+
+								} 
+
+							]														  
+
+							ROUTE spotAnimation.fraction_changed TO spotlightRotation.set_fraction	 
+							ROUTE spotlightRotation.value_changed TO SpotlightRotator.set_rotation
+
+						}
+
 					]
-					}
-				]
+				}
 			}
+	
+			###
+			###	LanternTop
+			###
+			Group	
+			{
+				children Transform
+				{
+					translation	0 8.9 0
+					children 
+					[
+						Shape	  
+						{
+							geometry Cone
+							{
+								height 2
+								bottom TRUE
+								bottomRadius 3
+							}
+							appearance IS appearance
+						}
+
+						Transform
+						{
+							translation	0 1.2 0
+							children
+						    [
+								Shape 
+								{
+									geometry Sphere
+									{
+										radius 0.5
+									}
+
+									appearance IS appearance
+								}
+
+								Transform
+								{
+									translation	0 -0.3 0
+									children DonutExtrusion
+									{
+										scale 0.2 1 0.2
+										extrusionScale 0.15 0.15
+										appearance IS appearance
+									
+									}
+								}
+
+								Transform
+								{
+									translation	0 0.7 0
+									children Shape	  
+									{
+										geometry Cone
+										{
+											height 0.5
+											bottom TRUE
+											bottomRadius 0.1
+										}
+
+										appearance IS appearance
+									}
+								}
+
+								Transform
+								{
+									translation	0 1.3 0
+									children Shape	  
+									{
+										geometry Cone
+										{
+											height 4
+											bottom TRUE
+											bottomRadius 0.01
+										} 
+
+										appearance IS appearance
+									}
+								}
+							]
+						}
+					]
+				}
+			}		
 			
 		]
 	}
@@ -1784,172 +2128,207 @@ PROTO LanternHouse
 
 
 
+
 PROTO	LighthouseTop [
+	
+	field SFNode appearance NULL
+
 ] {
 	Group	{
 		children [
-				
-			PorchBase { }
 
-			DEF PorchOnEdge Transform {
-		
-				children PorchFenceAndSupport { 
+			CircleExtrusion {
+
+				spine [ 0 0 0, 0 3 0, 0 3 0, 0 0 0 ]
+
+				scale [	4.5 4.5, 4.5 4.5, 4.3 4.3, 4.3 4.3 ]
+
+				appearance IS appearance
+
+			}
+
+			Transform {
+
+				translation	0 3 0
 				
-					translation 5.8 0 0 
+				children [
+					
+					PorchBase { appearance  IS appearance }
+
+					DEF PorchOnEdge Transform {
+		
+						children PorchFenceAndSupport { 
+				
+							translation 5.8 0 0 
 			
-					shininess 0.2
+							appearance IS appearance
 
-					specularColor 1 1 1
-
-				}
+						}
 		
-			}
+					}
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 0.3333
+						rotation 0 1 0 0.3333
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			}
+					}
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 0.6666
+						rotation 0 1 0 0.6666
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			}
+					}
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 0.9999
+						rotation 0 1 0 0.9999
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 1.3333
+						rotation 0 1 0 1.3333
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 1.6666
+						rotation 0 1 0 1.6666
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 1.9999
+						rotation 0 1 0 1.9999
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 2.3333
+						rotation 0 1 0 2.3333
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 2.6666
+						rotation 0 1 0 2.6666
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 2.9999
+						rotation 0 1 0 2.9999
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			}  
+					}  
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 3.3333
+						rotation 0 1 0 3.3333
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 3.6666
+						rotation 0 1 0 3.6666
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 3.9999
+						rotation 0 1 0 3.9999
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			}  
+					}  
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 4.3333
+						rotation 0 1 0 4.3333
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 4.6666
+						rotation 0 1 0 4.6666
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 4.9999
+						rotation 0 1 0 4.9999
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			}	 
+					}	 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 5.3333
+						rotation 0 1 0 5.3333
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 5.6666
+						rotation 0 1 0 5.6666
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			} 
+					} 
 
-			Transform {
+					Transform {
 
-				rotation 0 1 0 5.9999
+						rotation 0 1 0 5.9999
 		
-				children USE	PorchOnEdge
+						children USE	PorchOnEdge
 
-			}
+					}	  
 	   
-			LanternHouse {}
+					LanternHouse { 
+						
+						appearance  IS appearance 
+						
+						lanternAppearance Appearance {
+
+							material Material {
+
+								diffuseColor 0.1 0.1 0.1
+
+							}
+
+						}
+					
+					}
+				]
+
+			}
 		]
 	}
 }
@@ -1958,21 +2337,89 @@ Group {
 
 	children [
 
-		LighthouseBase { }
+		LighthouseBase {
+	   
+			OutterWallApp Appearance {
+
+#				material Material {
+
+#					diffuseColor 1 0.1 0.1
+
+#				}
+
+				texture	ImageTexture {
+
+					url	["base-texture3.png"]
+
+				}
+
+				textureTransform TextureTransform {
+					
+					translation -0.328 0	
+
+				}
+
+				
+
+			}
+
+			StoneApp Appearance	{
+
+				texture ImageTexture {
+					
+					url	"granite-texture-small.jpg"
+					
+				}
+
+				textureTransform TextureTransform {	
+				
+					scale 40 40	
+
+				}
+			}
+
+	    }
 
 		Transform {
 		
 			translation 0 5 0
 
-			children LighthouseTower { }
+			children LighthouseTower { 
+			
+				appearance Appearance {
+
+					texture ImageTexture {
+					
+						url	"nwe.png" 
+						
+					}
+
+				}
+			
+			}
 			
 		}
 
 		Transform {
 
-			translation	0 57 0
+			translation	0 54 0
 		   
-			children LighthouseTop { }
+			children LighthouseTop { 
+				
+				appearance Appearance {
+			
+					material Material {
+
+						diffuseColor 0.1 0.1 0.1
+
+						shininess 1.5
+
+						specularColor 1 1 1
+
+					}
+
+				}
+			}
 
 		}			 	  
 
@@ -1984,12 +2431,39 @@ DirectionalLight {
 
 	direction 0 -1 -1
 
-	intensity 2
+	intensity 5
 
 	ambientIntensity 1
 
-}
- 
+}  
+
+Viewpoint {
+
+	position 0 65 20
+	
+
+	description	"LightHouseLanternRoomView"
+
+} 
+
+
+  Viewpoint {
+
+	position 0 88 0
+	orientation	1 0 0 -1.57
+
+	description	"LighthouseUpperView"
+
+} 
+
+Viewpoint {
+
+	position 0 58 20
+	
+
+	description	"LightHouseTopView"
+
+} 
 
 Viewpoint {
 
@@ -2009,6 +2483,6 @@ Viewpoint {
 
 NavigationInfo {
     type [ "WALK", "ANY" ]
-    headlight TRUE
+    headlight FALSE
     speed 3.0
 }
