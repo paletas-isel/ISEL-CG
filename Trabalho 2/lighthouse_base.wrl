@@ -1,0 +1,711 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Octagon [ 	
+	field MFVec3f spine
+	field MFVec2f scale
+	field SFBool wallsOutside
+	field SFBool endCap
+	field SFBool beginCap
+	field SFNode appearance
+] "helpers.wrl#Octagon"
+
+PROTO LighthouseBase [
+
+	field SFNode OutterWallApp NULL
+	field SFNode StoneApp NULL
+	field SFNode DoorGridApp NULL
+	field SFNode RightDoorApp NULL
+	field SFNode LeftDoorApp NULL
+	
+]
+{
+	PROTO WallRocks [
+		field SFNode StoneApp NULL	 
+	]
+	{
+		
+		Shape {
+
+			geometry Extrusion {
+
+				crossSection [ 0.4 0, 0.4 -0.33, 0 -0.33, 
+					0 -0.66, 0.4 -0.66, 0.4 -0.99, 0 -0.99, 
+					0 -1.32, 0.4 -1.32, 0.4 -1.65, 0 -1.65, 
+					0 -1.98, 0.4 -1.98, 0.4 -2.31, 0 -2.31, 
+					0 -2.64, 0.4 -2.64, 0.4 -2.97, 0 -2.97, 
+					0 -3.30,	-0.4 -3.30, -0.4 0, 0.4 0 ]
+				
+					spine [ 0 0 0, 0 0 0.1 ] 		
+
+			}
+
+			appearance IS StoneApp
+							   
+		}
+
+	}
+
+
+	Group {
+
+		children [
+
+			Shape {
+
+				geometry Extrusion {
+
+					crossSection [ 1 0.4, 1 -0.4,  0.4 -1,  -0.4 -1, -1 -0.4, -1 0.4,  -0.4 1,  0.4 1,   1 0.4,   0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
+				  
+					spine		 [0 0 0,   0 0.3 0, 0 0.3 0, 0 0.6 0, 0 0.6 0, 0 0.9 0, 0 0.9 0, 0 1.2 0, 0 1.2 0] 
+
+					scale        [5.8 5.8, 5.8 5.8, 5.7 5.7, 5.7 5.7, 5.6 5.6, 5.6 5.6, 5.5 5.5, 5.5 5.5, 5.2 5.2 ] 					
+				}
+
+				appearance IS StoneApp
+
+			}
+			
+			Shape {
+
+				geometry Extrusion {
+
+					crossSection [ 1 0.4, 1 -0.4,  0.4 -1,  -0.4 -1, -1 -0.4, -1 0.4,  -0.4 1,  0.4 1,   1 0.4,   0.9 0.3, 0.3 0.9, -0.3 0.9, -0.9 0.3, -0.9 -0.3, -0.3 -0.9, 0.3 -0.9, 0.9 -0.3, 0.9 0.3, 1 0.4]
+				  
+					spine		 [0 4.5 0, 0 4.5 0,   0 4.8 0,   0 4.9 0, 0 4.9 0,   0 5 0] 
+
+					scale        [5.2 5.2, 5.37 5.37, 5.37 5.37, 5.6 5.6, 5.65 5.65, 5.65 5.65 ] 					
+				}
+
+				appearance IS StoneApp
+
+			}  
+
+			Octagon	{
+
+				spine [0 1.2 0, 0 4.5 0]
+
+				scale 5.3 5.3
+
+				wallsOutside TRUE
+
+				endCap FALSE
+
+				appearance IS OutterWallApp
+
+			}
+
+			DEF PartialWall1 Group {
+
+				children [
+
+					Transform {
+
+						translation	-1.74 1.2 5.30
+
+						children WallRocks { StoneApp  IS StoneApp }
+
+					}	 
+					
+					Transform {
+
+						translation	1.74 1.2 5.38
+
+						rotation 0 1 0 3.14
+
+						children WallRocks { StoneApp  IS StoneApp }
+
+					}
+
+
+				]
+
+			} 
+	
+			Transform	{
+					
+				rotation	0 1 0 0.785		 
+
+				children DEF PartialWall2 Group {
+
+					children [
+
+						Transform {
+
+							translation	-1.7 4.5 5.3
+
+							rotation 1 0 0 3.14
+
+							children WallRocks { StoneApp  IS StoneApp }
+
+						}	 
+				
+						Transform {
+
+							translation	1.7 4.5 5.3
+
+							rotation 0 0 1 3.14
+
+							children WallRocks { StoneApp  IS StoneApp }
+
+						}
+
+
+					]
+
+				}
+
+			} 
+
+			Transform {	 
+					
+				rotation	0 1 0 1.57
+
+				children USE PartialWall1
+
+			}
+
+			Transform {	 
+					
+				rotation	0 1 0 3.14
+
+				children USE PartialWall1
+
+			}	
+			
+			Transform {	 
+					
+				rotation	0 1 0 4.71
+
+				children USE PartialWall1
+
+			}		 	
+			
+			Transform {	 
+					
+				rotation	0 1 0 2.355
+
+				children USE PartialWall1
+
+			} 	
+			
+			Transform {	 
+					
+				rotation	0 1 0 3.925
+
+				children USE PartialWall1
+
+			} 	
+			
+			Transform {	 
+					
+				rotation	0 1 0 -0.785
+
+				children USE PartialWall1
+
+			} 
+
+			Octagon	{
+				  
+				spine [0 0 0, 0 5 0] 
+
+				scale 4.8 4.8	
+
+				wallsOutside FALSE
+
+				endCap	FALSE
+		   
+				appearance	Appearance {
+
+					material Material {
+
+						diffuseColor 0 0 0
+
+					}
+
+				}
+
+			}
+
+			Transform {
+
+				translation	0 1.2 5.2
+				
+				children [
+					
+					Shape {
+
+						geometry Extrusion {
+
+							crossSection [ 0.65 0, 0.65 -2.80, -0.65 -2.80, -0.65 0, -0.40 0, -0.40 -2.50, 0.40 -2.50, 0.40 0, 0.65 0 ]
+					   
+							spine [ 0 0 0, 0 0 0.30 ]
+
+						}
+
+						appearance IS StoneApp
+
+					}
+
+					Transform {
+
+						translation	0 2.80 0
+
+						children Shape {
+
+							geometry Extrusion {
+
+								crossSection [ 0.65 0, 0.75 -0.2, 0 -0.3, -0.75 -0.2, -0.65 0, 0.65 0 ]
+					   
+								spine [ 0 0 0, 0 0 0.50 ]								
+
+							}
+
+							appearance IS StoneApp
+
+						}
+
+					}
+					
+					Transform {
+
+						translation	-0.55 2.80 0.42							
+
+						children DEF BaseDoorSupport Transform {
+
+							rotation 0 0 1 3.14
+
+							children Transform {	 
+
+								rotation 1 0 0 1.57
+
+								children Shape {
+
+									geometry Extrusion {
+
+										crossSection [ 0 0, 0.13 0, 0.13 -0.38, 0.09 -0.35, 0.07 -0.32, 0.04 -0.26, 0.02 -0.21,  0 0 ]
+					   
+										spine [ 0 0 0, 0.1 0 0 ]				
+
+									}
+
+									
+									appearance IS StoneApp
+
+								}
+
+							}
+
+						}
+					}
+
+					Transform {
+
+						translation	0.65 2.80 0.42							
+
+						children USE BaseDoorSupport  
+
+					}
+
+				]
+
+			}
+
+			Group {					 
+
+				PROTO	StairWall [
+					field SFNode appearance NULL
+				] 
+				{
+					
+					Transform	{
+
+						translation 0 0 5.8
+
+						PROTO	TopBotBlock [
+							field MFVec3f spine [0 0 0, 0 1 0]
+							field SFNode appearance NULL
+
+							 
+
+						] 
+						{
+
+							Shape {
+
+								geometry Extrusion {
+
+									crossSection [1 1, 1 -1, -1 -1, -1 1, 1 1]
+
+									spine IS spine
+
+									scale [0.20 0.8, 0.20 0.8, 0.13 0.73]
+
+								} 
+
+								appearance IS appearance
+
+							}
+
+						}
+
+
+						children [
+												
+							TopBotBlock	{ spine [0 0 0, 0 0.26 0, 0 0.28 0] appearance IS appearance }
+
+							Transform {
+
+								translation	0 0.68 0
+
+								children Shape {
+
+									geometry Box {
+
+										size 0.26 0.80 1.3
+
+									}
+									
+									appearance IS appearance
+
+								}
+
+							}
+
+							TopBotBlock { spine [0 1.08 0, 0 1.20 0, 0 1.22 0] appearance IS appearance }
+
+						]
+
+					}
+				}
+
+				children [
+
+					Transform {
+
+						translation	-0.80 0 0
+					
+						children StairWall { appearance IS StoneApp }
+
+					}
+
+					Transform {
+
+						translation	0.80 0 0
+					
+						children StairWall { appearance IS StoneApp  }
+
+					}
+
+					DEF	OutsideStair Transform {
+
+						translation 0 0.07 6.3
+
+						children Shape	{
+			
+							geometry Box {
+
+								size 1.45 0.14 0.12
+
+							}
+
+							appearance IS StoneApp
+
+						}
+
+					}
+
+					Transform {
+
+						translation	0 0.135 -0.10
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.275 -0.20
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.405 -0.30
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.535 -0.40
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.665 -0.50
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.795 -0.60
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 0.925 -0.70
+
+						children USE OutsideStair
+
+					}
+
+					Transform {
+
+						translation	0 1.065 -0.80
+
+						children USE OutsideStair
+
+					}
+
+				]
+
+			}
+
+			Group {					
+
+				children [
+					
+					Group {
+
+						children [
+
+							Transform {
+
+								translation	0 3.7 5.15
+				
+								children Shape {
+
+									geometry Extrusion {
+
+										crossSection [ 0.4 0, 0.4 0.50, -0.4 0.50, -0.4 0, -0.3 0.10, 0.3 0.10, 0.3 0.40, -0.3 0.40, -0.3 0.10, -0.4 0, 0.4 0]
+
+										spine [ 0 0 0, 0 0 0.20 ]
+
+										ccw	FALSE
+
+									}
+
+									appearance IS DoorGridApp
+
+								}
+
+							}
+
+							Transform {
+
+								translation	0 3.60 5.3
+
+								children DEF AirVentPiece Transform {
+
+									rotation 1 0 0 0.785
+
+									children Shape {
+
+										geometry Box {
+
+											size 0.6 0.005 0.2
+
+										}
+
+										appearance IS DoorGridApp
+
+									}
+
+								}
+
+							}
+
+							Transform {
+
+								translation	0 3.52 5.3
+
+								children USE AirVentPiece
+
+							}	 
+
+							Transform {
+
+								translation	0 3.44 5.3
+
+								children USE AirVentPiece
+
+							}
+
+							Transform {
+
+								translation	0 3.36 5.3
+
+								children USE AirVentPiece
+
+							}
+
+
+						]
+					}
+
+					Group {
+
+						children [
+
+							DEF DoorTouchSensor TouchSensor {
+        					}
+
+							DEF RightDoor Transform	{
+							
+								center 0.40 2.2 5.25  								
+
+								children Transform {
+
+									translation	0.20 2.2 5.25 
+
+									children Shape {
+
+										geometry Box {
+
+											size 0.40 2 0.10
+
+										}
+
+										appearance IS RightDoorApp
+
+									}
+
+								}
+							}
+					
+							DEF LeftDoor Transform { 
+
+								center -0.40 2.2 5.25								
+								
+								children LOD	{
+
+									range [ 20, 60 ]
+
+									level	[
+							
+										Transform {
+
+											translation	-0.20 2.2 5.25
+
+											children [
+
+												 DEF Door Shape {
+
+													geometry Box {
+
+														size 0.40 2 0.10
+
+													}
+
+													appearance IS LeftDoorApp
+
+												}
+
+
+												Transform {
+
+													translation	0.20 0 0.05
+
+													children Shape {
+
+															geometry Box {
+
+																size 0.05 2 0.20
+
+															}
+
+															appearance IS LeftDoorApp
+														}
+												}
+
+											]
+
+										}   							
+							
+										Transform {
+
+											translation	-0.20 2.2 5.25
+
+											children USE	Door
+
+										}
+
+									]
+								}
+							}
+
+							#Animations
+							DEF doorAnimation TimeSensor {
+
+								cycleInterval 6.000
+
+								loop FALSE
+
+								startTime  -1
+
+							}
+
+							DEF doorAnimation_rot0 OrientationInterpolator {
+								 key [
+								  0.0 0.25 0.75 1.0 
+								 ]
+
+								 keyValue [
+								  0.0 1.0 0.0 0.0
+								  0.0 1.0 0.0 1.571
+								  0.0 1.0 0.0 1.571
+								  0.0 1.0 0.0 0.0
+								 ]
+							}
+
+							DEF doorAnimation_rot1 OrientationInterpolator {
+								 key [
+								  0.0 0.25 0.75 1.0 
+								 ]
+
+								 keyValue [
+								  0.0 1.0 0.0 0.0
+								  0.0 1.0 0.0 -1.571
+								  0.0 1.0 0.0 -1.571
+								  0.0 1.0 0.0 0.0
+								 ]
+							}
+
+						] 
+
+						ROUTE DoorTouchSensor.touchTime TO doorAnimation.startTime
+						ROUTE doorAnimation.fraction_changed TO doorAnimation_rot0.set_fraction
+						ROUTE doorAnimation.fraction_changed TO doorAnimation_rot1.set_fraction
+						ROUTE doorAnimation_rot1.value_changed TO LeftDoor.set_rotation
+						ROUTE doorAnimation_rot0.value_changed TO RightDoor.set_rotation						  
+
+					}
+				
+				]
+				
+			}	
+				
+		]
+	}
+}

@@ -1,0 +1,294 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Axis [ ]
+"Axis.wrl#Axis"
+
+EXTERNPROTO CircleExtrusion [	
+	field MFVec2f scale	
+
+	field MFVec3f spine 
+	
+	field SFBool caps
+
+	field SFFloat angle		
+
+	field SFNode appearance 
+] "helpers.wrl#CircleExtrusion"
+
+EXTERNPROTO LighthouseTop [	
+	field SFNode appearance
+] "lighthouse_top.wrl#LighthouseTop"
+
+EXTERNPROTO LighthouseBase [	
+	field SFNode OutterWallApp 
+	field SFNode StoneApp 
+	field SFNode DoorGridApp 
+	field SFNode RightDoorApp 
+	field SFNode LeftDoorApp 
+] "lighthouse_base.wrl#LighthouseBase"
+
+
+PROTO LighthouseTower [
+	field SFNode appearance NULL
+]
+{
+	CircleExtrusion { 
+		
+		scale [5.5 5.5, 4.5 4.5, 4.3 4.3, 5.3 5.3]
+	
+		spine [0 0 0, 0 49 0, 0 49 0, 0 0 0]
+
+		appearance IS appearance
+
+	}
+} 
+
+Group {
+
+	children [
+
+		LighthouseBase {
+	   
+			OutterWallApp Appearance {
+
+#				material Material {
+
+#					diffuseColor 1 0.1 0.1
+
+#				}
+
+				texture	ImageTexture {
+
+					url	["base-texture.png"]
+
+				}
+
+				textureTransform TextureTransform {
+					
+					translation -0.328 0	
+
+				}
+
+				material Material {
+
+					diffuseColor 1 0.2 0.2
+
+				}
+
+				
+
+			}
+
+			StoneApp Appearance	{
+
+#				texture ImageTexture {
+					
+#					url	"granite-texture-small.jpg"
+					
+#				}
+
+#				textureTransform TextureTransform {	
+				
+#					scale 10 10	
+
+#				}
+
+				material Material {	 									   
+
+					diffuseColor 0.8274 0.8274 0.8274
+
+					shininess 0.1
+
+				}
+			}
+
+			DoorGridApp	Appearance {
+
+				material Material {
+
+					diffuseColor 1 0.2 0.2
+
+					specularColor 0 0 0
+
+					shininess 0.4
+
+				}
+
+			}
+
+			LeftDoorApp	Appearance {
+
+				material Material {
+
+					diffuseColor 0.66 0.33 0
+
+					specularColor 0 0 0
+
+					shininess 0
+
+				}
+
+				texture	ImageTexture {
+
+					url	"door.png"		
+
+				}
+
+			}
+
+			RightDoorApp	Appearance {
+
+				material Material {
+
+					diffuseColor 0.66 0.33 0
+
+					specularColor 0 0 0
+
+					shininess 0
+
+				}
+
+				texture	ImageTexture {
+
+					url	"door2.png"		
+
+				}
+
+			}
+
+
+
+	    }
+
+		Transform {
+		
+			translation 0 5 0
+
+			children LighthouseTower { 
+			
+				appearance Appearance {
+
+					texture ImageTexture {
+					
+						url	"nwe.png" 
+						
+					}
+
+					material Material {
+
+						diffuseColor 0 0 0	
+
+						specularColor 0.1 0.1 0.1
+
+						shininess 0 
+
+					}
+
+				}
+			
+			}
+			
+		}
+
+		Transform {
+
+			translation	0 54 0
+		   
+			children LighthouseTop { 
+				
+				appearance Appearance {
+			
+					material Material {
+
+						diffuseColor 0.1 0.1 0.1
+
+						shininess 1.5
+
+						specularColor 1 1 1
+
+					}
+
+				}
+			}
+
+		}				 	  
+
+	]
+
+}
+
+DirectionalLight {
+
+	direction 0 -1 -14
+
+	intensity 5
+
+	ambientIntensity 1
+
+}  
+
+Viewpoint {
+
+	position 0 65 20
+	
+
+	description	"LightHouseLanternRoomView"
+
+} 
+
+
+  Viewpoint {
+
+	position 0 88 0
+	orientation	1 0 0 -1.57
+
+	description	"LighthouseUpperView"
+
+} 
+
+Viewpoint {
+
+	position 0 58 20
+	
+
+	description	"LightHouseTopView"
+
+} 
+
+Viewpoint {
+
+	position 0 58 0
+
+	description	"LighthousePorch"
+
+}	  
+
+Viewpoint {
+
+	position 0 2 12
+
+	description	"LighthouseDoor"
+
+}  
+
+Viewpoint {
+
+	position 0 30 100
+
+	description	"Lighthouse"
+
+} 
+
+NavigationInfo {
+    type [ "WALK", "ANY" ]
+    headlight FALSE
+    speed 3.0
+}
+
+Background {
+
+	skyColor 0 0 1			 
+
+	
+
+}

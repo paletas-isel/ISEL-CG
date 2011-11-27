@@ -1,0 +1,176 @@
+#VRML V2.0 utf8
+
+
+PROTO Axis [ 
+
+]
+{
+
+	PROTO XAxis [						 
+		field SFColor color 1 0 0
+		field MFString	AxisName "X"		 
+	] {			
+		
+		Group {
+
+			children [
+
+				
+				Transform {
+	
+					translation	2.5 0 0
+
+					rotation 0 0 1 -1.57
+
+					children [
+		
+						Shape {
+
+							geometry Cone { 
+		
+								bottomRadius 0.2
+
+								height 0.5
+
+							}
+
+							appearance DEF	Appea Appearance { 
+		
+								material Material { 
+		
+									diffuseColor IS	color
+				
+								} 
+
+							}
+
+						}
+
+					]
+
+				}
+
+
+				Transform {
+
+					translation	1.25 0 0
+
+					rotation 0 0 1 -1.57
+
+					children [
+		
+						Shape {
+
+							geometry Cylinder { 
+			
+								height 2.5
+
+								radius 0.1
+
+							}
+
+							appearance USE Appea
+
+						}
+
+						Shape {
+
+							geometry Cylinder {
+
+								radius 0.01
+
+								height 100
+
+							}
+
+							appearance USE Appea
+
+						}
+
+					]
+
+				}			
+
+				Billboard {
+
+					axisOfRotation 1 0 0
+
+					children Transform {
+					
+						translation	3 0 0
+					
+						children Shape {
+
+							geometry Text {
+
+								string IS AxisName
+
+								fontStyle FontStyle	{
+
+									size 0.2
+
+								}
+
+							}
+
+						}
+
+					}
+
+				}
+
+			]
+		
+		}
+
+
+
+	}
+
+	Group { 
+		
+		children [
+
+			XAxis { }							   
+	   
+			Transform {
+			    
+				rotation	0 0 1 1.57    
+				
+				children XAxis	{ color 0 1 0 AxisName "Y" } 
+			}
+
+			Transform {
+
+				rotation	0 1 0 -1.57
+			
+				children XAxis	{ color 0 0 1 AxisName "Z" }
+
+
+			}
+
+			Shape {
+
+				geometry Sphere	{ radius 0.2 }
+
+				appearance Appearance { material Material { diffuseColor 1 1 1 } }
+
+			}
+	
+		]
+
+	}
+
+}
+
+Axis { }
+
+Viewpoint {
+
+	position 5 0 10
+
+	orientation 0 1 0 0.6
+
+	fieldOfView	0.785398
+
+}

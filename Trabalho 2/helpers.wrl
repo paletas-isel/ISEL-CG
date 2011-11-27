@@ -1,0 +1,132 @@
+#VRML V2.0 utf8
+
+PROTO CircleExtrusion [
+
+	field MFVec2f scale 1 1		
+
+	field MFVec3f spine [0 0 0, 0 1 0] 
+	
+	field SFBool caps FALSE
+
+	field SFFloat angle 1		
+
+	field SFNode appearance NULL  
+
+]{
+
+	Shape {
+
+		geometry Extrusion {
+
+			crossSection [1 0, 0.966 0.259, 0.866 0.5, 0.707 0.707, 0.5 0.866, 0.259 0.966, 0 1, -0.259 0.966, -0.5 0.866, -0.707 0.707, -0.866 0.5, -0.966 0.259, -1 0, -0.966 -0.259, -0.866 -0.5, -0.707 -0.707, -0.5 -0.866, -0.259 -0.966, 0 -1, 0.259 -0.966, 0.5 -0.866, 0.707 -0.707, 0.866 -0.5, 0.966 -0.259, 1 0]	
+	 
+			spine IS spine
+
+			ccw	FALSE
+
+			endCap IS caps
+
+			beginCap IS caps
+
+			scale IS scale
+
+			creaseAngle	IS angle
+		}
+
+		appearance IS appearance
+
+	}
+
+}
+
+PROTO DonutExtrusion
+[
+	field SFVec3f scale 1 1 1
+	field MFVec2f extrusionScale 0.05 0.05
+
+	field SFNode appearance NULL  
+]
+{
+	Transform
+	{
+		scale IS scale
+		children
+		[
+			Shape 
+			{
+			 
+
+				appearance IS appearance
+
+				geometry Extrusion 
+				{
+					scale IS extrusionScale
+					creaseAngle 30
+					beginCap FALSE
+					endCap   FALSE
+					crossSection [
+					# Circle
+						 1.00  0.00,   0.92 -0.38,
+						 0.71 -0.71,   0.38 -0.92,
+						 0.00 -1.00,  -0.38 -0.92,
+						-0.71 -0.71,  -0.92 -0.38,
+						-1.00 -0.00,  -0.92  0.38,
+						-0.71  0.71,  -0.38  0.92,
+						 0.00  1.00,   0.38  0.92,
+						 0.71  0.71,   0.92  0.38,
+						 1.00  0.00
+					]
+
+					spine [
+					# Circle
+						 2.00 0.0  0.00,   1.85 0.0 0.77,
+						 1.41 0.0  1.41,   0.77 0.0 1.85,
+						 0.00 0.0  2.00,  -0.77 0.0 1.85,
+						-1.41 0.0  1.41,  -1.85 0.0 0.77,
+						-2.00 0.0  0.00,  -1.85 0.0 -0.77,
+						-1.41 0.0 -1.41,  -0.77 0.0 -1.85,
+						 0.00 0.0 -2.00,   0.77 0.0 -1.85,
+						 1.41 0.0 -1.41,   1.85 0.0 -0.77,
+						 2.00 0.0  0.00,
+					]
+				}
+			}
+		]
+	}
+
+}
+
+PROTO Octagon [
+	field MFVec3f spine [0 0 0, 0 1 0]
+	field MFVec2f scale 1 1
+	field SFBool wallsOutside TRUE
+	field SFBool endCap TRUE
+	field SFBool beginCap TRUE	  
+
+	field SFNode appearance NULL  
+]
+{
+
+	Shape {
+
+		geometry Extrusion {
+
+			crossSection [ 1 0.4, 1 -0.4, 0.4 -1, -0.4 -1, -1 -0.4, -1 0.4, -0.4 1, 0.4 1, 1 0.4 ]
+			
+			spine IS spine
+
+			scale IS scale
+
+			ccw	IS wallsOutside
+
+			endCap IS endCap
+
+			beginCap IS	beginCap
+
+		}
+
+		appearance IS appearance
+
+	}
+
+}

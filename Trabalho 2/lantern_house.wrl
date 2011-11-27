@@ -1,0 +1,740 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO DonutExtrusion [	
+	field SFVec3f scale
+	field MFVec2f extrusionScale
+
+	field SFNode appearance
+] "helpers.wrl#DonutExtrusion"
+
+EXTERNPROTO Octagon [ 	
+	field MFVec3f spine
+	field MFVec2f scale
+	field SFBool wallsOutside
+	field SFBool endCap
+	field SFBool beginCap
+	field SFNode appearance
+] "helpers.wrl#Octagon"
+
+EXTERNPROTO CircleExtrusion [	
+	field MFVec2f scale	
+
+	field MFVec3f spine 
+	
+	field SFBool caps
+
+	field SFFloat angle		
+
+	field SFNode appearance 
+] "helpers.wrl#CircleExtrusion"
+
+EXTERNPROTO PorchBase [	
+	field MFVec2f scale 	 
+
+	field SFNode appearance
+] "porch_items.wrl#PorchBase"
+
+PROTO LanternHouse 
+[
+	field SFNode appearance NULL
+	field SFNode lanternAppearance NULL
+]
+{
+	
+	PROTO LanternBar
+	[
+		field MFVec2f scale 0.05 0.05
+		field MFVec3f spine [0 0 0, 0 1.5 0]
+		field SFNode appearance NULL
+	]
+	{
+
+		CircleExtrusion
+		{
+			spine IS spine 
+
+			appearance IS appearance
+
+			scale IS scale
+			caps TRUE	   	
+		}
+
+		
+	}
+					   
+	PROTO LanternFence
+	[
+		field SFNode appearance NULL		  
+	]
+	{
+	
+		Group
+		{
+			children
+			[
+				
+				Transform
+				{
+					translation	0 0 0
+					children
+					[
+						LanternBar{ appearance IS appearance }
+					]
+				}
+
+				Transform
+				{
+					translation	0 1.5 0
+					children 
+					[
+						Shape
+						{
+							geometry Sphere
+							{
+								radius 0.08
+							}
+							appearance IS appearance
+						}
+					]
+				}
+			]
+		}
+	}
+
+
+
+	PROTO LanternFenceGroupTransformation
+	[
+		field SFVec3f translation 0 0 0
+		field SFRotation rotation 0 0 0 0
+		field SFNode appearance NULL		 
+	]
+	{
+		Group
+		{
+			children 
+			[
+				
+				Transform	
+				{
+					translation	IS translation
+					rotation IS	rotation
+					children
+					[
+						LanternFence {appearance IS appearance }
+					]
+				}
+
+			]
+		}	
+	}
+
+	PROTO  LanternBeamLight
+	[
+		field SFRotation rotation 0 0 1 0
+		field SFRotation directionRotation 0 0 1 0
+	]
+	{
+		Transform	
+		{ 
+			
+			rotation IS directionRotation
+			children Transform
+			{
+
+				rotation IS	rotation
+			
+				children Transform
+				{
+					rotation 0 0 1 1.57
+					translation	139.9 0 0
+					
+					children CircleExtrusion 
+					{ 
+
+						scale [1.5 1.5, 0.5 0.5, 0.3 0.3, 5.0 5.0]
+
+						spine [0 0 0, 0 150 0, 0 150 0, 0 0 0]
+
+						appearance  Appearance
+						{
+							material Material
+							{
+								diffuseColor 1 1 0
+								ambientIntensity 0
+								shininess 0.8
+								transparency 0.9
+							}
+						}
+						caps TRUE
+
+					}
+					
+				}
+			}
+		}
+	}
+
+	Group
+	{
+		children
+		[
+			
+			#LanternBase
+			Group
+			{
+				children 
+				[
+
+					
+					CircleExtrusion
+					{
+						spine [ 0 0 0, 0 3.5 0 ]
+						appearance IS appearance
+						scale 4 4
+						caps TRUE
+					}
+
+					Transform
+					{
+						translation	0 3 0
+						children
+						[
+							CircleExtrusion
+							{
+								spine [ 0 0 0 , 0 0.5 0] 
+								appearance IS appearance
+								scale 4.3 4.3
+								caps TRUE
+							}
+
+
+						]
+					}
+
+					Transform
+					{
+						translation	0 3.5 0
+						children 
+						[
+							PorchBase 
+							{
+								scale  4.5 4.5 
+								appearance IS appearance
+							}
+						]
+					}
+				]
+			}
+
+			#
+			#
+			#lightroom
+			#
+			#
+
+			
+			Group
+			{
+				
+				children 
+				[
+
+					#LanterFence
+					DEF	LanternFencePorch Transform
+					{
+						translation	4.0 0 0
+						children LanternFenceGroupTransformation
+						{
+							translation	0 3.5  0
+							appearance IS appearance
+							
+						}
+					}		  
+					Transform
+					{
+						rotation 0 1 0 0.5226
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 1.0452
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 1.5678
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 2.0904
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 2.613
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 3.1356
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 3.6582
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 4.1808
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 4.7034
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 5.226
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						rotation 0 1 0 5.7486
+						children USE LanternFencePorch
+					}
+
+					Transform
+					{
+						translation	0 4.9 0
+						children DEF UpperPorchBar DonutExtrusion 
+						{
+							scale 2.1 1 2.1
+
+							appearance IS appearance
+						}
+					}
+
+					Transform
+					{
+						translation	0 3.8 0
+						children USE UpperPorchBar
+					}
+
+			
+					Transform
+					{
+						translation	0 3.5 0
+						children
+						[
+							CircleExtrusion
+							{
+								spine [0 0 0, 0 2 0]
+								scale 0 0 
+								caps TRUE		
+								appearance IS appearance
+							}
+						]
+					}
+				]
+			}
+						   
+			###
+			###	LanterCage
+			###
+
+	
+			Group
+			{
+				children Transform
+				{ 
+					translation	0 3.9 0
+					children
+					[
+
+						##
+						## Bars
+						##
+						DEF	LanternHouseFence Transform
+						{
+							translation	2.8 0 0
+							children LanternBar
+							{
+								spine [0 0 0, 0 4 0]	
+								appearance IS appearance
+							
+							}
+						}
+		  
+						Transform
+						{
+							rotation 0 1 0 0.7648
+							children USE LanternHouseFence
+						}
+		  
+						Transform
+						{
+							rotation 0 1 0 1.5296
+							children USE LanternHouseFence
+						}
+		  
+		  				Transform
+						{
+							rotation 0 1 0 2.2945
+							children USE LanternHouseFence
+						}
+		  
+		  				Transform
+						{
+							rotation 0 1 0 3.0593
+							children USE LanternHouseFence
+						}		  		  
+
+		  				Transform
+						{
+							rotation 0 1 0 3.8242
+							children USE LanternHouseFence
+						}
+
+		  				Transform
+						{
+							rotation 0 1 0 4.589
+							children USE LanternHouseFence
+						}
+
+		  				Transform
+						{
+							rotation 0 1 0 5.3538
+							children USE LanternHouseFence
+						}
+
+						##
+						## Bars Cage
+						##
+
+ 						Transform
+						{
+							translation	0 0 0
+							children DEF Bar DonutExtrusion 
+							{
+								scale 1.4 1 1.4
+
+								appearance IS appearance
+
+							}
+						}
+   					
+						Transform
+						{
+							translation	0 1 0
+							children USE Bar
+						}
+   					
+						Transform
+						{
+							translation	0 2 0
+							children  USE Bar
+						}
+
+						Transform
+						{
+							
+							translation	0 3 0
+							children  USE Bar
+						}
+
+						Group {
+
+							children [
+
+								Shape {
+
+									geometry Box {
+
+										size 0.5 0.7 0.5
+
+									}
+
+									appearance IS lanternAppearance
+
+								}
+								
+								DEF SpotlightRotator Transform { 
+
+									children [
+
+										Transform {
+
+											translation	0 0.35 0
+
+											rotation 1 0 0 1.57
+
+											children Shape {
+
+												geometry Extrusion {
+
+													crossSection [ 0.8 0, 0.8 -0.5, 0.6 -0.5, 0.6 -0.2, -0.6 -0.2, -0.6 -0.5, -0.8 -0.5, -0.8 0, 0.8 0 ]
+										   
+													spine [ 0 -0.1 0, 0 0.1 0 ]
+
+												}
+
+												appearance IS lanternAppearance
+
+											}
+
+										}
+
+										Transform {
+									
+											center -0.55 1.3 0
+									
+											children Transform {
+
+												translation	-0.55 1.3 0
+
+												children DEF Spotlight Group {
+												   
+													children [
+														
+														CircleExtrusion {
+
+															spine [ 0 0 0, -0.5 0 0, -0.5 0 0, 0 0 0 ]
+
+															scale [ 0.5 0.5, 0.5 0.5, 0.4 0.4, 0.4 0.4 ]
+
+															caps TRUE
+
+															appearance IS lanternAppearance
+
+														}
+
+														Transform { 
+
+															translation	-0.5 0 0
+
+															rotation 0 0 1 1.57
+															
+															children Shape {
+
+																geometry Cylinder {
+
+																	radius 0.4
+
+																	height 0.05
+
+																}
+
+															}
+
+														}
+													]
+										   
+												} 
+
+											}
+
+										}
+
+										Transform {
+									
+											center 0.55 1.3 0
+									
+											children Transform {
+
+												translation	0.55 1.3 0
+
+												rotation 0 1 0 3.14
+
+												children USE Spotlight
+
+											}
+
+										}
+
+										DEF LeftSpot SpotLight {
+
+											direction -1 0 0
+
+											intensity 3
+
+											color 1 1 1
+
+											beamWidth 1.270796
+
+										} 
+
+										DEF RightSpot Transform	{
+
+											rotation 0 1 0 3.14
+
+											children USE LeftSpot
+
+										} 
+
+									]
+								
+								}
+
+								#RightBeamLight
+								DEF RightBeamLight Transform
+								{
+									center -11 0 0
+									translation	11 0.18 -0.1
+									children LanternBeamLight
+									{
+										directionRotation	0 0 1 -0.1
+									}
+								}							
+
+								#LeftBeamLight
+								DEF LeftBeamLight Transform
+								{
+									
+									center 11 0 0
+									translation	-11 0.25 -0.1
+									children LanternBeamLight
+									{
+										rotation 0 0 1 3.14
+										directionRotation	0 0 1 0.1
+									}
+								}
+
+								#Animations
+								DEF spotAnimation TimeSensor {
+
+									cycleInterval 6.000
+
+									loop TRUE	
+								   
+									enabled TRUE
+
+									startTime 0
+
+								}
+
+								DEF spotlightRotation OrientationInterpolator {
+							
+									key [0 0.33 0.66 1]
+									keyValue [ 0 1 0 0, 0 1 0 2.094, 0 1 0 4.189, 0 1 0 6.283185307]
+
+								} 
+
+								
+
+							]														  
+
+							ROUTE spotAnimation.fraction_changed TO spotlightRotation.set_fraction
+							
+							ROUTE spotlightRotation.value_changed TO LeftBeamLight.rotation	
+							ROUTE spotlightRotation.value_changed TO RightBeamLight.rotation	
+							ROUTE spotlightRotation.value_changed TO SpotlightRotator.set_rotation
+
+						}
+
+					]
+				}
+			}
+	
+			###
+			###	LanternTop
+			###
+			Group	
+			{
+				children Transform
+				{
+					translation	0 8.9 0
+					children 
+					[
+						Shape	  
+						{
+							geometry Cone
+							{
+								height 2
+								bottom TRUE
+								bottomRadius 3
+							}
+							appearance IS appearance
+						}
+
+						Transform
+						{
+							translation	0 1.2 0
+							children
+						    [
+								Shape 
+								{
+									geometry Sphere
+									{
+										radius 0.5
+									}
+
+									appearance IS appearance
+								}
+
+								Transform
+								{
+									translation	0 -0.3 0
+									children DonutExtrusion
+									{
+										scale 0.2 1 0.2
+										extrusionScale 0.15 0.15
+										appearance IS appearance
+									
+									}
+								}
+
+								Transform
+								{
+									translation	0 0.7 0
+									children Shape	  
+									{
+										geometry Cone
+										{
+											height 0.5
+											bottom TRUE
+											bottomRadius 0.1
+										}
+
+										appearance IS appearance
+									}
+								}
+
+								Transform
+								{
+									translation	0 1.3 0
+									children Shape	  
+									{
+										geometry Cone
+										{
+											height 4
+											bottom TRUE
+											bottomRadius 0.01
+										} 
+
+										appearance IS appearance
+									}
+								}
+							]
+						}
+					]
+				}
+			}		
+			
+		]
+	}
+}
