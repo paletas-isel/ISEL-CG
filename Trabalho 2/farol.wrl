@@ -1682,14 +1682,14 @@ PROTO LanternHouse
 				children Transform
 				{
 					rotation 0 0 1 1.57
-					translation	90 0 0
+					translation	139.9 0 0
 					
 					children CircleExtrusion 
 					{ 
 
-						scale [1.5 1.5, 0.5 0.5, 0.3 0.3, 3.0 3.0]
+						scale [1.5 1.5, 0.5 0.5, 0.3 0.3, 5.0 5.0]
 
-						spine [0 0 0, 0 100 0, 0 100 0, 0 0 0]
+						spine [0 0 0, 0 150 0, 0 150 0, 0 0 0]
 
 						appearance  Appearance
 						{
@@ -2128,7 +2128,7 @@ PROTO LanternHouse
 								DEF RightBeamLight Transform
 								{
 									center -11 0 0
-									translation	11 0.1 -0.1
+									translation	11 0.18 -0.1
 									children LanternBeamLight
 									{
 										directionRotation	0 0 1 -0.1
@@ -2172,11 +2172,11 @@ PROTO LanternHouse
 
 							]														  
 
-							#ROUTE spotAnimation.fraction_changed TO spotlightRotation.set_fraction
+							ROUTE spotAnimation.fraction_changed TO spotlightRotation.set_fraction
 							
-							#ROUTE spotlightRotation.value_changed TO LeftBeamLight.rotation	
-							#ROUTE spotlightRotation.value_changed TO RightBeamLight.rotation	
-							#ROUTE spotlightRotation.value_changed TO SpotlightRotator.set_rotation
+							ROUTE spotlightRotation.value_changed TO LeftBeamLight.rotation	
+							ROUTE spotlightRotation.value_changed TO RightBeamLight.rotation	
+							ROUTE spotlightRotation.value_changed TO SpotlightRotator.set_rotation
 
 						}
 
