@@ -1667,36 +1667,44 @@ PROTO LanternHouse
 	PROTO  LanternBeamLight
 	[
 		field SFRotation rotation 0 0 1 0
+		field SFRotation directionRotation 0 0 1 0
 	]
-	{	 
-		Transform
-		{
-
-			rotation IS	rotation
+	{
+		Transform	
+		{ 
 			
+			rotation IS directionRotation
 			children Transform
 			{
-				rotation 0 0 1 1.57
-				translation	48 0 0
-				children CircleExtrusion 
-				{ 
 
-					scale [1.5 1.5, 0.5 0.5, 0.3 0.3, 2.0 2.0]
+				rotation IS	rotation
+			
+				children Transform
+				{
+					rotation 0 0 1 1.57
+					translation	90 0 0
+					
+					children CircleExtrusion 
+					{ 
 
-					spine [0 0 0, 0 58 0, 0 58 0, 0 0 0]
+						scale [1.5 1.5, 0.5 0.5, 0.3 0.3, 3.0 3.0]
 
-					appearance  Appearance
-					{
-						material Material
+						spine [0 0 0, 0 100 0, 0 100 0, 0 0 0]
+
+						appearance  Appearance
 						{
-							diffuseColor 1 1 0
-							ambientIntensity 0
-							shininess 0.8
-							transparency 0.9
+							material Material
+							{
+								diffuseColor 1 1 0
+								ambientIntensity 0
+								shininess 0.8
+								transparency 0.9
+							}
 						}
-					}
-					caps TRUE
+						caps TRUE
 
+					}
+					
 				}
 			}
 		}
@@ -2120,10 +2128,10 @@ PROTO LanternHouse
 								DEF RightBeamLight Transform
 								{
 									center -11 0 0
-									translation	11 1.19 -0.1
+									translation	11 0.1 -0.1
 									children LanternBeamLight
 									{
-											
+										directionRotation	0 0 1 -0.1
 									}
 								}							
 
@@ -2132,10 +2140,11 @@ PROTO LanternHouse
 								{
 									
 									center 11 0 0
-									translation	-11 1.19 -0.1
+									translation	-11 0.25 -0.1
 									children LanternBeamLight
 									{
 										rotation 0 0 1 3.14
+										directionRotation	0 0 1 0.1
 									}
 								}
 
@@ -2163,11 +2172,11 @@ PROTO LanternHouse
 
 							]														  
 
-							ROUTE spotAnimation.fraction_changed TO spotlightRotation.set_fraction
+							#ROUTE spotAnimation.fraction_changed TO spotlightRotation.set_fraction
 							
-							ROUTE spotlightRotation.value_changed TO LeftBeamLight.rotation	
-							ROUTE spotlightRotation.value_changed TO RightBeamLight.rotation	
-							ROUTE spotlightRotation.value_changed TO SpotlightRotator.set_rotation
+							#ROUTE spotlightRotation.value_changed TO LeftBeamLight.rotation	
+							#ROUTE spotlightRotation.value_changed TO RightBeamLight.rotation	
+							#ROUTE spotlightRotation.value_changed TO SpotlightRotator.set_rotation
 
 						}
 
