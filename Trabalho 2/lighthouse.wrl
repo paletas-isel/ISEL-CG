@@ -211,7 +211,126 @@ Group {
 				}
 			}
 
-		}				 	  
+		}		
+
+		Transform {
+
+			translation	2 0 7
+
+			rotation 0 1 0 -0.66
+  
+			children [
+
+				Transform {
+
+					translation	0 1.5 0
+
+					children Shape {
+
+						geometry Box { size	2 1 0.3 }
+
+						appearance DEF Wood Appearance {
+
+							texture	ImageTexture {
+
+								url	"woodtexture.jpg"
+
+							}
+
+						}
+
+					}
+
+				}
+
+				Transform {
+
+					translation	0 0.5 0
+
+					children Shape {
+
+						geometry Box { size	0.3 1 0.3 }
+
+						appearance USE Wood
+
+					}
+
+				}
+
+				Transform {
+
+					translation -0.8 1.5 0.3
+
+					children Shape {
+
+						geometry Text { 
+							
+							string "Click Here!"  
+							
+							fontStyle FontStyle {
+											
+								size 0.3
+
+							} 
+
+						}
+
+						appearance Appearance {
+
+							material Material { diffuseColor 0 0 0 } 
+
+						}
+
+					}
+
+				}
+
+				#Animations
+
+				DEF ActivateSensor TouchSensor {
+
+					enabled	TRUE
+
+				}
+
+				DEF cameraAnimationTime TimeSensor {
+
+					cycleInterval 20.000
+
+					loop FALSE	 
+
+				}
+
+				DEF CameraOrientation OrientationInterpolator {
+			
+					key [0 0.1 0.3 0.5 0.7 0.9 ]
+					keyValue [ 0 1 0 0, 0 1 0 0, 0 1 0 1.5708, 0 1 0 3.1416, 0 1 0 4.71239, 0 1 0 6.283185307]
+
+				}
+
+				DEF	CameraPosition PositionInterpolator	{
+
+					key [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 ]
+
+					keyValue [0 2 12, 0 2 30, 15 9 15, 30 15 0, 15 22.5 -15, 0 30 -30, -15 37.5 -15, -30 45 0, -15 50 15, 0 55 30 ]
+
+				}
+
+			]										
+
+		}	
+  
+#		DEF Test Transform{
+	  
+#			translation	0 2 12
+
+#			children Shape {
+
+#				geometry Box { size 2 2 5 }
+
+#			}
+	  
+#		}	  
 
 	]
 
@@ -237,7 +356,7 @@ Viewpoint {
 } 
 
 
-  Viewpoint {
+Viewpoint {
 
 	position 0 88 0
 	orientation	1 0 0 -1.57
@@ -263,7 +382,7 @@ Viewpoint {
 
 }	  
 
-Viewpoint {
+DEF ViewAnim Viewpoint {
 
 	position 0 2 12
 
@@ -277,7 +396,15 @@ Viewpoint {
 
 	description	"Lighthouse"
 
-} 
+}	  
+
+ROUTE ActivateSensor.touchTime TO cameraAnimationTime.startTime
+ROUTE cameraAnimationTime.fraction_changed TO CameraOrientation.set_fraction
+ROUTE cameraAnimationTime.fraction_changed TO CameraPosition.set_fraction
+ROUTE CameraOrientation.value_changed TO ViewAnim.orientation
+ROUTE CameraPosition.value_changed TO ViewAnim.position
+#ROUTE CameraOrientation.value_changed TO Test.rotation
+#ROUTE CameraPosition.value_changed TO Test.translation
 
 NavigationInfo {
     type [ "WALK", "ANY" ]

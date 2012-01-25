@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{c72ec083-a11a-4983-82a3-8ca1f6a03e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{fb1a4497-d3fd-4eb5-b769-7fc2f8634123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{086c757e-0bab-41d2-9d8e-94adefa28c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Slimes">
+      <UniqueIdentifier>{9db101b7-8c22-4c47-9390-c8a2de97a5fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects\Balls">
+      <UniqueIdentifier>{21375af8-cc2e-4bc9-92be-a340b29effed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{aaac1d56-a5da-476d-9cf7-ea1f519cb1fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Slimes">
+      <UniqueIdentifier>{73cc1f79-e5a4-48ec-9a6e-14f35af30d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Balls">
+      <UniqueIdentifier>{96e878dc-e321-43c2-9b02-7eef1dc22667}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SuperSlimeSoccer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseSlime.cpp">
+      <Filter>Source Files\GameObjects\Slimes</Filter>
+    </ClCompile>
+    <ClCompile Include="HalfSphere.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBall.cpp">
+      <Filter>Source Files\GameObjects\Balls</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SuperSlimeSoccer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseSlime.h">
+      <Filter>Header Files\GameObjects\Slimes</Filter>
+    </ClInclude>
+    <ClInclude Include="HalfSphere.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBall.h">
+      <Filter>Header Files\GameObjects\Balls</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
