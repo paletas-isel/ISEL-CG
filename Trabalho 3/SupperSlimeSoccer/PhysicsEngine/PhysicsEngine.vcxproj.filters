@@ -19,6 +19,12 @@
     <Filter Include="Source Files\PhysicObjects">
       <UniqueIdentifier>{63ff2d40-2b07-4f31-9e2d-50b57e226981}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Boundings">
+      <UniqueIdentifier>{b913a654-897b-4b25-8c93-5b7c09b734c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Boundings">
+      <UniqueIdentifier>{ef5e72ad-3436-4de4-99d0-5cddc95cd4fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PhysicConstants.h">
@@ -42,6 +48,15 @@
     <ClInclude Include="PhysicsWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>Header Files\Boundings</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingSphere.h">
+      <Filter>Header Files\Boundings</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingVolume.h">
+      <Filter>Header Files\Boundings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ObjectCollision.cpp">
@@ -61,6 +76,15 @@
     </ClCompile>
     <ClCompile Include="PhysicsWorld.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>Source Files\Boundings</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingSphere.cpp">
+      <Filter>Source Files\Boundings</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingVolume.cpp">
+      <Filter>Source Files\Boundings</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

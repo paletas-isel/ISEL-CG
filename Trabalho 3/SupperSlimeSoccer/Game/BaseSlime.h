@@ -7,9 +7,7 @@
 #include "BaseBall.h"
 #include "physicsengine\SpherePhysicObject.h"
 
-#define SLIME_MASS 20
-
-class BaseSlime : public cggl::Object, public CGPhysicsEngine::SpherePhysicObject
+class BaseSlime : public cggl::Object
 {
 private:
 
@@ -17,28 +15,30 @@ private:
 
 	float _red, _green, _blue, _alpha;
 	HalfSphere _body;
-	cggl::Vector3 * _position;
 	int _radius;
-	
+
+protected:
+
 	void SetColor(float red, float green, float blue, float alpha);
+
 	virtual void SetMaterial();
+
+	cggl::Vector3 GetPosition() { return _obj.GetPosition(); }
 
 #pragma endregion
 
 #pragma region "Physics"
-	
-	short _maxJumpHeight;
-	BaseBall * _ball;
+private:
+	CGPhysicsEngine::SpherePhysicObject _obj;
 
-	cggl::Vector3 _velocityVector;
-
-
-	virtual bool IsCollidingWithBall();
+public:
+	cggl::Vector3 GetCenter() { return _obj.GetPosition(); }
+	CGPhysicsEngine::SpherePhysicObject GetPhysicObject() { return _obj; }
 
 #pragma endregion
 
 public:
-	BaseSlime(BaseBall * ball, cggl::Vector3 position, int radius, short maxJumpHeight = 2);
+	BaseSlime(cggl::Vector3 position, int radius);
 	~BaseSlime(void);
 		
 	void Update(int deltaTimeMilis);

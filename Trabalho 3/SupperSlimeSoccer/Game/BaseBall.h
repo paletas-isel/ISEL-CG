@@ -4,34 +4,31 @@
 #include "cggl\Object.h"
 #include "cggl\MathUtils.h"
 
+#include "physicsengine\SpherePhysicObject.h"
+
 enum Direction { LEFT=0x1, RIGHT=0x2, UP=0x4, DOWN=0x8 };
 
 #pragma once
 class BaseBall : public cggl::Object
 {
-private:
 
 #pragma region "Geometry"
-
-	cggl::Vector3 _position;
+private:
 	int _radius;
 
-	cggl::Vector3 GetPosition();
+public:
 	int GetRadius();
+
+	cggl::Vector3 GetPosition() { return _obj.GetPosition(); }
 
 #pragma endregion	
 
 #pragma region "Physics"
+private:
+	CGPhysicsEngine::SpherePhysicObject _obj;
 	
-	cggl::Vector3 _velocityVector;
-	Direction _direction;
-
-	inline virtual bool IsInAir();
-	
-	void SetVelocity(cggl::Vector3 velocity);
-	cggl::Vector3 GetVelocity();
-	void SetDirection(Direction direction);
-	Direction GetDirection();
+public:
+	CGPhysicsEngine::SpherePhysicObject GetPhysicObject() { return _obj; }
 
 	friend class BaseSlime;
 #pragma endregion

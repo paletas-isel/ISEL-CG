@@ -14,14 +14,14 @@ PhysicsWorld::~PhysicsWorld(void)
 {
 }
 
-void PhysicsWorld::AddObject(PhysicEnabledObject * obj)
+void PhysicsWorld::AddObject(BoundingVolume * obj)
 {
 	_world.push_back(obj);
 }
 
-void PhysicsWorld::RemoveObject(PhysicEnabledObject * obj)
+void PhysicsWorld::RemoveObject(BoundingVolume * obj)
 {
-	for (list<PhysicEnabledObject *>::iterator it = _world.begin() ; it != _world.end(); it++ )
+	for (list<BoundingVolume *>::iterator it = _world.begin() ; it != _world.end(); it++ )
 	{
 		if(obj == *it) 
 		{
@@ -31,15 +31,17 @@ void PhysicsWorld::RemoveObject(PhysicEnabledObject * obj)
 	}
 }
 	
-PhysicEnabledObject * PhysicsWorld::Single(bool Predicate(PhysicEnabledObject *))
+BoundingVolume * PhysicsWorld::Single(bool (*Predicate)(BoundingVolume *))
 {
-	for (list<PhysicEnabledObject *>::iterator it = _world.begin() ; it != _world.end(); it++ )
+	for (list<BoundingVolume *>::iterator it = _world.begin() ; it != _world.end(); it++ )
 	{
 		if(Predicate(*it)) 
 		{
-			return *it;
+			return *(it);
 		}
 	}
+
+	return NULL;
 }
 
 }

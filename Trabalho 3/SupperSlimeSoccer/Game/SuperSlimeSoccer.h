@@ -15,6 +15,6 @@ public:
     void Update(int deltaTimeMilis);
 	void Draw();
 
-	static CGPhysicsEngine::PhysicsEngine * GetPhysicsEngine();
+	static CGPhysicsEngine::PhysicsEngine& GetPhysicsEngine();
 };
 

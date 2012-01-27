@@ -5,7 +5,9 @@ using namespace cggl;
 namespace CGPhysicsEngine
 {
 
-SpherePhysicObject::SpherePhysicObject(Vector3 position, float mass, float radius) : PhysicEnabledObject(position, mass)
+SpherePhysicObject::SpherePhysicObject(Vector3 position, float mass, float radius, float maximumVelocity = 0) : 
+	PhysicEnabledObject(position, mass, maximumVelocity),
+	BoundingSphere(radius)
 {
 	_radius = radius;
 }

@@ -2,7 +2,7 @@
 #define _PE_PWORLD_
 
 #include <list>
-#include "PhysicEnabledObject.h"
+#include "BoundingVolume.h"
 #include "cggl\MathUtils.h"
 
 namespace CGPhysicsEngine
@@ -11,16 +11,16 @@ namespace CGPhysicsEngine
 class PhysicsWorld
 {
 private:
-	std::list<PhysicEnabledObject *> _world;
+	std::list<BoundingVolume *> _world;
 
 public:
 	PhysicsWorld(void);
 	~PhysicsWorld(void);
 
-	void AddObject(PhysicEnabledObject * obj);
-	void RemoveObject(PhysicEnabledObject * obj);
+	void AddObject(BoundingVolume * obj);
+	void RemoveObject(BoundingVolume * obj);
 
-	PhysicEnabledObject * Single(bool Predicate(PhysicEnabledObject *));
+	BoundingVolume * Single(bool (*Predicate)(BoundingVolume *));
 };
 
 }

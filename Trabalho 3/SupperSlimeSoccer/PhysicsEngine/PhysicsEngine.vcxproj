@@ -80,6 +80,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="BoundingSphere.h" />
+    <ClInclude Include="BoundingVolume.h" />
     <ClInclude Include="ObjectCollision.h" />
     <ClInclude Include="PhysicConstants.h" />
     <ClInclude Include="PhysicEnabledObject.h" />
@@ -89,6 +92,9 @@
     <ClInclude Include="SpherePhysicObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoundingBox.cpp" />
+    <ClCompile Include="BoundingSphere.cpp" />
+    <ClCompile Include="BoundingVolume.cpp" />
     <ClCompile Include="ObjectCollision.cpp" />
     <ClCompile Include="PhysicEnabledObject.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />

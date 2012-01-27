@@ -4,57 +4,155 @@
 
 using namespace cggl;
 
+#define MOVEMENT_THRESHOLD 0.01
+#define ACCELERATION_THRESHOLD 0.0001
+
 namespace CGPhysicsEngine
 {
 	
-float PhysicsEngine::_friction = (float) CONCRETE_FRICTION;
+float PhysicsEngine::_staticFrictionCoeficient = (float) SLIME_ON_CONCRETE_STATIC_FRICTION_COEFICIENT;
+float PhysicsEngine::_kineticFrictionCoeficient = (float) SLIME_ON_CONCRETE_KINETIC_FRICTION_COEFICIENT;
 float PhysicsEngine::_gravitationalAcceleration = (float) EARTH_GRAVITY_ACCELERATION;
 
-PhysicsEngine::PhysicsEngine(void)
+PhysicsEngine::PhysicsEngine(float worldBottomLimit)
 {
-	_collisionModel = new ObjectCollision();
-	_world = new PhysicsWorld();
+	_worldBottomLimit = worldBottomLimit;
 }
 
 
 PhysicsEngine::~PhysicsEngine(void)
 {
-	_collisionModel->~ObjectCollision();
+	_collisionModel.~ObjectCollision();
 }
 
-
-ObjectCollision * PhysicsEngine::GetObjectCollisionModel()
+inline bool ForceIsApplied(float force)
 {
-	return _collisionModel;
+	return force != 0;
 }
 
-void PhysicsEngine::Process(PhysicEnabledObject * obj, int deltaTimeMilis)
-{		
-	Vector3 acceleration = obj->GetAcceleration();
-	if(acceleration.x != 0 || acceleration.y != 0 || acceleration.z != 0)
+inline bool ObjectIsMoving(float currVelocity)
+{
+	return currVelocity != 0;
+}
+	
+void PhysicsEngine::AddForce(PhysicEnabledObject& obj, Vector3 force)
+{
+	obj.AddForce(force);
+}
+
+float GetAccelerationFor1Dimension(float force, float mass, float staticFrictionCoeficient, float kineticFrictionCoeficient, float g, float currVelocity)
+{
+	float acceleration = 0;
+	if(ForceIsApplied(force))
 	{
-		Vector3 position = obj->GetPosition();
-		Vector3 velocity = obj->GetVelocity();
+		float maxFrictionForce;
+		if(ObjectIsMoving(currVelocity))	
+		{
+			maxFrictionForce = kineticFrictionCoeficient * mass * g;
+			acceleration = (force / mass) - (kineticFrictionCoeficient * g);
+		}
+		else
+		{
+			maxFrictionForce = staticFrictionCoeficient * mass * g;
+			acceleration = (force / mass) - (staticFrictionCoeficient * g);
+		}
 
-		float deltaT = (float) deltaTimeMilis / 1000;
-		Vector3 newPosition = position + ((velocity * deltaT) + (0.5 * acceleration * pow(deltaT, 2)));
-		obj->SetPosition(newPosition);
-
-		Vector3 deltaD = newPosition - position;
-		obj->SetVelocity(deltaD / deltaT);
-
-		obj->AddForce(Vector3::ZERO);
+		if(abs(force) <= maxFrictionForce) acceleration = 0;
 	}
+	else if(ObjectIsMoving(currVelocity) && abs(currVelocity) > MOVEMENT_THRESHOLD)
+	{
+		float maxFrictionForce;		
+
+		maxFrictionForce = kineticFrictionCoeficient * mass * g;
+		acceleration = (force / mass) - (kineticFrictionCoeficient * g) * (currVelocity / abs(currVelocity));
+	}
+	
+	return acceleration;
 }
 
-double PhysicsEngine::GetFriction()
+float GetAccelerationForYDimension(float force, float mass, float g, float currVelocity, float currAcceleration)
 {
-	return _friction;
+	float acceleration = 0;
+	if(!ForceIsApplied(force) && ObjectIsMoving(currVelocity))		
+		force = mass * currAcceleration;
+		
+	acceleration = (force / mass) - g;	
+	
+	if(abs(acceleration) < ACCELERATION_THRESHOLD) acceleration = 0;
+
+	return acceleration;
 }
 
-double PhysicsEngine::GetGravitationalAcceleration()
+float GetVelocityFor1Dimension(float maximumVelocity, float initialVelocity, float acceleration, float time)
 {
-	return _gravitationalAcceleration;
+	float velocity = initialVelocity + acceleration * time;
+	float absVelo = abs(velocity);
+
+	return (absVelo > maximumVelocity) ? maximumVelocity * (velocity / absVelo) : velocity;
+}
+
+float GetPositionFor1Dimension(float initialPosition, float initialVelocity, float acceleration, float time)
+{
+	return (float) (initialPosition + ((initialVelocity * time) + (0.5 * acceleration * pow(time, 2))));
+}
+
+
+BoundingVolume * base;
+bool IsColliding(BoundingVolume * obj1)
+{
+	return true;
+}
+	
+void PhysicsEngine::Process(PhysicEnabledObject& obj, int deltaTimeMilis)
+{		
+	float deltaT = (float) deltaTimeMilis / 1000;
+	Vector3 velocity = obj.GetVelocity();
+	Vector3 acceleration = obj.GetAcceleration();
+	Vector3 position = obj.GetPosition();
+	
+	float mass = obj.GetMass();
+	float gravitationalAcceleration = (float) GetGravitationalAcceleration();	
+	Vector3 force = obj.GetForce();
+
+	if(velocity.x != 0 || velocity.y != 0 || velocity.z != 0)
+	{		
+		Vector3 newPosition(
+			GetPositionFor1Dimension(position.x, velocity.x, acceleration.x, deltaT),
+			GetPositionFor1Dimension(position.y, velocity.y, acceleration.y, deltaT),
+			GetPositionFor1Dimension(position.z, velocity.z, acceleration.z, deltaT)
+		);
+		
+		obj.SetPosition(newPosition);
+
+
+	}
+
+	if(position.y <= _worldBottomLimit)
+	{
+		Vector3 up = Vector3::UP;
+		force += up * mass * gravitationalAcceleration;
+	}
+	
+	float staticFrictionCoeficient = (float) GetStaticFrictionCoeficient();
+	float kineticFrictionCoeficient = (float) GetKineticFrictionCoeficient();
+
+	Vector3 newAcceleration(
+		GetAccelerationFor1Dimension(force.x, mass, staticFrictionCoeficient, kineticFrictionCoeficient, gravitationalAcceleration, velocity.x),
+		GetAccelerationForYDimension(force.y, mass, gravitationalAcceleration, velocity.y, acceleration.y),
+		GetAccelerationFor1Dimension(force.z, mass, staticFrictionCoeficient, kineticFrictionCoeficient, gravitationalAcceleration, velocity.z)
+	);
+
+	float maximumVelocity = obj.GetMaximumVelocity();
+
+	Vector3 newVelocity(
+		GetVelocityFor1Dimension(maximumVelocity, velocity.x, newAcceleration.x, deltaT),
+		GetVelocityFor1Dimension(maximumVelocity, velocity.y, newAcceleration.y, deltaT),
+		GetVelocityFor1Dimension(maximumVelocity, velocity.z, newAcceleration.z, deltaT)
+	);
+	
+	obj.SetAcceleration(newAcceleration);
+	obj.SetVelocity(newVelocity);
+	obj.SetForce(Vector3::ZERO);
 }
 
 }

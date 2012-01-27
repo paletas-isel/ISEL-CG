@@ -6,7 +6,7 @@
 using namespace cggl;
 using namespace CGPhysicsEngine;
 
-CGPhysicsEngine::PhysicsEngine SuperSlimeSoccer::_physicEngine;
+PhysicsEngine SuperSlimeSoccer::_physicEngine = PhysicsEngine(0);
 
 SuperSlimeSoccer::SuperSlimeSoccer(void)
 {
@@ -16,9 +16,9 @@ SuperSlimeSoccer::~SuperSlimeSoccer(void)
 {
 }
 
-PhysicsEngine * SuperSlimeSoccer::GetPhysicsEngine()
+PhysicsEngine& SuperSlimeSoccer::GetPhysicsEngine()
 {
-	return &_physicEngine;
+	return _physicEngine;
 }
 
 void SuperSlimeSoccer::CreateScene()
@@ -26,8 +26,8 @@ void SuperSlimeSoccer::CreateScene()
 	RegisterObject(new FPSCounter());
 	
 	BaseBall * ball = new BaseBall(Vector3(0, 3, 0), 1);
-	BaseSlime * slime1 = new BaseSlime(ball, Vector3(0, 0, 0), 2);
-	BaseSlime * slime2 = new BaseSlime(ball, Vector3(0, 0, 0), 2);
+	BaseSlime * slime1 = new BaseSlime(Vector3(0, 0, 0), 2);
+	BaseSlime * slime2 = new BaseSlime(Vector3(0, 0, 0), 2);
 	
 	RegisterObject(slime1);
 
