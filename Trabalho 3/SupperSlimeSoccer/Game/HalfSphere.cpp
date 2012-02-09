@@ -20,6 +20,8 @@ void HalfSphere::Draw(short detailLevel)
 	glPushMatrix();
 		glBegin(GL_TRIANGLE_STRIP);
 
+		glTranslatef(0, _radius / 2, 0);
+
 		glVertex3f(0, _radius, 0);
 
 		int verticalSegments = detailLevel;

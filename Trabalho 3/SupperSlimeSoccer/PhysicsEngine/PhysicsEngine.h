@@ -13,26 +13,24 @@ namespace CGPhysicsEngine
 class PhysicsEngine
 {
 private:
-	ObjectCollision _collisionModel;
 	PhysicsWorld _world;
 
 	static float _staticFrictionCoeficient;
 	static float _kineticFrictionCoeficient;
 	static float _gravitationalAcceleration;
 
-	float _worldBottomLimit;
-
+	float _worldBottomLimit;	
 public:
 	PhysicsEngine(float worldBottomLimit);
 	~PhysicsEngine(void);
-
-	ObjectCollision& GetObjectCollisionModel() { return _collisionModel; }
-
+	
 	void Process(PhysicEnabledObject& obj, int deltaTimeMilis);
 	
 	void AddForce(PhysicEnabledObject& obj, cggl::Vector3 force);
 
 	PhysicsWorld& GetWorld() { return _world; }
+
+	void RegisterObject(PhysicEnabledObject& obj);
 
 	static float GetStaticFrictionCoeficient() { return _staticFrictionCoeficient; }
 	static float GetKineticFrictionCoeficient() { return _kineticFrictionCoeficient; }

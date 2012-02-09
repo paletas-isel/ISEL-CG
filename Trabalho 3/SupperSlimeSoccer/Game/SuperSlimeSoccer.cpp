@@ -31,6 +31,8 @@ void SuperSlimeSoccer::CreateScene()
 	
 	RegisterObject(slime1);
 
+	GetPhysicsEngine().RegisterObject(slime1->GetPhysicObject());
+
 	App::Camera->LookAt(Vector3(0, 0, 20), Vector3(0, 1, -200), Vector3::UP); 	
 }
 

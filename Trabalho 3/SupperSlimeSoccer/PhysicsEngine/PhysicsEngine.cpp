@@ -16,13 +16,12 @@ float PhysicsEngine::_gravitationalAcceleration = (float) EARTH_GRAVITY_ACCELERA
 
 PhysicsEngine::PhysicsEngine(float worldBottomLimit)
 {
-	_worldBottomLimit = worldBottomLimit;
+	GetWorld().AddObject(new PhysicEnabledObject(Vector3(0, worldBottomLimit, 0), 999999999, 0, Vector3(30000, 5, 30000)));
 }
 
 
 PhysicsEngine::~PhysicsEngine(void)
 {
-	_collisionModel.~ObjectCollision();
 }
 
 inline bool ForceIsApplied(float force)
@@ -70,13 +69,13 @@ float GetAccelerationFor1Dimension(float force, float mass, float staticFriction
 	return acceleration;
 }
 
-float GetAccelerationForYDimension(float force, float mass, float g, float currVelocity, float currAcceleration)
+float GetAccelerationForYDimension(float force, float mass, float g, float currVelocity, float currAcceleration, float currPos, float yBottomLimit)
 {
 	float acceleration = 0;
 	if(!ForceIsApplied(force) && ObjectIsMoving(currVelocity))		
 		force = mass * currAcceleration;
-		
-	acceleration = (force / mass) - g;	
+	
+	acceleration = (force / mass) - g;
 	
 	if(abs(acceleration) < ACCELERATION_THRESHOLD) acceleration = 0;
 
@@ -96,15 +95,19 @@ float GetPositionFor1Dimension(float initialPosition, float initialVelocity, flo
 	return (float) (initialPosition + ((initialVelocity * time) + (0.5 * acceleration * pow(time, 2))));
 }
 
-
-BoundingVolume * base;
-bool IsColliding(BoundingVolume * obj1)
+PhysicEnabledObject * base;
+bool IsColliding(PhysicEnabledObject * obj)
 {
-	return true;
+	return ObjectCollision::Intersects(*base, *obj);
 }
-	
+
+void PhysicsEngine::RegisterObject(PhysicEnabledObject& obj)
+{
+	GetWorld().AddObject(&obj);
+}
+
 void PhysicsEngine::Process(PhysicEnabledObject& obj, int deltaTimeMilis)
-{		
+{
 	float deltaT = (float) deltaTimeMilis / 1000;
 	Vector3 velocity = obj.GetVelocity();
 	Vector3 acceleration = obj.GetAcceleration();
@@ -124,13 +127,13 @@ void PhysicsEngine::Process(PhysicEnabledObject& obj, int deltaTimeMilis)
 		
 		obj.SetPosition(newPosition);
 
+		base = &obj;
+		PhysicEnabledObject * collisioner = GetWorld().Single(IsColliding);
 
-	}
-
-	if(position.y <= _worldBottomLimit)
-	{
-		Vector3 up = Vector3::UP;
-		force += up * mass * gravitationalAcceleration;
+		if(collisioner != NULL)
+		{
+			ObjectCollision::ProcessCollisionResponse(*base, *collisioner);
+		}
 	}
 	
 	float staticFrictionCoeficient = (float) GetStaticFrictionCoeficient();
@@ -138,7 +141,7 @@ void PhysicsEngine::Process(PhysicEnabledObject& obj, int deltaTimeMilis)
 
 	Vector3 newAcceleration(
 		GetAccelerationFor1Dimension(force.x, mass, staticFrictionCoeficient, kineticFrictionCoeficient, gravitationalAcceleration, velocity.x),
-		GetAccelerationForYDimension(force.y, mass, gravitationalAcceleration, velocity.y, acceleration.y),
+		GetAccelerationForYDimension(force.y, mass, gravitationalAcceleration, velocity.y, acceleration.y, position.y, _worldBottomLimit),
 		GetAccelerationFor1Dimension(force.z, mass, staticFrictionCoeficient, kineticFrictionCoeficient, gravitationalAcceleration, velocity.z)
 	);
 
@@ -153,6 +156,8 @@ void PhysicsEngine::Process(PhysicEnabledObject& obj, int deltaTimeMilis)
 	obj.SetAcceleration(newAcceleration);
 	obj.SetVelocity(newVelocity);
 	obj.SetForce(Vector3::ZERO);
+
+
 }
 
 }

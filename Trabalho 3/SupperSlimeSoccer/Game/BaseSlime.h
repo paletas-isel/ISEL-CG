@@ -5,7 +5,7 @@
 #include "cggl\MathUtils.h"
 #include "HalfSphere.h"
 #include "BaseBall.h"
-#include "physicsengine\SpherePhysicObject.h"
+#include "physicsengine\PhysicEnabledObject.h"
 
 class BaseSlime : public cggl::Object
 {
@@ -29,11 +29,11 @@ protected:
 
 #pragma region "Physics"
 private:
-	CGPhysicsEngine::SpherePhysicObject _obj;
+	CGPhysicsEngine::PhysicEnabledObject _obj;
 
 public:
 	cggl::Vector3 GetCenter() { return _obj.GetPosition(); }
-	CGPhysicsEngine::SpherePhysicObject GetPhysicObject() { return _obj; }
+	CGPhysicsEngine::PhysicEnabledObject GetPhysicObject() { return _obj; }
 
 #pragma endregion
 

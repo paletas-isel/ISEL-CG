@@ -12,7 +12,7 @@ using namespace cggl;
 #define BOUNCING_ATENUATION 0.5
 #define BALL_MASS 20
 
-BaseBall::BaseBall(Vector3 position, int radius) : _obj(position, BALL_MASS, radius, 5)
+BaseBall::BaseBall(Vector3 position, int radius) : _obj(position, BALL_MASS, 2, Vector3(radius, radius, radius))
 {
 	_radius = radius;
 }

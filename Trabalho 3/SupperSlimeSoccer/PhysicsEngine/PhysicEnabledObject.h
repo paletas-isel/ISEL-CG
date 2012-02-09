@@ -2,12 +2,12 @@
 #define _PE_PEOBJECT_
 
 #include "cggl\MathUtils.h" //Trocar para tipo próprio
-#include "BoundingVolume.h"
+#include "BoundingBox.h"
 
 namespace CGPhysicsEngine
 {
 
-class PhysicEnabledObject
+class PhysicEnabledObject : public BoundingBox
 {
 private:	
 	float _mass; 
@@ -19,18 +19,19 @@ private:
 
 	void SetPosition(cggl::Vector3 position);
 	void SetAcceleration(cggl::Vector3 acceleration) { _acceleration = acceleration; }
+	void SetVelocity(cggl::Vector3 velocity) { _velocity = velocity; }
 	void SetForce(cggl::Vector3 force) { _force = force; }
 	cggl::Vector3 GetForce() { return _force; }
-
+	
 protected:
 	void SetMass(float mass) { _mass = mass; }
-	void SetVelocity(cggl::Vector3 velocity) { _velocity = velocity; }
 	void SetMaximumVelocity(float maximumVelocity) { _maximumVelocity = maximumVelocity; }
 
 	friend class ObjectCollision;
 	friend class PhysicsEngine;
 public:
-	PhysicEnabledObject(cggl::Vector3 position, float mass, float maximumVelocity);
+	PhysicEnabledObject(cggl::Vector3 position, float mass, float maximumVelocity, cggl::Vector3 boundingBoxCenter, cggl::Vector3 boundingBoxDimensions);
+	PhysicEnabledObject(cggl::Vector3 position, float mass, float maximumVelocity, cggl::Vector3 boundingBoxDimensions);
 	~PhysicEnabledObject(void);
 	
 	void AddForce(cggl::Vector3 force) { _force += force; } 

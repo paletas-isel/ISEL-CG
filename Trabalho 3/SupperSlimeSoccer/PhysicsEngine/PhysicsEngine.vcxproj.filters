@@ -36,25 +36,13 @@
     <ClInclude Include="PhysicEnabledObject.h">
       <Filter>Header Files\PhysicObjects</Filter>
     </ClInclude>
-    <ClInclude Include="SpherePhysicObject.h">
-      <Filter>Header Files\PhysicObjects</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsEngine.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxPhysicObject.h">
-      <Filter>Header Files\PhysicObjects</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBox.h">
-      <Filter>Header Files\Boundings</Filter>
-    </ClInclude>
-    <ClInclude Include="BoundingSphere.h">
-      <Filter>Header Files\Boundings</Filter>
-    </ClInclude>
-    <ClInclude Include="BoundingVolume.h">
       <Filter>Header Files\Boundings</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,25 +53,13 @@
     <ClCompile Include="PhysicEnabledObject.cpp">
       <Filter>Source Files\PhysicObjects</Filter>
     </ClCompile>
-    <ClCompile Include="SpherePhysicObject.cpp">
-      <Filter>Source Files\PhysicObjects</Filter>
-    </ClCompile>
     <ClCompile Include="PhysicsEngine.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxPhysicObject.cpp">
-      <Filter>Source Files\PhysicObjects</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
-      <Filter>Source Files\Boundings</Filter>
-    </ClCompile>
-    <ClCompile Include="BoundingSphere.cpp">
-      <Filter>Source Files\Boundings</Filter>
-    </ClCompile>
-    <ClCompile Include="BoundingVolume.cpp">
       <Filter>Source Files\Boundings</Filter>
     </ClCompile>
   </ItemGroup>

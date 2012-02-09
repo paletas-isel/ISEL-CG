@@ -12,7 +12,7 @@ using namespace cggl;
 #define MOVING_FORCE ( 500 )
 #define JUMP_FORCE ( 1500 )
 
-BaseSlime::BaseSlime(Vector3 position, int radius) : _body(radius), _obj(position, SLIME_MASS, radius, radius)
+BaseSlime::BaseSlime(Vector3 position, int radius) : _body(radius), _obj(position, SLIME_MASS, radius, Vector3(radius, radius / 2, radius))
 {
 	_radius = radius;
 }

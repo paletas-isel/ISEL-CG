@@ -6,23 +6,14 @@ using namespace cggl;
 
 namespace CGPhysicsEngine
 {
-	bool ObjectCollision::Intersects(BoundingSphere& obj1, BoundingSphere& obj2)
+	/*bool ObjectCollision::Intersects(BoundingSphere& obj1, BoundingSphere& obj2)
 	{
 		float distance = sqrt(pow(obj1.GetCenter().x - obj2.GetCenter().x, 2) + pow(obj1.GetCenter().y - obj2.GetCenter().y, 2) + pow(obj1.GetCenter().y - obj2.GetCenter().y, 2));
 		int sumRadius = obj1.GetRadius() + obj2.GetRadius();
 
 		return distance < sumRadius;
-	}
-		
-	bool ObjectCollision::Intersects(BoundingSphere& obj1, BoundingBox& obj2)
-	{
-		return Intersects(obj2, obj1);
-	}
+	}*/	
 
-	bool ObjectCollision::Intersects(BoundingBox& obj1, BoundingSphere& obj2)
-	{
-		return false;
-	}
 
 	bool ObjectCollision::Intersects(BoundingBox& obj1, BoundingBox& obj2)
 	{

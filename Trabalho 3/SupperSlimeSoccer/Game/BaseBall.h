@@ -25,10 +25,10 @@ public:
 
 #pragma region "Physics"
 private:
-	CGPhysicsEngine::SpherePhysicObject _obj;
+	CGPhysicsEngine::PhysicEnabledObject _obj;
 	
 public:
-	CGPhysicsEngine::SpherePhysicObject GetPhysicObject() { return _obj; }
+	CGPhysicsEngine::PhysicEnabledObject GetPhysicObject() { return _obj; }
 
 	friend class BaseSlime;
 #pragma endregion
