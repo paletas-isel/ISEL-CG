@@ -65,27 +65,29 @@ Vector3 ConvertBoardToWorldCoordinates(int boardX, int boardY)
 
 GameObject * Board::CreateObject(BoardItemType type, int boardX, int boardY)
 {
+		
 	Vector3 coordinates = ConvertBoardToWorldCoordinates(boardX, boardY);
+	
 	switch(type)
 	{
-		case Food : 
+		case FoodType : 
 			return new Food(coordinates);
-			break;
-		case SpecialFood :
+			
+		case SpecialFoodType :
 			return new SpecialFood(coordinates);
-			break;
-		case Portal :
+			
+		case PortalType :
 			return new Portal(coordinates);
-			break;
+			
 		case MonsterGate : 
 			return new Gate(coordinates);
-			break;
+			
 		case Walls :
 			return new Wall(coordinates);
-			break;
+			
 		default :
 			return NULL;
-			break;
+			
 	}
 }
 

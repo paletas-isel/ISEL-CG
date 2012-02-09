@@ -14,9 +14,9 @@
 enum BoardItemType
 {
 	Nothing = 0,
-	Food = 1,
-	SpecialFood = 2,
-	Portal = 7,
+	FoodType = 1,
+	SpecialFoodType = 2,
+	PortalType = 7,
 	MonsterGate = 8,
 	Walls = 9
 };
