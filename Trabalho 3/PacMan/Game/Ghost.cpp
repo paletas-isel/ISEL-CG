@@ -14,7 +14,7 @@ void Ghost::DoDrawEntity()
 
 }
 
-void Ghost::StartWalkingAnimation(int durationInMilis)
+void Ghost::DoDrawWalkingAnimation(int deltaTimeMilis)
 {
 
 }

@@ -18,7 +18,7 @@ protected:
 	virtual void DoDraw();
 
 public:
-	Food(cggl::Vector3 position);
+	Food(BoardCoordinates coords);
 	~Food(void);
 
 	void SetEaten() { hasBeenEaten = true; }

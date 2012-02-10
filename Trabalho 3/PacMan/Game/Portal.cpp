@@ -2,13 +2,12 @@
 
 #include <gl\glut.h>
 
-#define PORTAL_DETAIL 60
+#define PORTAL_DETAIL 20
 
 using namespace cggl;
 
-Portal::Portal(Vector3 position, Vector3 destination) : GameObject(position)
+Portal::Portal(BoardCoordinates& coords) : GameObject(coords)
 {
-	portalDestination = destination;
 	rotation = 0;
 }
 
@@ -19,14 +18,14 @@ Portal::~Portal(void)
 
 void Portal::OnCollision(Entity& collisioner)
 {
-	collisioner.SetPosition(portalDestination);
+	collisioner.SetPosition(BoardCoordinates::ConvertBoardToWorldCoordinates(*portalDestination));
 }
 
 void Portal::DoDraw()
 {
 	glColor4f(0, 0, 1, 0.20);
 
-	glutSolidSphere(GameObject::MaxDimension, PORTAL_DETAIL, PORTAL_DETAIL);
+	glutSolidSphere(OBJECT_DIMENSION / 2, PORTAL_DETAIL, PORTAL_DETAIL);
 }
 
 void Portal::DoUpdate(int deltaTimeMilis)

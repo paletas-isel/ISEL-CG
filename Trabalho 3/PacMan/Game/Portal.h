@@ -2,11 +2,12 @@
 #define _PACMAN_PORTAL_
 
 #include "GameObject.h"
+#include "Board.h"
 
 class Portal : public GameObject
 {
 private:
-	cggl::Vector3 portalDestination;
+	BoardCoordinates  * portalDestination;
 	float rotation;
 
 protected:
@@ -16,8 +17,11 @@ protected:
 	void DoUpdate(int deltaTimeMilis);
 
 public:
-	Portal(cggl::Vector3 position, cggl::Vector3 destination);
+	Portal(BoardCoordinates& coords);
 	~Portal(void);
+
+	void SetDestination(BoardCoordinates * destination) { portalDestination = destination; }
+	BoardCoordinates GetDestination() { return *portalDestination; }
 };
 
 #endif

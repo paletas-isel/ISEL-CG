@@ -7,9 +7,13 @@
 
 class SpecialFood : public Food
 {
+protected:
+	void DoDraw();
+
 public:
-	SpecialFood(cggl::Vector3 position);
+	SpecialFood(BoardCoordinates& coords);
 	~SpecialFood(void);
+
 };
 
 #endif

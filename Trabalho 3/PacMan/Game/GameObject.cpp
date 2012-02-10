@@ -4,17 +4,16 @@
 
 using namespace cggl;
 
-Vector3 MaxDimensions(10, 10, 10);
-
-GameObject::GameObject(cggl::Vector3 position)
+GameObject::GameObject(BoardCoordinates coords) : objectCoordinates(coords)
 { 
-	objectPosition = position;
+	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates) * OBJECT_DIMENSION + Vector3(OBJECT_DIMENSION / 2, 0, OBJECT_DIMENSION / 2);
+	
 	GameObject::isWalkable = true; 
 }
 
-GameObject::GameObject(cggl::Vector3 position, bool isWalkable)
+GameObject::GameObject(BoardCoordinates coords, bool isWalkable) : objectCoordinates(coords)
 { 
-	objectPosition = position;
+	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates) * OBJECT_DIMENSION + Vector3(OBJECT_DIMENSION / 2, 0, OBJECT_DIMENSION / 2);
 	GameObject::isWalkable = isWalkable; 
 }
 
@@ -22,7 +21,18 @@ void GameObject::Draw()
 {
 	glPushMatrix();
 
+		glEnable(GL_LIGHT0);
+		glEnable(GL_LIGHT1);
+		glEnable(GL_LIGHTING);
+		glEnable(GL_AMBIENT_AND_DIFFUSE);
+		glColorMaterial ( GL_FRONT_AND_BACK, GL_EMISSION ) ;
+		glEnable ( GL_COLOR_MATERIAL ) ;
+		
+		glTranslatef(objectPosition.x, objectPosition.y, objectPosition.z);	
+
 		DoDraw();
+
+		glDisable(GL_LIGHTING);
 
 	glPopMatrix();
 

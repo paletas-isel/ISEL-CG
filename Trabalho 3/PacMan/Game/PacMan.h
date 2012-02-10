@@ -10,7 +10,9 @@ private:
 
 protected:
 	void DoDrawEntity();
-	void StartWalkingAnimation(int durationInMilis);
+	void DoDrawWalkingAnimation(int deltaTimeMilis);
+	void DoUpdate(int deltaTimeMilis);
+
 public:
 	PacMan(void);
 	~PacMan(void);

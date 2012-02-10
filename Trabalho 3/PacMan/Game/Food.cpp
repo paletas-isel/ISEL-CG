@@ -4,11 +4,9 @@
 
 #include <gl\glut.h>
 
-#define FOOD_DETAIL 60
-
 using namespace cggl;
 
-Food::Food(Vector3 position) : GameObject(position)
+Food::Food(BoardCoordinates coords) : GameObject(coords)
 {
 	hasBeenEaten = false;
 }
@@ -37,7 +35,7 @@ void Food::DoDraw()
 {
 	if(!HasBeenEaten())
 	{
-		glColor3f(1, 1, 0);
-		glutSolidSphere(GameObject::MaxDimension / 5, FOOD_DETAIL, FOOD_DETAIL);
+		glColor3f(0, 0, 0);
+		glutSolidSphere(OBJECT_DIMENSION / (float) 5, FOOD_DETAIL, FOOD_DETAIL);
 	}
 }

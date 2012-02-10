@@ -81,6 +81,9 @@
     <ClCompile Include="FoodEffect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="BoardCoordinates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -122,5 +125,19 @@
     <ClInclude Include="FoodEffect.h">
       <Filter>Header Files\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="BoardCoordinates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStaticSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BoardDesigns\cg.board">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BoardDesigns\classic.board">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

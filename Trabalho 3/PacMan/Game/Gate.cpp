@@ -4,11 +4,11 @@
 
 using namespace cggl;
 
-Gate::Gate(Vector3 position) : GameObject(position)
+Gate::Gate(BoardCoordinates& coords) : GameObject(coords)
 {
 	isOpened = false;	
 
-	gateMaxHeight = GameObject::MaxDimension;
+	gateMaxHeight = OBJECT_DIMENSION;
 	
 	animationStarted = false;
 	animationTime = 0;
@@ -21,6 +21,8 @@ Gate::~Gate(void)
 
 void drawGate(int size)
 {
+	glScalef(1, 1, 0.3);
+
 	glutSolidCube(size);
 }
 
@@ -28,7 +30,7 @@ void Gate::DoDraw()
 {
 	if(!isOpened && !animationStarted)
 	{
-		drawGate(gateMaxHeight * 2);
+		drawGate(gateMaxHeight);
 	}
 	else if(animationStarted)
 	{		

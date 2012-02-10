@@ -5,30 +5,36 @@
 #include <cggl\MathUtils.h>
 
 #include "Entity.h"
+#include "BoardCoordinates.h"
+#include "GameStaticSettings.h"
 
 class GameObject : public cggl::Object
 {
 private: 
 	bool isWalkable;
 	cggl::Vector3 objectPosition;
+	BoardCoordinates objectCoordinates;	
 
 protected:
-	virtual void OnCollision(Entity& collisioner) {};
 	virtual void DoDraw() = 0;
 	virtual void DoUpdate() {}
 
 	void SetWalkable(bool isWalkable) { GameObject::isWalkable = isWalkable; }
-
-	static float MaxDimension;
+	
 public:
-	GameObject(cggl::Vector3 position);
-	GameObject(cggl::Vector3 position, bool isWalkable);
-	~GameObject(void) {};
+	GameObject(BoardCoordinates coords);
+	GameObject(BoardCoordinates coords, bool isWalkable);
+	~GameObject(void) {}
 
 	void Draw();
 	void Update(int deltaTimeMilis);
 
+	virtual void OnCollision(Entity& collisioner) {};
+
 	bool IsWalkable() { return isWalkable; }
+
+	cggl::Vector3 GetPosition() { return objectPosition; }
+	BoardCoordinates GetCoordinates() { return objectCoordinates; }
 };
 
 #endif

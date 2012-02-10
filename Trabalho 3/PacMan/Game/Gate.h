@@ -18,7 +18,7 @@ protected:
 	void DoUpdate(int deltaTimeMilis);
 
 public:
-	Gate(cggl::Vector3 position);
+	Gate(BoardCoordinates& coords);
 	~Gate(void);
 
 	void Open();

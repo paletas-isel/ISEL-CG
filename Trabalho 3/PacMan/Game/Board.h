@@ -10,13 +10,14 @@
 
 #include "Entity.h"
 #include "GameObject.h"
+#include "BoardCoordinates.h"
 
 enum BoardItemType
 {
 	Nothing = 0,
-	Food = 1,
-	SpecialFood = 2,
-	Portal = 7,
+	FoodType = 1,
+	SpecialFoodType = 2,
+	PortalType = 7,
 	MonsterGate = 8,
 	Walls = 9
 };
@@ -25,8 +26,12 @@ class Board : public cggl::Object
 {
 private:
 	std::vector<std::vector<GameObject *>> map;
+	std::list<Entity *> entities;
 
 	Board(std::vector<std::vector<GameObject *>> boardMap);
+
+	void ConnectPortals();
+	BoardCoordinates * FindWalkableAround(BoardCoordinates coord);
 
 public:
 	~Board(void);
@@ -34,12 +39,15 @@ public:
 	void Draw();
 	void Update(int deltaTimeMilis);
 
-	std::list<Entity *> GetEntities(EntityTypeFlag types);
+	std::list<Entity *>& GetEntities(EntityTypeFlag types);
+	GameObject * ObjectAt(BoardCoordinates& coords);
+	
+	static Board * LoadFrom(std::string file);
+	static Board * LoadFrom(std::ifstream file);
 
-	static Board LoadFrom(std::string file);
-	static Board LoadFrom(std::ifstream file);
+	void AddEntity(Entity& entity, BoardCoordinates& place);
 
-	static GameObject * CreateObject(BoardItemType type, int boardX, int boardY);
+	static GameObject * CreateObject(BoardItemType type, BoardCoordinates& coords, ...);
 };
 
 #endif

@@ -7,7 +7,7 @@ class Ghost : public Entity
 {
 protected:
 	void DoDrawEntity();
-	void StartWalkingAnimation(int durationInMilis);
+	void DoDrawWalkingAnimation(int deltaTimeMilis);
 public:
 	Ghost(void);
 	~Ghost(void);

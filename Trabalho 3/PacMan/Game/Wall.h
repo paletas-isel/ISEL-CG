@@ -13,7 +13,7 @@ protected:
 	void DoDraw();
 
 public:
-	Wall(cggl::Vector3 position);
+	Wall(BoardCoordinates& coords);
 	~Wall(void);
 
 };
