@@ -3,10 +3,13 @@
 
 #include "entity.h"
 
+class Ghost;
+
 class PacMan : public Entity
 {
 private:
 	int eatenFoodCount;
+	int lifes;
 
 protected:
 	void DoDrawEntity();
@@ -19,6 +22,12 @@ public:
 
 	void EatFood() { eatenFoodCount++; }
 	int GetFoodEaten() { return eatenFoodCount; }
+
+	int GetLifes() { return lifes; }
+	void RemoveLife() { lifes--; }
+	void AddLife() { lifes++; }
+
+	void OnCollision(Ghost ghost);
 };
 
 #endif

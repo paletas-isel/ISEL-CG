@@ -23,6 +23,8 @@ public:
 
 	void Open();
 	void Close();
+
+	bool IsOpen() { return isOpened; }
 };
 
 #endif

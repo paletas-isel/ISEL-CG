@@ -7,7 +7,7 @@
 class Portal : public GameObject
 {
 private:
-	BoardCoordinates  * portalDestination;
+	BoardCoordinates portalDestination;
 	float rotation;
 
 protected:
@@ -20,8 +20,8 @@ public:
 	Portal(BoardCoordinates& coords);
 	~Portal(void);
 
-	void SetDestination(BoardCoordinates * destination) { portalDestination = destination; }
-	BoardCoordinates GetDestination() { return *portalDestination; }
+	void SetDestination(BoardCoordinates& destination) { portalDestination = destination; }
+	BoardCoordinates& GetDestination() { return portalDestination; }
 };
 
 #endif

@@ -16,6 +16,7 @@ using namespace cggl;
 Board::Board(vector<vector<GameObject *>> boardMap)
 {
 	map = boardMap;
+	gameOver = false;
 
 	ConnectPortals();
 }
@@ -43,9 +44,9 @@ void Board::ConnectPortals()
 				}
 				
 				BoardCoordinates * validCoords = FindWalkableAround(portal->GetCoordinates());
-				otherPortal->SetDestination(validCoords);
+				otherPortal->SetDestination(*validCoords);
 				validCoords =  FindWalkableAround(otherPortal->GetCoordinates());
-				portal->SetDestination(validCoords);
+				portal->SetDestination(*validCoords);
 			}
 		}
 	}
@@ -61,15 +62,15 @@ BoardCoordinates * Board::FindWalkableAround(BoardCoordinates coord)
 	if(obj != NULL && obj->IsWalkable()) return &obj->GetCoordinates();
 
 	BoardCoordinates c1 = BoardCoordinates( coord.boardX, coord.boardY + 1 );
-	obj = ObjectAt(c);
+	obj = ObjectAt(c1);
 	if(obj != NULL && obj->IsWalkable()) return &obj->GetCoordinates();
 
 	BoardCoordinates c2 = BoardCoordinates( coord.boardX - 1, coord.boardY );
-	obj = ObjectAt(c);
+	obj = ObjectAt(c2);
 	if(obj != NULL && obj->IsWalkable()) return &obj->GetCoordinates();
 
 	BoardCoordinates c3 = BoardCoordinates( coord.boardX, coord.boardY - 1 );
-	obj = ObjectAt(c);
+	obj = ObjectAt(c3);
 	if(obj != NULL && obj->IsWalkable()) return &obj->GetCoordinates();
 
 	return NULL;
@@ -159,26 +160,77 @@ void Board::Draw()
 		(*it)->Draw();
 	}
 
+	if(gameOver)
+		glutBitmapLength(GLUT_BITMAP_9_BY_15, (const unsigned char *) "Game Over!");
+
 	Object::Draw();
 }
 
 void Board::Update(int deltaTimeMilis)
 {
-	for(list<Entity *>::iterator it = entities.begin(); it != entities.end(); ++it)
-	{
-		Entity * entity = *it;
-		
-		entity->Update(deltaTimeMilis);
-	}
+	static int timeLeftGates = 2000;
+	static bool gatesChangesPending = true, gateOpening = false, gateOpened = false;
 
-	for(vector<vector<GameObject *>>::iterator it = map.begin(); it != map.end(); ++it)
+	if(!gameOver)
 	{
-		for(vector<GameObject *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+		if(pacman->GetLifes() == 0) gameOver = true;
+	
+		for(list<Entity *>::iterator it = entities.begin(); it != entities.end(); ++it)
 		{
-			if(*it2 != NULL)
-				(*it2)->Update(deltaTimeMilis);
+			Entity * entity = *it;
+		
+			entity->Update(deltaTimeMilis);
 		}
-	}
+
+		for(vector<vector<GameObject *>>::iterator it = map.begin(); it != map.end(); ++it)
+		{
+			for(vector<GameObject *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+			{
+				if(*it2 != NULL)
+				{
+					if(gatesChangesPending)
+					{
+						Gate * gate = dynamic_cast<Gate*>(*it2);	
+						if(gate != NULL)
+						{
+							if(timeLeftGates <= 0)
+							{		
+
+								if(gate->IsOpen())
+									gate->Close();
+								else
+								{
+									gate->Open();
+									gateOpening = true;
+								}
+							}
+							else if(gate->IsOpen() && gateOpening)	
+							{
+								gateOpened = true;
+								gateOpening = false;
+							}
+						}
+					}
+
+					(*it2)->Update(deltaTimeMilis);
+				}
+			}
+		}
+
+		if(gateOpened) 
+		{
+			timeLeftGates = 5000;
+			gateOpened = false;
+		} 
+		else if(timeLeftGates <= 0)
+		{
+			timeLeftGates = 2000;
+			if(!gateOpening)
+				gatesChangesPending = false;
+		}
+		else if(gatesChangesPending && !gateOpening)
+			timeLeftGates -= deltaTimeMilis;
+	}	
 
 	Object::Update(deltaTimeMilis);
 }
@@ -210,6 +262,9 @@ void Board::AddEntity(Entity& entity, BoardCoordinates& place)
 	entities.push_back(&entity);
 	entity.SetPosition(BoardCoordinates::ConvertBoardToWorldCoordinates(place));
 	entity.SetBoard(*this);
+
+	if(entity.BelongsToType(PacmanEntity))
+		pacman = dynamic_cast<PacMan *>(&entity);
 }
 
 list<Entity *>& Board::GetEntities(EntityTypeFlag types)

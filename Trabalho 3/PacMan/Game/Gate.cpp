@@ -4,7 +4,10 @@
 
 using namespace cggl;
 
-Gate::Gate(BoardCoordinates& coords) : GameObject(coords)
+#define OPEN true
+#define CLOSED false
+
+Gate::Gate(BoardCoordinates& coords) : GameObject(coords, false)
 {
 	isOpened = false;	
 
@@ -56,19 +59,22 @@ void Gate::DoUpdate(int deltaTimeMilis)
 	
 		if(isOpened)
 		{
-			gateHeight = animationTime * gateMaxHeight / (float) animationDuration;
-			if(gateHeight <= 0)
+			gateHeight = gateMaxHeight * (animationTime / (float) animationDuration);
+			if(gateHeight >= gateMaxHeight)
 			{
+				ChangeGateStatus(CLOSED);
+				gateHeight = gateMaxHeight;
 				animationStarted = false;
 			}
 		}
 		else
 		{
-			gateHeight = animationTime / (float) animationDuration;
-			if(gateHeight >= gateMaxHeight)
+			gateHeight = gateMaxHeight - (gateMaxHeight * (animationTime / (float) animationDuration));
+			if(gateHeight <= 0)
 			{
+				gateHeight = 0;
 				animationStarted = false;
-				ChangeGateStatus(true);
+				ChangeGateStatus(OPEN);
 			}
 		}
 	}
@@ -88,7 +94,7 @@ void Gate::Open()
 
 void Gate::Close()
 {
-	ChangeGateStatus(false);
 	animationStarted = true;
 	animationTime = 0;
+	SetWalkable(false);
 }

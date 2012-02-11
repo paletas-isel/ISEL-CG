@@ -12,6 +12,7 @@ Entity::Entity(EntityTypeFlag type, int walkingSpeed)
 	entitySpeed = walkingSpeed;
 	entityWalking = false;
 	entityType = type;
+	walkingAnimationSpeed = 200;
 }
 
 Entity::~Entity(void)
@@ -22,12 +23,12 @@ void Entity::Draw()
 {
 	glPushMatrix();
 
-		Vector3& position = GetPosition();	
+		Vector3& position = GetPosition() + inBetweenPosition;	
 
 		glTranslated(position.x, position.y, position.z);
 		
 		glRotatef(GetRotation(), 0, 1, 0);
-
+		
 		if(IsEntityWalking())
 			DoDrawWalkingAnimation(GetWalkingAnimationTime());
 		else
@@ -40,35 +41,64 @@ void Entity::Draw()
 
 void Entity::Update(int deltaTimeMilis)
 {	
-	if(IsEntityWalking())
+	static Vector3 lastPosition;
+	static int waitTimeLeft = -1;
+	static bool canWalk = true;
+	
+	DoUpdate(deltaTimeMilis);
+
+	if(!canWalk)
+	{
+		waitTimeLeft -= deltaTimeMilis;
+		if(waitTimeLeft <= 0)
+			canWalk = true;
+		else			
+			SetEntityWalking(false);
+	}
+
+	if(IsEntityWalking() && canWalk)
 	{
 		AddWalkingAnimationTime(deltaTimeMilis);
 
-		if(GetWalkingAnimationTime() >= GetSpeed())
+		if(GetWalkingAnimationTime() >= GetWalkingAnimationSpeed())
 		{
+			SetPosition(GetPosition() + *entityWalkingTo);
+			
 			entityWalkingTo = NULL;
-			SetEntityWalking(false);			
-		
-			GameObject * obj = GetBoard().ObjectAt(BoardCoordinates::ConvertWorldToBoardCoordinates(GetPosition()));
+			SetEntityWalking(false);	
+			inBetweenPosition = Vector3::ZERO;
 
-			obj->OnCollision(*this);
+			GameObject * obj = GetBoard().ObjectAt(BoardCoordinates::ConvertWorldToBoardCoordinates(GetPosition()));
+			
+			lastPosition = GetPosition();
+
+			if(obj != NULL)
+				obj->OnCollision(*this);
+
+			waitTimeLeft = GetSpeed();
+			canWalk = false;
 		}
 		else
-		{
-			Vector3 newPos = GetPosition() + (*entityWalkingTo * ((GetWalkingAnimationTime() / (float) GetSpeed())));
-		
-			SetPosition(newPos);
+		{		
+			inBetweenPosition = (*entityWalkingTo * (GetWalkingAnimationTime() / (float) GetWalkingAnimationSpeed()));
 		}
 	}
+	else if(lastPosition != GetPosition())
+	{
+		lastPosition = GetPosition();
+		
+		GameObject * obj = GetBoard().ObjectAt(BoardCoordinates::ConvertWorldToBoardCoordinates(GetPosition()));
 
-	DoUpdate(deltaTimeMilis);
+		if(obj != NULL)
+			obj->OnCollision(*this);
+	}
 
 	Object::Update(deltaTimeMilis);
 }
 
 bool Entity::BelongsToType(EntityTypeFlag type)
 {
-	return (GetType() && type) != 0;
+	return (GetType() & type) != 0;
 }
 	
 void Entity::StartWalkingAnimation()
@@ -85,54 +115,86 @@ void Entity::SetRotationIfDifferent(float value)
 void Entity::Move(float angle, Vector3& to)
 {
 	SetRotationIfDifferent(angle);
-
-	BoardCoordinates& coords = BoardCoordinates::ConvertWorldToBoardCoordinates(to);
-	
-	GameObject * obj = GetBoard().ObjectAt(coords);
-	if(obj != NULL && obj->IsWalkable())
-	{
-		StartWalkingAnimation();
-	}
+	SetEntityWalking(true);
+	StartWalkingAnimation();
 }
 
 void Entity::MoveUp()
 {
-	if(!IsEntityWalking())
+	if(!IsEntityWalking() && CanMoveUp())
 	{
 		Vector3& pos = GetPosition();
-		entityWalkingTo = new Vector3(0, 0, -1);
-		Move(3.14f, pos);
+		entityWalkingTo = new Vector3(0, 0, -1 * OBJECT_DIMENSION);
+		Move(3.14f, pos + *entityWalkingTo);
 	}
 }
 
 void Entity::MoveDown()
 {
-	if(!IsEntityWalking())
+	if(!IsEntityWalking() && CanMoveDown())
 	{
 		Vector3& pos = GetPosition();
-		entityWalkingTo = new Vector3(0, 0, 1);
-		Move(0, pos);
+		entityWalkingTo = new Vector3(0, 0, 1 * OBJECT_DIMENSION);
+		Move(0, pos + *entityWalkingTo);
 	}
 }
 
 void Entity::MoveLeft()
 {	
-	if(!IsEntityWalking())
+	if(!IsEntityWalking() && CanMoveLeft())
 	{
 		Vector3& pos = GetPosition();
-		entityWalkingTo = new Vector3(-1, 0, 0);
-		Move(-1.56f, pos);
+		entityWalkingTo = new Vector3(-1 * OBJECT_DIMENSION, 0, 0);
+		Move(-1.56f, pos + *entityWalkingTo);
 	}
 }
 
 void Entity::MoveRight()
 {
-	if(!IsEntityWalking())
+	if(!IsEntityWalking() && CanMoveRight())
 	{
 		Vector3& pos = GetPosition();
-		entityWalkingTo = new Vector3(1, 0, 0);
-		Move(1.56f, pos);
+		entityWalkingTo = new Vector3(1 * OBJECT_DIMENSION, 0, 0);
+		Move(1.56f, pos + *entityWalkingTo);
 	}
+}
+
+bool Entity::CanMoveUp()
+{
+	Vector3 pos = GetPosition();
+	BoardCoordinates& coords = BoardCoordinates::ConvertWorldToBoardCoordinates(pos + Vector3(0, 0, -1 * OBJECT_DIMENSION));
+	
+	return CanMove(coords);
+}
+
+bool Entity::CanMoveDown()
+{
+	Vector3 pos = GetPosition();
+	BoardCoordinates& coords = BoardCoordinates::ConvertWorldToBoardCoordinates(pos + Vector3(0, 0, 1 * OBJECT_DIMENSION));
+	
+	return CanMove(coords);
+}
+
+bool Entity::CanMoveLeft()
+{
+	Vector3 pos = GetPosition();
+	BoardCoordinates& coords = BoardCoordinates::ConvertWorldToBoardCoordinates(pos + Vector3(-1 * OBJECT_DIMENSION, 0, 0));
+	
+	return CanMove(coords);
+}
+
+bool Entity::CanMoveRight()
+{
+	Vector3 pos = GetPosition();
+	BoardCoordinates& coords = BoardCoordinates::ConvertWorldToBoardCoordinates(pos + Vector3(1 * OBJECT_DIMENSION, 0, 0));
+
+	return CanMove(coords);
+}
+
+bool Entity::CanMove(BoardCoordinates& to)
+{
+	GameObject * obj = GetBoard().ObjectAt(to);
+	return (obj == NULL || obj->IsWalkable());
 }
 
 void Entity::SetBoard(Board& board) 

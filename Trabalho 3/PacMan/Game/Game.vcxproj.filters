@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Objects\Food">
       <UniqueIdentifier>{c736fe16-b2db-4056-851a-5cf6f66a1a9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities\AI">
+      <UniqueIdentifier>{af084c62-b4f1-41a5-b087-cb7f785e35ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\AI">
+      <UniqueIdentifier>{5bd48707-cff6-4893-ad66-ce5cc62562da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -78,11 +84,17 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
+    <ClCompile Include="BoardCoordinates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="FoodEffect.cpp">
       <Filter>Source Files\Effects</Filter>
     </ClCompile>
-    <ClCompile Include="BoardCoordinates.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AIBehaviour.cpp">
+      <Filter>Source Files\Entities\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaseAI.cpp">
+      <Filter>Source Files\Entities\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +141,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameStaticSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AIBehaviour.h">
+      <Filter>Header Files\Entities\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaseAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

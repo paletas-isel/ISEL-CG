@@ -6,14 +6,14 @@ using namespace cggl;
 
 GameObject::GameObject(BoardCoordinates coords) : objectCoordinates(coords)
 { 
-	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates) * OBJECT_DIMENSION + Vector3(OBJECT_DIMENSION / 2, 0, OBJECT_DIMENSION / 2);
+	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates);
 	
 	GameObject::isWalkable = true; 
 }
 
 GameObject::GameObject(BoardCoordinates coords, bool isWalkable) : objectCoordinates(coords)
 { 
-	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates) * OBJECT_DIMENSION + Vector3(OBJECT_DIMENSION / 2, 0, OBJECT_DIMENSION / 2);
+	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates);
 	GameObject::isWalkable = isWalkable; 
 }
 
@@ -41,7 +41,7 @@ void GameObject::Draw()
 	
 void GameObject::Update(int deltaTimeMilis)
 {
-	DoUpdate();
+	DoUpdate(deltaTimeMilis);
 
 	Object::Update(deltaTimeMilis);
 }

@@ -1,5 +1,6 @@
 #include "PacMan.h"
 #include "GameStaticSettings.h"
+#include "Ghost.h"
 
 #include <cggl\App.h>
 
@@ -11,7 +12,6 @@ PacMan::PacMan(void) : Entity(PacmanEntity, 200)
 {
 
 }
-
 
 PacMan::~PacMan(void)
 {
@@ -46,4 +46,9 @@ void PacMan::DoUpdate(int deltaTimeMilis)
 	{
 		MoveRight();
 	}
+}
+	
+void PacMan::OnCollision(Ghost ghost)
+{
+	RemoveLife();
 }

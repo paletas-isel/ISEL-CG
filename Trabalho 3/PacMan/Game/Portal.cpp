@@ -6,7 +6,7 @@
 
 using namespace cggl;
 
-Portal::Portal(BoardCoordinates& coords) : GameObject(coords)
+Portal::Portal(BoardCoordinates& coords) : GameObject(coords), portalDestination(-1, -1)
 {
 	rotation = 0;
 }
@@ -18,7 +18,8 @@ Portal::~Portal(void)
 
 void Portal::OnCollision(Entity& collisioner)
 {
-	collisioner.SetPosition(BoardCoordinates::ConvertBoardToWorldCoordinates(*portalDestination));
+	collisioner.SetPosition(BoardCoordinates::ConvertBoardToWorldCoordinates(portalDestination));
+
 }
 
 void Portal::DoDraw()

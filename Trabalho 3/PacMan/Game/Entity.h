@@ -4,6 +4,8 @@
 #include <cggl\Object.h>
 #include <cggl\MathUtils.h>
 
+#include "BoardCoordinates.h"
+
 enum EntityTypeFlag
 {
 	GhostEntity = 0x1,
@@ -19,9 +21,10 @@ private:
 
 	int entitySpeed;
 	bool entityWalking;
-	int walkingAnimationTime;
+	int walkingAnimationTime, walkingAnimationSpeed;
 	float entityRotation;
 	cggl::Vector3 entityPosition;
+	cggl::Vector3 inBetweenPosition;
 	cggl::Vector3 * entityWalkingTo;
 
 	void StartWalkingAnimation();
@@ -30,16 +33,12 @@ private:
 	Board * entityBoard;
 
 	void Move(float angle, cggl::Vector3& to);
+	bool CanMove(BoardCoordinates& to);
 
 protected:
 	virtual void DoDrawEntity() = 0;
 	virtual void DoDrawWalkingAnimation(int deltaTimeMilis) = 0;
 	virtual void DoUpdate(int deltaTimeMilis) = 0;
-
-	void MoveUp();
-	void MoveDown();
-	void MoveLeft();
-	void MoveRight();
 
 public:
 	Entity(EntityTypeFlag type, int walkingSpeed);
@@ -60,6 +59,8 @@ public:
 	void SetWalkingAnimationTime(int time) { walkingAnimationTime = time; }
 	void AddWalkingAnimationTime(int time) { walkingAnimationTime += time; }
 
+	int GetWalkingAnimationSpeed() { return walkingAnimationSpeed; }
+
 	cggl::Vector3& GetPosition() { return entityPosition; }
 	void SetPosition(cggl::Vector3 position) { entityPosition = position; }
 
@@ -69,6 +70,16 @@ public:
 
 	void SetBoard(Board& board);
 	Board& GetBoard();
+	
+	void MoveUp();
+	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
+
+	bool CanMoveUp();
+	bool CanMoveDown();
+	bool CanMoveLeft();
+	bool CanMoveRight();
 };
 
 #endif

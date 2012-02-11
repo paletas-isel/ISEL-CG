@@ -11,6 +11,7 @@
 #include "Entity.h"
 #include "GameObject.h"
 #include "BoardCoordinates.h"
+#include "PacMan.h"
 
 enum BoardItemType
 {
@@ -27,11 +28,15 @@ class Board : public cggl::Object
 private:
 	std::vector<std::vector<GameObject *>> map;
 	std::list<Entity *> entities;
+	PacMan * pacman;
+	cggl::Vector3 * pacmanStartPosition; 
 
 	Board(std::vector<std::vector<GameObject *>> boardMap);
 
 	void ConnectPortals();
 	BoardCoordinates * FindWalkableAround(BoardCoordinates coord);
+
+	bool gameOver;
 
 public:
 	~Board(void);

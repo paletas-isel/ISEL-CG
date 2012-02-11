@@ -7,7 +7,7 @@ using namespace cggl;
 
 Vector3 BoardCoordinates::ConvertBoardToWorldCoordinates(BoardCoordinates& coords)
 {
-	return Vector3((float) coords.boardX, 0, (float) coords.boardY);
+	return Vector3((float) coords.boardX * OBJECT_DIMENSION + OBJECT_DIMENSION / 2, 0, (float) coords.boardY * OBJECT_DIMENSION + OBJECT_DIMENSION / 2);
 }
 
 BoardCoordinates BoardCoordinates::ConvertWorldToBoardCoordinates(cggl::Vector3& coords)

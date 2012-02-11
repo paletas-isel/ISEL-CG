@@ -17,7 +17,7 @@ private:
 
 protected:
 	virtual void DoDraw() = 0;
-	virtual void DoUpdate() {}
+	virtual void DoUpdate(int deltaTimeMilis) {}
 
 	void SetWalkable(bool isWalkable) { GameObject::isWalkable = isWalkable; }
 	

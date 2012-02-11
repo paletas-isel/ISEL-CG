@@ -73,6 +73,9 @@ namespace cggl {
   Vector3 operator-(float f, const Vector3 &v);
   Vector3 operator*(float f, const Vector3 &v);
   Vector3 operator/(float f, const Vector3 &v);
+    
+	bool operator==(const Vector3 &v1, const Vector3 &v2);
+	bool operator!=(const Vector3 &v1, const Vector3 &v2);
 
   struct Vector2 {
     float x, y;
