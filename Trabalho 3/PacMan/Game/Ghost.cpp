@@ -6,10 +6,22 @@
 
 #include <math.h>
 
+#include "ScatterAI.h"
+#include "ChaseAI.h"
+
+#include "DummyEntity.h"
+
 using namespace cggl;
 
-Ghost::Ghost(PacMan& pac) : Entity(GhostEntity, 1000), entityPac(pac)
+Ghost::Ghost(PacMan& pac, Board& board) : Entity(GhostEntity, 1000), entityPac(pac)
 {
+	SetBoard(board);
+
+	GameObject * gate = GetBoard().ObjectOfType(GhostGate);
+	DummyEntity * ent = new DummyEntity(gate->GetPosition());
+
+	scatterAi = new ScatterAI(*ent, board);
+	chaseAi = new ChaseAI(pac, board);
 }
 
 
@@ -29,5 +41,14 @@ void Ghost::DoDrawWalkingAnimation(int deltaTimeMilis)
 
 void Ghost::DoUpdate(int deltaTimeMilis)
 {
-	
+	static int timeElapsed = 0;
+	if(timeElapsed < 10000)
+	{
+		scatterAi->ApplyAI(*this);
+		timeElapsed += deltaTimeMilis;
+	}
+	else
+	{
+		chaseAi->ApplyAI(*this);
+	}
 }

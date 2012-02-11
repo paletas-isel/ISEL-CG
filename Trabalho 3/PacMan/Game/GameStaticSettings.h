@@ -6,4 +6,6 @@
 #define PACMAN_DETAIL 10
 #define FOOD_DETAIL 10
 
+#define GHOST_AMMOUNT 1
+
 #endif

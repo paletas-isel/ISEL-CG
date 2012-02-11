@@ -1,6 +1,8 @@
 #ifndef _PACMAN_AI_
 #define _PACMAN_AI_
 
+#include <cggl\MathUtils.h>
+
 class Entity;
 class Board;
 
@@ -22,6 +24,10 @@ protected:
 	Entity& GetTarget() { return target; }
 	Board& GetBoard() { return board; }
 
+	bool IsDirectionPresent(Direction value, Direction wanted);
+	Direction AIBehaviour::FindValidDirection(cggl::Vector3& ghostPosition, Board& board);
+	Direction AIBehaviour::FindTargetDirection(cggl::Vector3& targetPosition, cggl::Vector3& ghostPosition);
+
 public:
 	AIBehaviour(Entity& target, Board& board);
 	~AIBehaviour(void);
@@ -29,6 +35,5 @@ public:
 	virtual void ApplyAI(Entity& to) = 0;
 };
 
-bool IsDirectionPresent(Direction value, Direction wanted);
 
 #endif

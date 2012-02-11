@@ -96,6 +96,15 @@
     <ClCompile Include="ChaseAI.cpp">
       <Filter>Source Files\Entities\AI</Filter>
     </ClCompile>
+    <ClCompile Include="ScatterAI.cpp">
+      <Filter>Source Files\Entities\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostSpawner.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyEntity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -147,7 +156,16 @@
       <Filter>Header Files\Entities\AI</Filter>
     </ClInclude>
     <ClInclude Include="ChaseAI.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entities\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScatterAI.h">
+      <Filter>Header Files\Entities\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostSpawner.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyEntity.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

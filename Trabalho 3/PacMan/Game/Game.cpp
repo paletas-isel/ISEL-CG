@@ -21,10 +21,7 @@ void Game::CreateScene()
 	Board * board = Board::LoadFrom("BoardDesigns/classic.board");
 	PacMan * pac = new PacMan();
 	board->AddEntity(*pac, BoardCoordinates(15, 16));
-
-	Ghost * ghost = new Ghost(*pac);
-	board->AddEntity(*ghost, BoardCoordinates(14,14));
-
+	
 	RegisterObject(board);
 
 #ifdef _DEBUG

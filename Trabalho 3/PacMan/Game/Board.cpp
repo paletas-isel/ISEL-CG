@@ -5,6 +5,9 @@
 #include "Wall.h"
 #include "Portal.h"
 #include "Gate.h"
+#include "GhostSpawner.h"
+#include "GameStaticSettings.h"
+#include "Ghost.h"
 
 #include <cggl\MathUtils.h>
 
@@ -13,10 +16,11 @@
 using namespace std;
 using namespace cggl;
 
-Board::Board(vector<vector<GameObject *>> boardMap)
+Board::Board(vector<vector<BoardTuple *>> boardMap)
 {
 	map = boardMap;
 	gameOver = false;
+	ghostCount = 0;
 
 	ConnectPortals();
 }
@@ -29,14 +33,14 @@ void Board::ConnectPortals()
 {
 	static Portal * otherPortal;
 
-	for(vector<vector<GameObject *>>::iterator it = map.begin(); it != map.end(); ++it)
+	for(vector<vector<BoardTuple *>>::iterator it = map.begin(); it != map.end(); ++it)
 	{
-		for(vector<GameObject *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+		for(vector<BoardTuple *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
 		{
-			Portal * portal = dynamic_cast<Portal*>(*it2);
-
-			if(portal != NULL)
+			if(*it2 != NULL && (*it2)->type == PortalType)
 			{
+				Portal * portal = dynamic_cast<Portal*>((*it2)->obj);
+
 				if(otherPortal == NULL)
 				{
 					otherPortal = portal;
@@ -86,21 +90,29 @@ Board * Board::LoadFrom(ifstream file)
 	static int collumnsSize = -1; 
 	int lineNumber = 0;
 
-	vector<vector<GameObject *>> map;
+	vector<vector<BoardTuple *>> map;
 	
 	if(!file) return NULL;
 
 	while(!file.eof())
 	{
-		vector<GameObject *> line;
+		vector<BoardTuple *> line;
 
 		char c; int currCollumns = 0;
-		while((c = (char) file.get()) != '\n')
+		while(!file.eof() && (c = (char) file.get()) != '\n')
 		{
-			if(collumnsSize != -1 && currCollumns > collumnsSize) break;
-
-			BoardCoordinates coords = BoardCoordinates( currCollumns, lineNumber );
-			line.push_back(CreateObject((BoardItemType) (c - '0'), coords));
+			if(collumnsSize != -1 && currCollumns >= collumnsSize) break;
+			
+			BoardItemType type = (BoardItemType) (c - '0');
+			if(type != Nothing)
+			{
+				BoardCoordinates coords = BoardCoordinates( currCollumns, lineNumber );
+				GameObject * obj = CreateObject(type, coords);
+				BoardTuple * tuple = new BoardTuple(type, obj);
+				line.push_back(tuple);
+			}
+			else
+				line.push_back(NULL);
 
 			currCollumns++;
 		}
@@ -130,7 +142,10 @@ GameObject * Board::CreateObject(BoardItemType type, BoardCoordinates& coords, .
 		case PortalType :
 			return new Portal(coords);
 			
-		case MonsterGate : 
+		case GhostSpawnerType :
+			return new GhostSpawner(coords);
+
+		case GhostGate : 
 			return new Gate(coords);
 			
 		case Walls :
@@ -146,12 +161,12 @@ void Board::Draw()
 {
 	glColor3f(0, 0, 0);
 
-	for(vector<vector<GameObject *>>::iterator it = map.begin(); it != map.end(); ++it)
+	for(vector<vector<BoardTuple *>>::iterator it = map.begin(); it != map.end(); ++it)
 	{
-		for(vector<GameObject *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+		for(vector<BoardTuple *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
 		{
 			if(*it2 != NULL)
-				(*it2)->Draw();
+				(*it2)->obj->Draw();
 		}
 	}
 
@@ -173,8 +188,22 @@ void Board::Update(int deltaTimeMilis)
 
 	if(!gameOver)
 	{
-		if(pacman->GetLifes() == 0) gameOver = true;
-	
+		if(pacman->GetLifes() == 0) 
+		{
+			gameOver = true;
+			return;
+		}
+
+		if(GetGhostCount() == 0)
+		{
+			GameObject * spawner = ObjectOfType(GhostSpawnerType);
+			for(int ix = 0; ix < GHOST_AMMOUNT; ++ix)
+			{
+				Ghost * ghost = new Ghost(*pacman, *this);
+				AddEntity(*ghost, spawner->GetCoordinates());
+			}
+		}
+
 		for(list<Entity *>::iterator it = entities.begin(); it != entities.end(); ++it)
 		{
 			Entity * entity = *it;
@@ -182,17 +211,18 @@ void Board::Update(int deltaTimeMilis)
 			entity->Update(deltaTimeMilis);
 		}
 
-		for(vector<vector<GameObject *>>::iterator it = map.begin(); it != map.end(); ++it)
+		for(vector<vector<BoardTuple *>>::iterator it = map.begin(); it != map.end(); ++it)
 		{
-			for(vector<GameObject *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+			for(vector<BoardTuple *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
 			{
 				if(*it2 != NULL)
 				{
 					if(gatesChangesPending)
 					{
-						Gate * gate = dynamic_cast<Gate*>(*it2);	
-						if(gate != NULL)
+						if((*it2)->type == GhostGate)
 						{
+							Gate * gate = dynamic_cast<Gate*>((*it2)->obj);	
+						
 							if(timeLeftGates <= 0)
 							{		
 
@@ -212,7 +242,7 @@ void Board::Update(int deltaTimeMilis)
 						}
 					}
 
-					(*it2)->Update(deltaTimeMilis);
+					(*it2)->obj->Update(deltaTimeMilis);
 				}
 			}
 		}
@@ -238,20 +268,37 @@ void Board::Update(int deltaTimeMilis)
 
 GameObject * Board::ObjectAt(BoardCoordinates& coords)
 {
-	int x, y = 0, maxX = 0;
-	bool hasMax = false;
-	for(vector<vector<GameObject *>>::iterator it = map.begin(); it != map.end(); ++it)
+	int x, y = 0;
+	for(vector<vector<BoardTuple *>>::iterator it = map.begin(); it != map.end(); ++it)
 	{
 		x = 0;
-		for(vector<GameObject *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+		for(vector<BoardTuple *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
 		{
 			if(coords.boardX == x && coords.boardY == y)
 			{
-				return *it2;
+				if(*it2 != NULL)
+					return (*it2)->obj;
+				return NULL;
 			}			
 			x++;	
 		}		
 		y++;
+	}		
+
+	return NULL;
+}
+
+GameObject * Board::ObjectOfType(BoardItemType type)
+{
+	for(vector<vector<BoardTuple *>>::iterator it = map.begin(); it != map.end(); ++it)
+	{
+		for(vector<BoardTuple *>::iterator it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+		{
+			if(*it2 != NULL && (*it2)->type == type)
+			{
+				return (*it2)->obj;
+			}		
+		}		
 	}		
 
 	return NULL;
@@ -265,6 +312,8 @@ void Board::AddEntity(Entity& entity, BoardCoordinates& place)
 
 	if(entity.BelongsToType(PacmanEntity))
 		pacman = dynamic_cast<PacMan *>(&entity);
+	else if(entity.BelongsToType(GhostEntity))
+		ghostCount++;
 }
 
 list<Entity *>& Board::GetEntities(EntityTypeFlag types)
