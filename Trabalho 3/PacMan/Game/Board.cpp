@@ -8,6 +8,7 @@
 #include "GhostSpawner.h"
 #include "GameStaticSettings.h"
 #include "Ghost.h"
+#include "ModelProvider.h"
 
 #include <cggl\MathUtils.h>
 
@@ -16,7 +17,7 @@
 using namespace std;
 using namespace cggl;
 
-Board::Board(vector<vector<BoardTuple *>> boardMap)
+Board::Board(vector<vector<BoardTuple *>> boardMap, ModelProvider& provider) : modelProvider(provider)
 {
 	map = boardMap;
 	gameOver = false;
@@ -80,12 +81,12 @@ BoardCoordinates * Board::FindWalkableAround(BoardCoordinates coord)
 	return NULL;
 }
 
-Board * Board::LoadFrom(string file)
+Board * Board::LoadFrom(string file, ModelProvider& provider)
 {
-	return LoadFrom(ifstream(file));
+	return LoadFrom(ifstream(file), provider);
 }
 
-Board * Board::LoadFrom(ifstream file)
+Board * Board::LoadFrom(ifstream file, ModelProvider& provider)
 {
 	static int collumnsSize = -1; 
 	int lineNumber = 0;
@@ -107,7 +108,7 @@ Board * Board::LoadFrom(ifstream file)
 			if(type != Nothing)
 			{
 				BoardCoordinates coords = BoardCoordinates( currCollumns, lineNumber );
-				GameObject * obj = CreateObject(type, coords);
+				GameObject * obj = CreateObject(type, provider, coords);
 				BoardTuple * tuple = new BoardTuple(type, obj);
 				line.push_back(tuple);
 			}
@@ -126,30 +127,30 @@ Board * Board::LoadFrom(ifstream file)
 	collumnsSize = -1;
 	file.close();
 
-	return new Board(map);
+	return new Board(map, provider);
 }
 
-GameObject * Board::CreateObject(BoardItemType type, BoardCoordinates& coords, ...)
+GameObject * Board::CreateObject(BoardItemType type, ModelProvider& provider, BoardCoordinates& coords, ...)
 {	
 	switch(type)
 	{
 		case FoodType : 
-			return new Food(coords);
+			return new Food(provider.GetItemModel(FoodType), coords);
 			
 		case SpecialFoodType :
-			return new SpecialFood(coords);
+			return new SpecialFood(provider.GetItemModel(SpecialFoodType), coords);
 			
 		case PortalType :
-			return new Portal(coords);
+			return new Portal(provider.GetItemModel(PortalType), coords);
 			
 		case GhostSpawnerType :
-			return new GhostSpawner(coords);
+			return new GhostSpawner(provider.GetItemModel(GhostSpawnerType), coords);
 
 		case GhostGate : 
-			return new Gate(coords);
+			return new Gate(provider.GetAnimatedItemModel(GhostGate), coords);
 			
 		case Walls :
-			return new Wall(coords);
+			return new Wall(provider.GetItemModel(Walls), coords);
 			
 		default :
 			return NULL;
@@ -199,8 +200,8 @@ void Board::Update(int deltaTimeMilis)
 			GameObject * spawner = ObjectOfType(GhostSpawnerType);
 			for(int ix = 0; ix < GHOST_AMMOUNT; ++ix)
 			{
-				Ghost * ghost = new Ghost(*pacman, *this);
-				AddEntity(*ghost, spawner->GetCoordinates());
+				Ghost * ghost = new Ghost(modelProvider.GetEntityModel(GhostEntity), *pacman, *this);
+				AddEntity(ghost, spawner->GetCoordinates());
 			}
 		}
 
@@ -209,6 +210,18 @@ void Board::Update(int deltaTimeMilis)
 			Entity * entity = *it;
 		
 			entity->Update(deltaTimeMilis);
+
+			if(entity->GetType() == PacmanEntity)
+			{
+				PacMan * pac = (PacMan *) entity;
+				for(list<Entity *>::iterator it2 = entities.begin(); it2 != entities.end(); ++it2)
+				{
+					if(pac != (*it2) && pac->GetPosition() == (*it2)->GetPosition())
+					{
+						pac->OnCollision(*(*it2));
+					}
+				}
+			}
 		}
 
 		for(vector<vector<BoardTuple *>>::iterator it = map.begin(); it != map.end(); ++it)
@@ -304,15 +317,15 @@ GameObject * Board::ObjectOfType(BoardItemType type)
 	return NULL;
 }
 	
-void Board::AddEntity(Entity& entity, BoardCoordinates& place)
+void Board::AddEntity(Entity * entity, BoardCoordinates& place)
 {
-	entities.push_back(&entity);
-	entity.SetPosition(BoardCoordinates::ConvertBoardToWorldCoordinates(place));
-	entity.SetBoard(*this);
+	entities.push_back(entity);
+	entity->SetPosition(BoardCoordinates::ConvertBoardToWorldCoordinates(place));
+	entity->SetBoard(*this);
 
-	if(entity.BelongsToType(PacmanEntity))
-		pacman = dynamic_cast<PacMan *>(&entity);
-	else if(entity.BelongsToType(GhostEntity))
+	if(entity->BelongsToType(PacmanEntity))
+		pacman = dynamic_cast<PacMan *>(entity);
+	else if(entity->BelongsToType(GhostEntity))
 		ghostCount++;
 }
 

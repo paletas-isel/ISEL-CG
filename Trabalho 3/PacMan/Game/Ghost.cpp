@@ -13,7 +13,7 @@
 
 using namespace cggl;
 
-Ghost::Ghost(PacMan& pac, Board& board) : Entity(GhostEntity, 1000), entityPac(pac)
+Ghost::Ghost(EntityModel * model, PacMan& pac, Board& board) : Entity(GhostEntity, model, 1000), entityPac(pac)
 {
 	SetBoard(board);
 

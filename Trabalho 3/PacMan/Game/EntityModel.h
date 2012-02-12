@@ -1,22 +1,12 @@
 #ifndef _PACMAN_ENTITYMODEL_
 #define _PACMAN_ENTITYMODEL_
 
-#include "model.h"
 #include "AnimatedModel.h"
 
 class EntityModel :
-	public Model
+	public AnimatedModel
 {
-private:
-	int animationTime, animationDuration;
-
 protected:
-	int GetAnimationTime() { return animationTime; }
-	void AddAnimationTime(int time) { animationTime += time; }
-
-	int GetAnimationDuration() { return animationDuration; }
-	void SetAnimationDuration(int duration) { animationDuration = duration; }
-
 	virtual void DoDrawAnimation(float percentageCompleted) = 0;
 
 public:

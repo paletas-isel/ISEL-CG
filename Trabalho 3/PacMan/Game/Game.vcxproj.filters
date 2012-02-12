@@ -165,6 +165,9 @@
     <ClCompile Include="ModelProvider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreBoardComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -257,9 +260,6 @@
     <ClInclude Include="FoodModel.h">
       <Filter>Header Files\Models\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="AnimatedGameObject.h">
-      <Filter>Header Files\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="AnimatedObjectModel.h">
       <Filter>Header Files\Models\Objects</Filter>
     </ClInclude>
@@ -267,6 +267,15 @@
       <Filter>Header Files\Models\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ModelProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedGameObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="NoModel.h">
+      <Filter>Header Files\Models\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreBoardComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

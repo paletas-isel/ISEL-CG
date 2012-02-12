@@ -6,7 +6,7 @@
 
 using namespace cggl;
 
-Food::Food(ObjectModel& model, BoardCoordinates coords) : GameObject(model, coords)
+Food::Food(ObjectModel * model, BoardCoordinates coords) : GameObject(model, coords)
 {
 	hasBeenEaten = false;
 }
@@ -31,11 +31,8 @@ void Food::OnCollision(Entity& collisioner)
 	}
 }
 
-void Food::DoDraw()
+void Food::Draw()
 {
-	if(!HasBeenEaten())
-	{
-		glColor3f(0, 0, 0);
-		glutSolidSphere(OBJECT_DIMENSION / (float) 5, FOOD_DETAIL, FOOD_DETAIL);
-	}
+	if(HasBeenEaten()) return;
+	GameObject::Draw();
 }

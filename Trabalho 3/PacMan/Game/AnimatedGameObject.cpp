@@ -2,12 +2,12 @@
 
 #include <gl\glut.h>
 
-AnimatedGameObject::AnimatedGameObject(AnimatedObjectModel& model, BoardCoordinates coords) : GameObject(model, coords), animatedModel(model)
+AnimatedGameObject::AnimatedGameObject(AnimatedObjectModel * model, BoardCoordinates coords) : GameObject(model, coords), animatedModel(model)
 {
 
 }
 
-AnimatedGameObject::AnimatedGameObject(AnimatedObjectModel& model, BoardCoordinates coords, bool isWalkable) : GameObject(model, coords, isWalkable), animatedModel(model)
+AnimatedGameObject::AnimatedGameObject(AnimatedObjectModel * model, BoardCoordinates coords, bool isWalkable) : GameObject(model, coords, isWalkable), animatedModel(model)
 {
 
 }
@@ -29,10 +29,10 @@ void AnimatedGameObject::Draw()
 		
 		glTranslatef(GetPosition().x, GetPosition().y, GetPosition().z);	
 
-		if(HasAnimationStarted())
-			GetAnimatedModel().DrawAnimation();
-		else
-			GetModel().Draw();
+		if(HasAnimationStarted() && GetAnimatedModel() != 0)
+			GetAnimatedModel()->DrawAnimation();
+		else if(GetModel() != 0)
+			GetModel()->Draw();
 
 		glDisable(GL_LIGHTING);
 
@@ -43,8 +43,8 @@ void AnimatedGameObject::Draw()
 
 void AnimatedGameObject::Update(int deltaTimeMilis)
 {
-	if(HasAnimationStarted())
-		GetAnimatedModel().AddAnimationTime(deltaTimeMilis);
+	if(HasAnimationStarted() && GetAnimatedModel() != 0)
+		GetAnimatedModel()->AddAnimationTime(deltaTimeMilis);
 
 	DoUpdate(deltaTimeMilis);
 

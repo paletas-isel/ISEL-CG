@@ -4,6 +4,7 @@
 AnimatedModel::AnimatedModel(int animationDuration)
 {
 	AnimatedModel::animationDuration = animationDuration;
+	animationTime = 0;
 }
 
 
@@ -13,5 +14,10 @@ AnimatedModel::~AnimatedModel(void)
 
 void AnimatedModel::DrawAnimation()
 {
-	DoDrawAnimation(GetAnimationTime() / (float) GetAnimationDuration());
+	float p = GetAnimationTime() / (float) GetAnimationDuration();
+
+	if(p < 1)
+		DoDrawAnimation(p);
+	else
+		animationCompleted = true;
 }

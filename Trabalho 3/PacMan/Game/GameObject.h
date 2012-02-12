@@ -17,18 +17,18 @@ private:
 	cggl::Vector3 objectPosition;
 	BoardCoordinates objectCoordinates;	
 
-	ObjectModel& objectModel;
+	ObjectModel * objectModel;
 
 protected:
 	virtual void DoUpdate(int deltaTimeMilis) {}
 
 	void SetWalkable(bool isWalkable) { GameObject::isWalkable = isWalkable; }
 	
-	ObjectModel& GetModel() { return objectModel; }
+	ObjectModel * GetModel() { return objectModel; }
 
 public:
-	GameObject(ObjectModel& model, BoardCoordinates coords);
-	GameObject(ObjectModel& model, BoardCoordinates coords, bool isWalkable);
+	GameObject(ObjectModel * model, BoardCoordinates coords);
+	GameObject(ObjectModel * model, BoardCoordinates coords, bool isWalkable);
 	~GameObject(void) {}
 
 	virtual void Draw();

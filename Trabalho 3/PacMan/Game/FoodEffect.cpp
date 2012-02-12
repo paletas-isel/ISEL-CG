@@ -14,7 +14,7 @@ FoodEffect::~FoodEffect(void)
 
 void FoodEffect::ApplyEffect(Entity& entity)
 {
-	PacMan pac = (PacMan&) entity;
+	PacMan& pac = (PacMan&) entity;
 
 	for(int ix = 0; ix < foodAmmount; ++ix)
 	{

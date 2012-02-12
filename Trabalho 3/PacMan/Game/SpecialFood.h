@@ -8,10 +8,10 @@
 class SpecialFood : public Food
 {
 protected:
-	void DoDraw();
+	Effect& GetEffect();
 
 public:
-	SpecialFood(ObjectModel& model, BoardCoordinates& coords);
+	SpecialFood(ObjectModel * model, BoardCoordinates& coords);
 	~SpecialFood(void);
 
 };

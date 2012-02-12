@@ -6,11 +6,8 @@
 class GhostSpawner :
 	public GameObject
 {
-protected:
-	void DoDraw() {}
-
 public:
-	GhostSpawner(ObjectModel& model, BoardCoordinates& coords);
+	GhostSpawner(ObjectModel * model, BoardCoordinates& coords);
 	~GhostSpawner(void);
 
 };

@@ -8,12 +8,8 @@
 
 class Wall : public GameObject
 {
-
-protected:
-	void DoDraw();
-
 public:
-	Wall(ObjectModel& model, BoardCoordinates& coords);
+	Wall(ObjectModel * model, BoardCoordinates& coords);
 	~Wall(void);
 
 };

@@ -14,15 +14,15 @@ protected:
 	virtual Effect& GetEffect();
 
 	void OnCollision(Entity& collisioner);
-
-	virtual void DoDraw();
-
+	
 public:
-	Food(ObjectModel& model, BoardCoordinates coords);
+	Food(ObjectModel * model, BoardCoordinates coords);
 	~Food(void);
 
 	void SetEaten() { hasBeenEaten = true; }
 	bool HasBeenEaten() { return hasBeenEaten; }
+
+	void Draw();
 };
 
 #endif

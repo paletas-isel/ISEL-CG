@@ -8,9 +8,11 @@
 
 using namespace cggl;
 
-PacMan::PacMan(void) : Entity(PacmanEntity, 200)
+PacMan::PacMan(EntityModel * model) : Entity(PacmanEntity, model, 200)
 {
-
+	lifes = 2;
+	eatenFoodCount = 0;
+	hasInitial = false;
 }
 
 PacMan::~PacMan(void)
@@ -48,7 +50,19 @@ void PacMan::DoUpdate(int deltaTimeMilis)
 	}
 }
 	
-void PacMan::OnCollision(Ghost ghost)
+void PacMan::OnCollision(Entity& ghost)
 {
 	RemoveLife();
+
+	SetPosition(initialPosition);
+}
+
+void PacMan::SetPosition(cggl::Vector3 position)
+{
+	if(!hasInitial)
+	{
+		initialPosition = position;
+		hasInitial = true;
+	}
+	Entity::SetPosition(position);
 }

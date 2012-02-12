@@ -9,3 +9,8 @@ AnimatedObjectModel::AnimatedObjectModel(int animationDuration) : AnimatedModel(
 AnimatedObjectModel::~AnimatedObjectModel(void)
 {
 }
+
+void AnimatedObjectModel::Draw()
+{
+	DoDraw();
+}

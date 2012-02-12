@@ -1,9 +1,8 @@
 #include "EntityModel.h"
 
 
-EntityModel::EntityModel(int duration)
+EntityModel::EntityModel(int duration) : AnimatedModel(duration)
 {
-	animationDuration = duration;
 }
 
 

@@ -9,6 +9,8 @@ private:
 	int animationDuration;
 	int animationTime;
 
+	bool animationCompleted;
+
 protected:
 	virtual void DoDrawAnimation(float percentageCompleted) = 0;
 
@@ -23,6 +25,10 @@ public:
 
 	int GetAnimationDuration() { return animationDuration; }
 	void SetAnimationDuration(int duration) { animationDuration = duration; }
+
+	bool HasAnimationComplete() { return animationCompleted; }
+
+	virtual void Draw() = 0;
 };
 
 #endif

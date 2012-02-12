@@ -1,20 +1,15 @@
 #include "ModelProvider.h"
-
 #include "FoodModel.h"
 #include "SpecialFoodModel.h"
 #include "GateModel.h"
 #include "WallModel.h"
 #include "PortalModel.h"
-
-using namespace std;
+#include "GameStaticSettings.h"
+#include "PacmanModel.h"
+#include "GhostModel.h"
 
 ModelProvider::ModelProvider(void)
 {
-	entityModels.insert(pair<BoardItemType, ObjectModel>(FoodType, new FoodModel()));
-	entityModels.insert(pair<BoardItemType, ObjectModel>(SpecialFoodType, new SpecialFoodModel()));
-	entityModels.insert(pair<BoardItemType, ObjectModel>(PortalType, new PortalModel()));
-	entityModels.insert(pair<BoardItemType, ObjectModel>(Walls, new WallModel()));
-	entityModels.insert(pair<BoardItemType, ObjectModel>(GhostGate, new GateModel()));
 }
 
 
@@ -24,10 +19,13 @@ ModelProvider::~ModelProvider(void)
 
 ObjectModel * ModelProvider::GetItemModel(BoardItemType type)
 {
-	map<BoardItemType, ObjectModel *>::iterator it;
-	if((it = objectModels.find(type)) != objectModels.end())
+	switch(type)
 	{
-		return (*it).second;
+	case FoodType : return new FoodModel();
+	case SpecialFoodType : return new SpecialFoodModel();
+	case PortalType : return new PortalModel();
+	case Walls : return new WallModel();
+	case GhostGate : return new GateModel(GATEOPENING_ANIMATION_DURATION);
 	}
 	return NULL;
 }
@@ -42,9 +40,10 @@ AnimatedObjectModel * ModelProvider::GetAnimatedItemModel(BoardItemType type)
 
 EntityModel * ModelProvider::GetEntityModel(EntityTypeFlag type)
 {
-	map<EntityTypeFlag, EntityModel *>::iterator it;
-	if((it = entityModels.find(type)) != entityModels.end())
+	switch(type)
 	{
-		return (*it).second;
+	case PacmanEntity : return new PacmanModel(WALKING_ANIMATION);
+	case GhostEntity : return new GhostModel(WALKING_ANIMATION);
 	}
+	return NULL;
 }

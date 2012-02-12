@@ -25,7 +25,7 @@ void GateModel::DoDraw()
 
 void GateModel::DoDrawAnimation(float percentageComplete)
 {
-	int gateHeight = OBJECT_DIMENSION * (percentageComplete / 100);
+	int gateHeight = OBJECT_DIMENSION * percentageComplete;
 	int sizeDif = OBJECT_DIMENSION - gateHeight;
 
 	glPushMatrix();

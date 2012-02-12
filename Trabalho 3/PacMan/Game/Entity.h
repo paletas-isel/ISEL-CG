@@ -5,6 +5,7 @@
 #include <cggl\MathUtils.h>
 
 #include "BoardCoordinates.h"
+#include "EntityModel.h"
 
 enum EntityTypeFlag
 {
@@ -39,13 +40,13 @@ private:
 	int waitTimeLeft;
 	bool canWalk;
 
+	EntityModel * entityModel;
+
 protected:
-	virtual void DoDrawEntity() = 0;
-	virtual void DoDrawWalkingAnimation(int deltaTimeMilis) = 0;
 	virtual void DoUpdate(int deltaTimeMilis) = 0;
 
 public:
-	Entity(EntityTypeFlag type, int walkingSpeed);
+	Entity(EntityTypeFlag type, EntityModel * model, int walkingSpeed);
 	~Entity(void);
 
 	void Draw();
@@ -65,8 +66,10 @@ public:
 
 	int GetWalkingAnimationSpeed() { return walkingAnimationSpeed; }
 
+	EntityModel * GetModel() { return entityModel; }
+
 	cggl::Vector3& GetPosition() { return entityPosition; }
-	void SetPosition(cggl::Vector3 position) { entityPosition = position; }
+	virtual void SetPosition(cggl::Vector3 position) { entityPosition = position; }
 
 	EntityTypeFlag GetType() { return entityType; }
 

@@ -14,12 +14,10 @@ private:
 	AIBehaviour * scatterAi, * chaseAi;
 
 protected:
-	void DoDrawEntity();
-	void DoDrawWalkingAnimation(int deltaTimeMilis);
 	void DoUpdate(int deltaTimeMilis);
 
 public:
-	Ghost(PacMan& pac, Board& board);
+	Ghost(EntityModel * model, PacMan& pac, Board& board);
 	~Ghost(void);
 };
 

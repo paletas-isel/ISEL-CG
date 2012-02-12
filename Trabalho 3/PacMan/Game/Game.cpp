@@ -2,6 +2,8 @@
 #include "Board.h"
 #include "PacMan.h"
 #include "Ghost.h"
+#include "ModelProvider.h"
+#include "ScoreBoardComponent.h"
 
 #include <cggl\FPSCounter.h>
 
@@ -18,15 +20,18 @@ Game::~Game(void)
 
 void Game::CreateScene()
 {
-	Board * board = Board::LoadFrom("BoardDesigns/classic.board");
-	PacMan * pac = new PacMan();
-	board->AddEntity(*pac, BoardCoordinates(15, 16));
+	ModelProvider provider =  ModelProvider();
+	Board * board = Board::LoadFrom("BoardDesigns/classic.board", provider);
+	PacMan * pac = new PacMan(provider.GetEntityModel(PacmanEntity));
+	board->AddEntity(pac, BoardCoordinates(15, 16));
 	
 	RegisterObject(board);
 
 #ifdef _DEBUG
 	RegisterObject(new FPSCounter());
 #endif
+
+	RegisterObject(new ScoreBoardComponent(pac));
 
 	App::Camera->LookAt(Vector3(150, 400, 300), Vector3(150, -500, 0), Vector3::UP); 	
 }

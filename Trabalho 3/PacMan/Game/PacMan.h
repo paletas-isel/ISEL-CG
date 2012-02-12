@@ -10,6 +10,8 @@ class PacMan : public Entity
 private:
 	int eatenFoodCount;
 	int lifes;
+	cggl::Vector3 initialPosition;
+	bool hasInitial;
 
 protected:
 	void DoDrawEntity();
@@ -17,7 +19,7 @@ protected:
 	void DoUpdate(int deltaTimeMilis);
 
 public:
-	PacMan(void);
+	PacMan(EntityModel * model);
 	~PacMan(void);
 
 	void EatFood() { eatenFoodCount++; }
@@ -27,7 +29,9 @@ public:
 	void RemoveLife() { lifes--; }
 	void AddLife() { lifes++; }
 
-	void OnCollision(Ghost ghost);
+	void OnCollision(Entity& ghost);
+
+	void SetPosition(cggl::Vector3 position);
 };
 
 #endif

@@ -104,6 +104,7 @@
     <ClCompile Include="FoodEffect.cpp" />
     <ClCompile Include="PortalModel.cpp" />
     <ClCompile Include="ScatterAI.cpp" />
+    <ClCompile Include="ScoreBoardComponent.cpp" />
     <ClCompile Include="SpecialFood.cpp" />
     <ClCompile Include="SpecialFoodModel.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="GhostSpawner.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelProvider.h" />
+    <ClInclude Include="NoModel.h" />
     <ClInclude Include="ObjectModel.h" />
     <ClInclude Include="PacMan.h" />
     <ClInclude Include="PacmanModel.h" />
@@ -140,6 +142,7 @@
     <ClInclude Include="FoodEffect.h" />
     <ClInclude Include="PortalModel.h" />
     <ClInclude Include="ScatterAI.h" />
+    <ClInclude Include="ScoreBoardComponent.h" />
     <ClInclude Include="SpecialFood.h" />
     <ClInclude Include="SpecialFoodModel.h" />
     <ClInclude Include="Wall.h" />

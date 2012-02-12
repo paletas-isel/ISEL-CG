@@ -13,6 +13,8 @@
 #include "BoardCoordinates.h"
 #include "PacMan.h"
 
+class ModelProvider;
+
 enum BoardItemType
 {
 	Nothing = 0,
@@ -40,7 +42,9 @@ private:
 	PacMan * pacman;
 	cggl::Vector3 * pacmanStartPosition; 
 
-	Board(std::vector<std::vector<BoardTuple *>> boardMap);
+	ModelProvider& modelProvider;
+
+	Board(std::vector<std::vector<BoardTuple *>> boardMap, ModelProvider& provider);
 
 	void ConnectPortals();
 	BoardCoordinates * FindWalkableAround(BoardCoordinates coord);
@@ -59,12 +63,12 @@ public:
 	
 	GameObject * ObjectOfType(BoardItemType type);
 
-	static Board * LoadFrom(std::string file);
-	static Board * LoadFrom(std::ifstream file);
+	static Board * LoadFrom(std::string file, ModelProvider& provider);
+	static Board * LoadFrom(std::ifstream file, ModelProvider& provider);
 
-	void AddEntity(Entity& entity, BoardCoordinates& place);
+	void AddEntity(Entity * entity, BoardCoordinates& place);
 
-	static GameObject * CreateObject(BoardItemType type, BoardCoordinates& coords, ...);
+	static GameObject * CreateObject(BoardItemType type, ModelProvider& provider, BoardCoordinates& coords, ...);
 
 	int GetGhostCount() { return ghostCount; }
 };

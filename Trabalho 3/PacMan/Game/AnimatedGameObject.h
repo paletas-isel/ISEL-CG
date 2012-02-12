@@ -9,7 +9,7 @@ class AnimatedGameObject :
 {
 private:
 	bool animationStarted;
-	AnimatedModel& animatedModel;
+	AnimatedModel * animatedModel;
 
 protected:
 	virtual void DoUpdate(int deltaTimeMilis) {}
@@ -17,11 +17,11 @@ protected:
 	bool HasAnimationStarted() { return animationStarted; }
 	void SetAnimationStatus(bool status) { animationStarted = status; } 
 
-	AnimatedModel& GetAnimatedModel() { return animatedModel; }
+	AnimatedModel * GetAnimatedModel() { return animatedModel; }
 
 public:
-	AnimatedGameObject(AnimatedObjectModel& model, BoardCoordinates coords);
-	AnimatedGameObject(AnimatedObjectModel& model, BoardCoordinates coords, bool isWalkable);
+	AnimatedGameObject(AnimatedObjectModel * model, BoardCoordinates coords);
+	AnimatedGameObject(AnimatedObjectModel * model, BoardCoordinates coords, bool isWalkable);
 	~AnimatedGameObject(void);
 
 	virtual void Draw();

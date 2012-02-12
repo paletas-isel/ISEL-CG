@@ -12,12 +12,9 @@ private:
 
 protected:
 	void OnCollision(Entity& collisioner);
-
-	void DoDraw();
-	void DoUpdate(int deltaTimeMilis);
-
+	
 public:
-	Portal(ObjectModel& model, BoardCoordinates& coords);
+	Portal(ObjectModel * model, BoardCoordinates& coords);
 	~Portal(void);
 
 	void SetDestination(BoardCoordinates& destination) { portalDestination = destination; }

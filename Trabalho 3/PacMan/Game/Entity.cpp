@@ -7,7 +7,7 @@
 
 using namespace cggl;
 
-Entity::Entity(EntityTypeFlag type, int walkingSpeed)
+Entity::Entity(EntityTypeFlag type, EntityModel * model, int walkingSpeed) : entityModel(model)
 {
 	entitySpeed = walkingSpeed;
 	entityWalking = false;
@@ -15,6 +15,8 @@ Entity::Entity(EntityTypeFlag type, int walkingSpeed)
 	walkingAnimationSpeed = 200;
 
 	canWalk = true;
+
+	SetRotation(0);
 }
 
 Entity::~Entity(void)
@@ -27,14 +29,17 @@ void Entity::Draw()
 
 		Vector3& position = GetPosition() + inBetweenPosition;	
 
-		glTranslated(position.x, position.y, position.z);
+		glTranslated(position.x + inBetweenPosition.x, position.y + inBetweenPosition.y, position.z + inBetweenPosition.z);
 		
 		glRotatef(GetRotation(), 0, 1, 0);
 		
-		if(IsEntityWalking())
-			DoDrawWalkingAnimation(GetWalkingAnimationTime());
-		else
-			DoDrawEntity();
+		if(GetModel() != NULL)
+		{
+			if(IsEntityWalking())
+				GetModel()->DrawAnimation();
+			else
+				GetModel()->Draw();
+		}
 
 	glPopMatrix();
 
@@ -56,6 +61,7 @@ void Entity::Update(int deltaTimeMilis)
 
 	if(IsEntityWalking() && canWalk)
 	{
+		GetModel()->AddAnimationTime(deltaTimeMilis);
 		AddWalkingAnimationTime(deltaTimeMilis);
 
 		if(GetWalkingAnimationTime() >= GetWalkingAnimationSpeed())

@@ -14,6 +14,8 @@ protected:
 public:
 	AnimatedObjectModel(int animationDuration);
 	~AnimatedObjectModel(void);
+
+	void Draw();
 };
 
 #endif
