@@ -11,7 +11,7 @@ protected:
 	void DoDraw();
 
 public:
-	SpecialFood(BoardCoordinates& coords);
+	SpecialFood(ObjectModel& model, BoardCoordinates& coords);
 	~SpecialFood(void);
 
 };

@@ -4,7 +4,7 @@
 
 using namespace cggl;
 
-SpecialFood::SpecialFood(BoardCoordinates& coords) : Food(coords)
+SpecialFood::SpecialFood(ObjectModel& model, BoardCoordinates& coords) : Food(model, coords)
 {
 }
 

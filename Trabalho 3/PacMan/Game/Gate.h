@@ -1,9 +1,9 @@
 #ifndef _PACMAN_GATE_
 #define _PACMAN_GATE_
 
-#include "GameObject.h"
+#include "AnimatedGameObject.h"
 
-class Gate : public GameObject
+class Gate : public AnimatedGameObject
 {
 private:
 	bool isOpened, animationStarted;
@@ -18,7 +18,7 @@ protected:
 	void DoUpdate(int deltaTimeMilis);
 
 public:
-	Gate(BoardCoordinates& coords);
+	Gate(AnimatedObjectModel& model, BoardCoordinates& coords);
 	~Gate(void);
 
 	void Open();

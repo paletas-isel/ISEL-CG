@@ -18,7 +18,7 @@ protected:
 	virtual void DoDraw();
 
 public:
-	Food(BoardCoordinates coords);
+	Food(ObjectModel& model, BoardCoordinates coords);
 	~Food(void);
 
 	void SetEaten() { hasBeenEaten = true; }

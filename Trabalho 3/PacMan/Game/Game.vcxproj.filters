@@ -43,6 +43,24 @@
     <Filter Include="Source Files\Entities\AI">
       <UniqueIdentifier>{5bd48707-cff6-4893-ad66-ce5cc62562da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{73e48530-c461-403c-acd3-e8f3cff45449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models\Entities">
+      <UniqueIdentifier>{a4eb3c2d-84fb-4ddd-9ad8-65bb1ebe39f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models\Objects">
+      <UniqueIdentifier>{062b8adb-9328-45ad-85dd-d3aaa1bfc182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{74e68db0-1c46-46dc-8b24-4be662313cb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Entities">
+      <UniqueIdentifier>{897e6092-3a9f-43bd-9b1f-ad4aa330d11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Objects">
+      <UniqueIdentifier>{6f4db0bb-706a-41fc-93c0-c40e5b2c48fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -105,6 +123,48 @@
     <ClCompile Include="DummyEntity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityModel.cpp">
+      <Filter>Source Files\Models\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostModel.cpp">
+      <Filter>Source Files\Models\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="PacmanModel.cpp">
+      <Filter>Source Files\Models\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GateModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="PortalModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="WallModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedGameObject.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedObjectModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialFoodModel.cpp">
+      <Filter>Source Files\Models\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelProvider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -166,6 +226,48 @@
     </ClInclude>
     <ClInclude Include="DummyEntity.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityModel.h">
+      <Filter>Header Files\Models\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostModel.h">
+      <Filter>Header Files\Models\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="PacmanModel.h">
+      <Filter>Header Files\Models\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GateModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedModel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="WallModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedGameObject.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedObjectModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialFoodModel.h">
+      <Filter>Header Files\Models\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelProvider.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

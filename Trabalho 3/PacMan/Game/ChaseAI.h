@@ -5,6 +5,9 @@
 
 class ChaseAI : public AIBehaviour
 {
+private:
+	Direction lastDirection;
+
 public:
 	ChaseAI(Entity& target, Board& board);
 	~ChaseAI(void);

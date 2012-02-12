@@ -29,23 +29,12 @@ Ghost::~Ghost(void)
 {
 }
 
-void Ghost::DoDrawEntity()
-{
-	glutSolidCone(OBJECT_DIMENSION / 2.0f, OBJECT_DIMENSION, 10, 10); 
-}
-
-void Ghost::DoDrawWalkingAnimation(int deltaTimeMilis)
-{
-	glutSolidCone(OBJECT_DIMENSION / 2.0f, OBJECT_DIMENSION, 10, 10); 
-}
-
 void Ghost::DoUpdate(int deltaTimeMilis)
 {
-	static int timeElapsed = 0;
-	if(timeElapsed < 10000)
+	static Gate * gate = (Gate *) GetBoard().ObjectOfType(GhostGate);
+	if(gate != NULL && gate->IsOpen())
 	{
 		scatterAi->ApplyAI(*this);
-		timeElapsed += deltaTimeMilis;
 	}
 	else
 	{

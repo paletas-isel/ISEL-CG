@@ -15,7 +15,8 @@ void ScatterAI::ApplyAI(Entity& character)
 {
 	static Gate * gate = dynamic_cast<Gate *>(GetBoard().ObjectOfType(GhostGate));
 		
-	Direction gateDirection = FindTargetDirection(GetTarget().GetPosition(), gate->GetPosition());	
+	Direction alternativeDirection;
+	Direction gateDirection = FindTargetDirection(GetTarget().GetPosition(), gate->GetPosition(), &alternativeDirection);	
 	Direction canMove = FindValidDirection(GetTarget().GetPosition(), GetBoard());
 
 	if(IsDirectionPresent(gateDirection, Up) && IsDirectionPresent(canMove, Up))

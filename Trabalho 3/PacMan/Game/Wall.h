@@ -13,7 +13,7 @@ protected:
 	void DoDraw();
 
 public:
-	Wall(BoardCoordinates& coords);
+	Wall(ObjectModel& model, BoardCoordinates& coords);
 	~Wall(void);
 
 };

@@ -10,7 +10,7 @@ protected:
 	void DoDraw() {}
 
 public:
-	GhostSpawner(BoardCoordinates& coords);
+	GhostSpawner(ObjectModel& model, BoardCoordinates& coords);
 	~GhostSpawner(void);
 
 };

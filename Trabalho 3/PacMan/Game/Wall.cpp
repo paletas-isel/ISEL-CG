@@ -4,7 +4,7 @@
 
 using namespace cggl;
 
-Wall::Wall(BoardCoordinates& coords) : GameObject(coords, false)
+Wall::Wall(ObjectModel& model, BoardCoordinates& coords) : GameObject(model, coords, false)
 {
 }
 

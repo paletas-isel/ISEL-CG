@@ -8,6 +8,8 @@
 #include "BoardCoordinates.h"
 #include "GameStaticSettings.h"
 
+#include "ObjectModel.h"
+
 class GameObject : public cggl::Object
 {
 private: 
@@ -15,18 +17,21 @@ private:
 	cggl::Vector3 objectPosition;
 	BoardCoordinates objectCoordinates;	
 
+	ObjectModel& objectModel;
+
 protected:
-	virtual void DoDraw() = 0;
 	virtual void DoUpdate(int deltaTimeMilis) {}
 
 	void SetWalkable(bool isWalkable) { GameObject::isWalkable = isWalkable; }
 	
+	ObjectModel& GetModel() { return objectModel; }
+
 public:
-	GameObject(BoardCoordinates coords);
-	GameObject(BoardCoordinates coords, bool isWalkable);
+	GameObject(ObjectModel& model, BoardCoordinates coords);
+	GameObject(ObjectModel& model, BoardCoordinates coords, bool isWalkable);
 	~GameObject(void) {}
 
-	void Draw();
+	virtual void Draw();
 	void Update(int deltaTimeMilis);
 
 	virtual void OnCollision(Entity& collisioner) {};

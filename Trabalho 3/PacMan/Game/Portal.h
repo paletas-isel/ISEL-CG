@@ -17,7 +17,7 @@ protected:
 	void DoUpdate(int deltaTimeMilis);
 
 public:
-	Portal(BoardCoordinates& coords);
+	Portal(ObjectModel& model, BoardCoordinates& coords);
 	~Portal(void);
 
 	void SetDestination(BoardCoordinates& destination) { portalDestination = destination; }

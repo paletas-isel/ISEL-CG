@@ -6,7 +6,7 @@
 
 using namespace cggl;
 
-Portal::Portal(BoardCoordinates& coords) : GameObject(coords), portalDestination(-1, -1)
+Portal::Portal(ObjectModel& model, BoardCoordinates& coords) : GameObject(model, coords), portalDestination(-1, -1)
 {
 	rotation = 0;
 }

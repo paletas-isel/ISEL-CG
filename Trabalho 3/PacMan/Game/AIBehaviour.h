@@ -25,8 +25,9 @@ protected:
 	Board& GetBoard() { return board; }
 
 	bool IsDirectionPresent(Direction value, Direction wanted);
-	Direction AIBehaviour::FindValidDirection(cggl::Vector3& ghostPosition, Board& board);
-	Direction AIBehaviour::FindTargetDirection(cggl::Vector3& targetPosition, cggl::Vector3& ghostPosition);
+	Direction FindValidDirection(cggl::Vector3& ghostPosition, Board& board);
+	Direction FindTargetDirection(cggl::Vector3& targetPosition, cggl::Vector3& ghostPosition, Direction * alternative);
+	Direction OpposingDirection(Direction wanted);
 
 public:
 	AIBehaviour(Entity& target, Board& board);

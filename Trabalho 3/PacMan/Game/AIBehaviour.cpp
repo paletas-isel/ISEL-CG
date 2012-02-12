@@ -45,7 +45,7 @@ Direction AIBehaviour::FindValidDirection(Vector3& ghostPosition, Board& board)
 	return directions;
 }
 
-Direction AIBehaviour::FindTargetDirection(Vector3& targetPosition, Vector3& ghostPosition)
+Direction AIBehaviour::FindTargetDirection(Vector3& targetPosition, Vector3& ghostPosition, Direction * alternative)
 {	
 	Direction toRet;
 	Vector3 targetDirection = targetPosition - ghostPosition;
@@ -53,31 +53,62 @@ Direction AIBehaviour::FindTargetDirection(Vector3& targetPosition, Vector3& gho
 	if(targetDirection.x <= 0 && targetDirection.z <= 0)
 	{
 		if(targetDirection.x >= targetDirection.z)
+		{
 			toRet = Up;
+			*alternative = Left;
+		}
 		else 
+		{
 			toRet = Left;
+			*alternative = Up;
+		}
 	}
 	else if(targetDirection.x >= 0 && targetDirection.z >= 0)
 	{
 		if(targetDirection.x <= targetDirection.z)
+		{
 			toRet = Down;
+			*alternative = Right;
+		}
 		else 
+		{
 			toRet = Right;
+			*alternative = Down;
+		}
 	}
 	else if(targetDirection.x <= 0 && targetDirection.z >= 0)
 	{
 		if(abs(targetDirection.x) >= targetDirection.z)
+		{
 			toRet = Left;
+			*alternative = Down;
+		}
 		else 
+		{
 			toRet = Down;
+			*alternative = Left;
+		}
 	}
 	else 
 	{
 		if(targetDirection.x >= abs(targetDirection.z))
+		{
 			toRet = Up;
+			*alternative = Right;
+		}
 		else 
+		{
 			toRet = Right;
+			*alternative = Up;
+		}
 	}
 
 	return toRet;
+}
+
+Direction AIBehaviour::OpposingDirection(Direction wanted)
+{
+	if((wanted & 2) != 0 || (wanted & 8) != 0)
+		return (Direction) (wanted >> 1);
+	return (Direction) (wanted << 1);
 }

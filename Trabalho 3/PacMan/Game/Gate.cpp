@@ -7,7 +7,7 @@ using namespace cggl;
 #define OPEN true
 #define CLOSED false
 
-Gate::Gate(BoardCoordinates& coords) : GameObject(coords, false)
+Gate::Gate(AnimatedObjectModel& model, BoardCoordinates& coords) : AnimatedGameObject(model, coords, false)
 {
 	isOpened = false;	
 

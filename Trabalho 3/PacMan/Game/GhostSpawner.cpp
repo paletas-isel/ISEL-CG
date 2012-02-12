@@ -1,7 +1,7 @@
 #include "GhostSpawner.h"
 
 
-GhostSpawner::GhostSpawner(BoardCoordinates& coords) : GameObject(coords, true)
+GhostSpawner::GhostSpawner(ObjectModel& model, BoardCoordinates& coords) : GameObject(model, coords, true)
 {
 }
 

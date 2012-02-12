@@ -6,7 +6,7 @@
 
 using namespace cggl;
 
-Food::Food(BoardCoordinates coords) : GameObject(coords)
+Food::Food(ObjectModel& model, BoardCoordinates coords) : GameObject(model, coords)
 {
 	hasBeenEaten = false;
 }

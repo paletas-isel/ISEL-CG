@@ -13,6 +13,8 @@ Entity::Entity(EntityTypeFlag type, int walkingSpeed)
 	entityWalking = false;
 	entityType = type;
 	walkingAnimationSpeed = 200;
+
+	canWalk = true;
 }
 
 Entity::~Entity(void)
@@ -40,11 +42,7 @@ void Entity::Draw()
 }
 
 void Entity::Update(int deltaTimeMilis)
-{	
-	static Vector3 lastPosition;
-	static int waitTimeLeft = -1;
-	static bool canWalk = true;
-	
+{		
 	DoUpdate(deltaTimeMilis);
 
 	if(!canWalk)
@@ -109,7 +107,7 @@ void Entity::StartWalkingAnimation()
 
 void Entity::SetRotationIfDifferent(float value)
 {	
-	if(GetRotation() != 3.14f) SetRotation(3.14f);
+	if(GetRotation() != value) SetRotation(value);
 }
 
 void Entity::Move(float angle, Vector3& to)

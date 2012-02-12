@@ -35,6 +35,10 @@ private:
 	void Move(float angle, cggl::Vector3& to);
 	bool CanMove(BoardCoordinates& to);
 
+	cggl::Vector3 lastPosition;
+	int waitTimeLeft;
+	bool canWalk;
+
 protected:
 	virtual void DoDrawEntity() = 0;
 	virtual void DoDrawWalkingAnimation(int deltaTimeMilis) = 0;

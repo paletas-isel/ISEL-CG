@@ -4,14 +4,14 @@
 
 using namespace cggl;
 
-GameObject::GameObject(BoardCoordinates coords) : objectCoordinates(coords)
+GameObject::GameObject(ObjectModel& model, BoardCoordinates coords) : objectModel(model), objectCoordinates(coords)
 { 
 	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates);
 	
 	GameObject::isWalkable = true; 
 }
 
-GameObject::GameObject(BoardCoordinates coords, bool isWalkable) : objectCoordinates(coords)
+GameObject::GameObject(ObjectModel& model, BoardCoordinates coords, bool isWalkable) : objectModel(model), objectCoordinates(coords)
 { 
 	objectPosition = BoardCoordinates::ConvertBoardToWorldCoordinates(objectCoordinates);
 	GameObject::isWalkable = isWalkable; 
@@ -30,7 +30,7 @@ void GameObject::Draw()
 		
 		glTranslatef(objectPosition.x, objectPosition.y, objectPosition.z);	
 
-		DoDraw();
+		GetModel().Draw();
 
 		glDisable(GL_LIGHTING);
 
