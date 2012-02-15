@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a71d0430cb87b04ecc7ee3163fbdc0297" title="Entity::GetBoard" alt="" coords="189,5,307,32"/>
+<area shape="rect" id="node5" href="$class_board.html#a993a7af8f4d341d7f5eba7bb8302c789" title="Board::ObjectOfType" alt="" coords="177,56,319,83"/>
+<area shape="rect" id="node7" href="$class_gate.html#a7035b141eaa71604c8a4cd0f8c35b686" title="Gate::IsOpen" alt="" coords="199,107,297,133"/>
+<area shape="rect" id="node9" href="$class_a_i_behaviour.html#aaeb5564990f6a74b358c14773cb2c220" title="AIBehaviour::ApplyAI" alt="" coords="177,157,319,184"/>
+</map>

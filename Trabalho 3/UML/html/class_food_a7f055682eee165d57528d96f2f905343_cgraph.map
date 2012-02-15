@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_food.html#aeffd990a33d6b0c6e49411b377c5aad7" title="Food::GetEffect" alt="" coords="199,5,313,32"/>
+<area shape="rect" id="node5" href="$class_food.html#a0c80a6a5eebd1150db55fd7924401734" title="Food::HasBeenEaten" alt="" coords="183,56,329,83"/>
+<area shape="rect" id="node7" href="$class_entity.html#a48551a44fa825b3f1db26ff0b8f26321" title="Entity::BelongsToType" alt="" coords="179,107,333,133"/>
+<area shape="rect" id="node11" href="$class_effect.html#a27f87a58d5df292e031edc9173aba8c8" title="Effect::GetTargetTypes" alt="" coords="179,157,333,184"/>
+<area shape="rect" id="node13" href="$class_effect.html#ad92b58ac401ae6fc1082c7e5cd038c0b" title="Effect::ApplyEffect" alt="" coords="191,208,321,235"/>
+<area shape="rect" id="node15" href="$class_food.html#a40a17799ac4f788cde8cb5ecb6e04954" title="Food::SetEaten" alt="" coords="199,259,313,285"/>
+<area shape="rect" id="node9" href="$class_entity.html#ab0e8756fdc0e0689f56a670ae9de3fbb" title="Entity::GetType" alt="" coords="382,107,495,133"/>
+</map>

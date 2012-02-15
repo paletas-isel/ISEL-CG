@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_animated_game_object.html" title="AnimatedGameObject" alt="" coords="5,80,155,107"/>
+<area shape="rect" id="node7" href="$class_food.html" title="Food" alt="" coords="180,80,231,107"/>
+<area shape="rect" id="node11" href="$class_ghost_spawner.html" title="GhostSpawner" alt="" coords="255,80,361,107"/>
+<area shape="rect" id="node13" href="$class_portal.html" title="Portal" alt="" coords="385,80,441,107"/>
+<area shape="rect" id="node15" href="$class_wall.html" title="Wall" alt="" coords="465,80,513,107"/>
+<area shape="rect" id="node5" href="$class_gate.html" title="Gate" alt="" coords="55,155,105,181"/>
+<area shape="rect" id="node9" href="$class_special_food.html" title="SpecialFood" alt="" coords="158,155,252,181"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node13" href="$_entity_8h.html" title="Entity.h" alt="" coords="435,155,501,181"/>
+<area shape="rect" id="node18" href="$_board_coordinates_8h.html" title="BoardCoordinates.h" alt="" coords="589,229,725,256"/>
+<area shape="rect" id="node27" href="$_game_object_8h.html" title="GameObject.h" alt="" coords="576,80,683,107"/>
+<area shape="rect" id="node39" href="$_pac_man_8h.html" title="PacMan.h" alt="" coords="369,80,449,107"/>
+<area shape="rect" id="node21" href="$_entity_model_8h.html" title="EntityModel.h" alt="" coords="411,229,513,256"/>
+<area shape="rect" id="node23" href="$_animated_model_8h.html" title="AnimatedModel.h" alt="" coords="427,304,549,331"/>
+<area shape="rect" id="node25" href="$_model_8h.html" title="Model.h" alt="" coords="623,379,691,405"/>
+<area shape="rect" id="node33" href="$_game_static_settings_8h.html" title="GameStaticSettings.h" alt="" coords="627,155,777,181"/>
+<area shape="rect" id="node35" href="$_object_model_8h.html" title="ObjectModel.h" alt="" coords="773,304,880,331"/>
+</map>

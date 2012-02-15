@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a09bf3f86ec405b5bd03a65219f65ef56" title="Entity::SetPosition" alt="" coords="275,5,405,32"/>
+<area shape="rect" id="node5" href="$struct_board_coordinates.html#aee9478b825045493385faba279f4351d" title="BoardCoordinates::ConvertBoardToWorldCoordinates" alt="" coords="177,56,503,83"/>
+<area shape="rect" id="node7" href="$class_entity.html#a67688eabbf6e98565e3556b341d3b3ca" title="Entity::SetBoard" alt="" coords="281,107,399,133"/>
+<area shape="rect" id="node9" href="$class_entity.html#a48551a44fa825b3f1db26ff0b8f26321" title="Entity::BelongsToType" alt="" coords="263,157,417,184"/>
+<area shape="rect" id="node11" href="$class_entity.html#ab0e8756fdc0e0689f56a670ae9de3fbb" title="Entity::GetType" alt="" coords="553,157,666,184"/>
+</map>

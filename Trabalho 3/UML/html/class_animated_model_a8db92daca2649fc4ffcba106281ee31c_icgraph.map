@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_animated_model.html#a14f762841dfb1b02c80fb01e4fdd4513" title="AnimatedModel::DrawAnimation" alt="" coords="302,31,509,57"/>
+<area shape="rect" id="node5" href="$class_animated_game_object.html#a2fb1e7f0b3676a1433dd5dea02fdc6c6" title="AnimatedGameObject::Draw" alt="" coords="557,5,744,32"/>
+<area shape="rect" id="node7" href="$class_entity.html#af0befbcbae6115851975d763e7dda312" title="Entity::Draw" alt="" coords="604,56,697,83"/>
+</map>

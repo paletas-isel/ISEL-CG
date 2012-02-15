@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_pac_man.html#a1c88e371743f671fc69c6728479b7e55" title="PacMan::GetFoodEaten" alt="" coords="248,5,411,32"/>
+<area shape="rect" id="node5" href="$_score_board_component_8cpp.html#a46d8cffd4ee7e073816c5c6756dfeb7d" title="ShowString" alt="" coords="285,56,373,83"/>
+<area shape="rect" id="node7" href="$class_pac_man.html#a3f7ba002c7786460151e3655a2fcd987" title="PacMan::GetLifes" alt="" coords="266,107,393,133"/>
+</map>

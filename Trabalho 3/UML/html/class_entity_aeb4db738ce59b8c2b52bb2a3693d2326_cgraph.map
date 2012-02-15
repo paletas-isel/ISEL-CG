@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a461d3434f050c2d0bc9abc41208a78c9" title="Entity::DoUpdate" alt="" coords="263,5,385,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#a6b34592793d5f7c6f5c879a39c10f399" title="Entity::SetEntityWalking" alt="" coords="241,56,407,83"/>
+<area shape="rect" id="node7" href="$class_entity.html#a31afad7698e3cf000a6ad747b6dc661b" title="Entity::IsEntityWalking" alt="" coords="247,107,401,133"/>
+<area shape="rect" id="node9" href="$class_entity.html#a2d25b1f6bf7d5cc551ca1c607696114b" title="Entity::GetModel" alt="" coords="264,157,384,184"/>
+<area shape="rect" id="node11" href="$class_animated_model.html#a3f37832563d4b912156431ad3aed821d" title="AnimatedModel::AddAnimationTime" alt="" coords="209,208,439,235"/>
+<area shape="rect" id="node13" href="$class_entity.html#abb99306131a9d9e42f33db0e6ce9fb43" title="Entity::AddWalkingAnimationTime" alt="" coords="214,259,434,285"/>
+<area shape="rect" id="node15" href="$class_entity.html#ab1607f9dce7d922d2fa77305884b4c80" title="Entity::GetWalkingAnimationTime" alt="" coords="215,309,433,336"/>
+<area shape="rect" id="node17" href="$class_entity.html#a042254238f4f64977e1fe56a12a7c09f" title="Entity::GetWalkingAnimationSpeed" alt="" coords="211,360,437,387"/>
+<area shape="rect" id="node19" href="$class_entity.html#a09bf3f86ec405b5bd03a65219f65ef56" title="Entity::SetPosition" alt="" coords="259,411,389,437"/>
+<area shape="rect" id="node21" href="$class_entity.html#a6dae4b0b6356a0a361c04b46889f891b" title="Entity::GetPosition" alt="" coords="258,461,390,488"/>
+<area shape="rect" id="node23" href="$class_entity.html#a71d0430cb87b04ecc7ee3163fbdc0297" title="Entity::GetBoard" alt="" coords="265,512,383,539"/>
+<area shape="rect" id="node25" href="$class_board.html#aabdb15bd1bf6abeef6d62272eed5ef47" title="Board::ObjectAt" alt="" coords="267,563,381,589"/>
+<area shape="rect" id="node27" href="$struct_board_coordinates.html#a67ae9e88950a9c4f7d306d9f74b8aafd" title="BoardCoordinates::ConvertWorldToBoardCoordinates" alt="" coords="161,613,487,640"/>
+<area shape="rect" id="node29" href="$class_game_object.html#ad4ab2adefa9ebfa72aa1fead97cc2429" title="GameObject::OnCollision" alt="" coords="239,664,409,691"/>
+<area shape="rect" id="node31" href="$class_entity.html#a25efdb45f4ca8e44f7e943a9e77e6149" title="Entity::GetSpeed" alt="" coords="263,715,385,741"/>
+</map>

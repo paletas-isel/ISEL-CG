@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#adb02c4261e0017b71d148d9b5d8bef72" title="Entity::MoveUp" alt="" coords="187,56,298,83"/>
+<area shape="rect" id="node5" href="$class_chase_a_i.html#a47a05e2e2f0dfe95725d36270c0bc80a" title="ChaseAI::ApplyAI" alt="" coords="353,5,477,32"/>
+<area shape="rect" id="node7" href="$class_pac_man.html#a7b606c8d145a635c12d0ebfa070e42e2" title="PacMan::DoUpdate" alt="" coords="347,56,482,83"/>
+<area shape="rect" id="node9" href="$class_scatter_a_i.html#a0c416a2be91039fa63c0062ba16039d9" title="ScatterAI::ApplyAI" alt="" coords="350,107,479,133"/>
+</map>

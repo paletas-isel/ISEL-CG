@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#af0befbcbae6115851975d763e7dda312" title="Entity::Draw" alt="" coords="225,5,319,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#aeb4db738ce59b8c2b52bb2a3693d2326" title="Entity::Update" alt="" coords="219,56,325,83"/>
+<area shape="rect" id="node9" href="$class_entity.html#adb02c4261e0017b71d148d9b5d8bef72" title="Entity::MoveUp" alt="" coords="217,107,327,133"/>
+<area shape="rect" id="node17" href="$class_entity.html#a18df390a02e35bcde22dab27d926340f" title="Entity::MoveDown" alt="" coords="209,157,335,184"/>
+<area shape="rect" id="node22" href="$class_entity.html#ae03da8c81bf7fe05e94a1caced5c948f" title="Entity::MoveLeft" alt="" coords="215,208,329,235"/>
+<area shape="rect" id="node27" href="$class_entity.html#a6dfd456901d07f182a5ef4818dd8bc71" title="Entity::MoveRight" alt="" coords="210,259,334,285"/>
+<area shape="rect" id="node7" href="$class_board.html#ac86644925dfd94c81b2e587dcb3ed95a" title="Board::Update" alt="" coords="399,56,505,83"/>
+<area shape="rect" id="node11" href="$class_chase_a_i.html#a47a05e2e2f0dfe95725d36270c0bc80a" title="ChaseAI::ApplyAI" alt="" coords="390,132,514,159"/>
+<area shape="rect" id="node13" href="$class_pac_man.html#a7b606c8d145a635c12d0ebfa070e42e2" title="PacMan::DoUpdate" alt="" coords="385,183,519,209"/>
+<area shape="rect" id="node15" href="$class_scatter_a_i.html#a0c416a2be91039fa63c0062ba16039d9" title="ScatterAI::ApplyAI" alt="" coords="387,233,517,260"/>
+</map>

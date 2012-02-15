@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_animated_model.html#a0e83d78011864a7d15549574b445f69d" title="AnimatedModel::GetAnimationTime" alt="" coords="272,5,499,32"/>
+<area shape="rect" id="node5" href="$class_animated_model.html#a8db92daca2649fc4ffcba106281ee31c" title="AnimatedModel::GetAnimationDuration" alt="" coords="262,56,509,83"/>
+<area shape="rect" id="node7" href="$class_animated_model.html#a70d349c69b7c80bf26eef056003633bf" title="AnimatedModel::DoDrawAnimation" alt="" coords="274,107,497,133"/>
+</map>

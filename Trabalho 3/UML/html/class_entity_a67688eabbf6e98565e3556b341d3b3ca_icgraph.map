@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_board.html#a3edf69eb481c5bd97fc2a877bc481071" title="Board::AddEntity" alt="" coords="174,31,295,57"/>
+<area shape="rect" id="node9" href="$class_ghost.html#aa0af23f899b083d5a52e84b0d69adac4" title="Ghost::Ghost" alt="" coords="185,81,285,108"/>
+<area shape="rect" id="node5" href="$class_board.html#ac86644925dfd94c81b2e587dcb3ed95a" title="Board::Update" alt="" coords="362,5,467,32"/>
+<area shape="rect" id="node7" href="$class_game.html#a1df5b2aa5e4bb03bc39fafbf4aa1f943" title="Game::CreateScene" alt="" coords="345,56,485,83"/>
+</map>

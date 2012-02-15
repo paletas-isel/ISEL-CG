@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#af0befbcbae6115851975d763e7dda312" title="Entity::Draw" alt="" coords="180,5,273,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#aeb4db738ce59b8c2b52bb2a3693d2326" title="Entity::Update" alt="" coords="174,56,279,83"/>
+<area shape="rect" id="node7" href="$class_board.html#ac86644925dfd94c81b2e587dcb3ed95a" title="Board::Update" alt="" coords="329,56,434,83"/>
+</map>

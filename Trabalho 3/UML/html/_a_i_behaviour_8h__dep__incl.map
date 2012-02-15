@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_a_i_behaviour_8cpp.html" title="PacMan/Game/AIBehaviour.cpp" alt="" coords="186,80,392,107"/>
+<area shape="rect" id="node5" href="$_ghost_8h.html" title="PacMan/Game/Ghost.h" alt="" coords="417,80,575,107"/>
+<area shape="rect" id="node15" href="$_chase_a_i_8h.html" title="PacMan/Game/ChaseAI.h" alt="" coords="607,80,780,107"/>
+<area shape="rect" id="node20" href="$_scatter_a_i_8h.html" title="PacMan/Game/ScatterAI.h" alt="" coords="804,80,983,107"/>
+<area shape="rect" id="node7" href="$_board_8cpp.html" title="PacMan/Game/Board.cpp" alt="" coords="5,155,176,181"/>
+<area shape="rect" id="node9" href="$_game_8cpp.html" title="PacMan/Game/Game.cpp" alt="" coords="201,155,375,181"/>
+<area shape="rect" id="node11" href="$_ghost_8cpp.html" title="PacMan/Game/Ghost.cpp" alt="" coords="609,155,783,181"/>
+<area shape="rect" id="node13" href="$_pac_man_8cpp.html" title="PacMan/Game/PacMan.cpp" alt="" coords="399,155,585,181"/>
+<area shape="rect" id="node17" href="$_chase_a_i_8cpp.html" title="PacMan/Game/ChaseAI.cpp" alt="" coords="807,155,993,181"/>
+<area shape="rect" id="node23" href="$_scatter_a_i_8cpp.html" title="PacMan/Game/ScatterAI.cpp" alt="" coords="1017,155,1209,181"/>
+</map>

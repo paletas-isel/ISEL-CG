@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_animated_model.html" title="AnimatedModel" alt="" coords="312,80,424,107"/>
+<area shape="rect" id="node17" href="$class_object_model.html" title="ObjectModel" alt="" coords="462,80,556,107"/>
+<area shape="rect" id="node5" href="$class_animated_object_model.html" title="AnimatedObjectModel" alt="" coords="293,155,443,181"/>
+<area shape="rect" id="node9" href="$class_entity_model.html" title="EntityModel" alt="" coords="155,155,245,181"/>
+<area shape="rect" id="node7" href="$class_gate_model.html" title="GateModel" alt="" coords="348,229,433,256"/>
+<area shape="rect" id="node11" href="$class_ghost_model.html" title="GhostModel" alt="" coords="231,229,323,256"/>
+<area shape="rect" id="node13" href="$class_no_model.html" title="NoModel" alt="" coords="5,229,77,256"/>
+<area shape="rect" id="node15" href="$class_pacman_model.html" title="PacmanModel" alt="" coords="102,229,207,256"/>
+<area shape="rect" id="node20" href="$class_food_model.html" title="FoodModel" alt="" coords="575,155,661,181"/>
+<area shape="rect" id="node24" href="$class_portal_model.html" title="PortalModel" alt="" coords="687,155,777,181"/>
+<area shape="rect" id="node26" href="$class_wall_model.html" title="WallModel" alt="" coords="468,155,551,181"/>
+<area shape="rect" id="node22" href="$class_special_food_model.html" title="SpecialFoodModel" alt="" coords="554,229,683,256"/>
+</map>

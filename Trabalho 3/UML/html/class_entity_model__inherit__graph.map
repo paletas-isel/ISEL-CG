@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node7" href="$class_ghost_model.html" title="GhostModel" alt="" coords="5,229,96,256"/>
+<area shape="rect" id="node9" href="$class_no_model.html" title="NoModel" alt="" coords="121,229,193,256"/>
+<area shape="rect" id="node11" href="$class_pacman_model.html" title="PacmanModel" alt="" coords="218,229,323,256"/>
+<area shape="rect" id="node2" href="$class_animated_model.html" title="AnimatedModel" alt="" coords="101,80,213,107"/>
+<area shape="rect" id="node4" href="$class_model.html" title="Model" alt="" coords="129,5,185,32"/>
+</map>

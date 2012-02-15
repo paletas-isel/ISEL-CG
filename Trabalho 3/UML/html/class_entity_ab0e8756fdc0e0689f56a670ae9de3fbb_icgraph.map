@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_board.html#ac86644925dfd94c81b2e587dcb3ed95a" title="Board::Update" alt="" coords="562,5,667,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#a48551a44fa825b3f1db26ff0b8f26321" title="Entity::BelongsToType" alt="" coords="169,56,322,83"/>
+<area shape="rect" id="node7" href="$class_board.html#a3edf69eb481c5bd97fc2a877bc481071" title="Board::AddEntity" alt="" coords="373,56,494,83"/>
+<area shape="rect" id="node12" href="$class_food.html#a7f055682eee165d57528d96f2f905343" title="Food::OnCollision" alt="" coords="371,107,496,133"/>
+<area shape="rect" id="node10" href="$class_game.html#a1df5b2aa5e4bb03bc39fafbf4aa1f943" title="Game::CreateScene" alt="" coords="545,56,685,83"/>
+</map>

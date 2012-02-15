@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_score_board_component_8h.html" title="ScoreBoardComponent.h" alt="" coords="14,80,180,107"/>
+<area shape="rect" id="node7" href="$_pac_man_8h.html" title="PacMan.h" alt="" coords="98,155,179,181"/>
+<area shape="rect" id="node9" href="$_entity_8h.html" title="entity.h" alt="" coords="109,229,173,256"/>
+<area shape="rect" id="node14" href="$_board_coordinates_8h.html" title="BoardCoordinates.h" alt="" coords="179,304,315,331"/>
+<area shape="rect" id="node17" href="$_entity_model_8h.html" title="EntityModel.h" alt="" coords="339,304,441,331"/>
+<area shape="rect" id="node19" href="$_animated_model_8h.html" title="AnimatedModel.h" alt="" coords="329,379,452,405"/>
+<area shape="rect" id="node21" href="$_model_8h.html" title="Model.h" alt="" coords="357,453,424,480"/>
+</map>

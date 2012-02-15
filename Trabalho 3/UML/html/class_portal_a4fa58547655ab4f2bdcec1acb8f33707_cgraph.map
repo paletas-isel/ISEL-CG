@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a09bf3f86ec405b5bd03a65219f65ef56" title="Entity::SetPosition" alt="" coords="283,5,413,32"/>
+<area shape="rect" id="node5" href="$struct_board_coordinates.html#aee9478b825045493385faba279f4351d" title="BoardCoordinates::ConvertBoardToWorldCoordinates" alt="" coords="185,56,511,83"/>
+</map>

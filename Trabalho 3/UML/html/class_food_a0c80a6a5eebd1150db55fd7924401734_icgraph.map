@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_food.html#a7f055682eee165d57528d96f2f905343" title="Food::OnCollision" alt="" coords="200,5,325,32"/>
+<area shape="rect" id="node5" href="$class_food.html#a4d5baad4ffc1c91395107ac88aded619" title="Food::Draw" alt="" coords="219,56,307,83"/>
+</map>

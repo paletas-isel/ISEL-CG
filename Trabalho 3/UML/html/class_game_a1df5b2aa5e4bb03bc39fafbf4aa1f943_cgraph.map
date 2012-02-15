@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_board.html#a35acdfd8fcd70000860784d9a80c540f" title="Board::LoadFrom" alt="" coords="235,5,357,32"/>
+<area shape="rect" id="node5" href="$class_model_provider.html#a506430527442b0a2c6e896c599bcdbcc" title="ModelProvider::GetEntityModel" alt="" coords="195,56,397,83"/>
+<area shape="rect" id="node7" href="$class_board.html#a3edf69eb481c5bd97fc2a877bc481071" title="Board::AddEntity" alt="" coords="235,107,357,133"/>
+<area shape="rect" id="node9" href="$class_entity.html#a09bf3f86ec405b5bd03a65219f65ef56" title="Entity::SetPosition" alt="" coords="544,31,675,57"/>
+<area shape="rect" id="node11" href="$struct_board_coordinates.html#aee9478b825045493385faba279f4351d" title="BoardCoordinates::ConvertBoardToWorldCoordinates" alt="" coords="446,81,773,108"/>
+<area shape="rect" id="node13" href="$class_entity.html#a67688eabbf6e98565e3556b341d3b3ca" title="Entity::SetBoard" alt="" coords="550,132,669,159"/>
+<area shape="rect" id="node15" href="$class_entity.html#a48551a44fa825b3f1db26ff0b8f26321" title="Entity::BelongsToType" alt="" coords="533,183,686,209"/>
+<area shape="rect" id="node17" href="$class_entity.html#ab0e8756fdc0e0689f56a670ae9de3fbb" title="Entity::GetType" alt="" coords="822,183,935,209"/>
+</map>

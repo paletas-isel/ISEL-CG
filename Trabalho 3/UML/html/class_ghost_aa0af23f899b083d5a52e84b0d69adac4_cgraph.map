@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a67688eabbf6e98565e3556b341d3b3ca" title="Entity::SetBoard" alt="" coords="181,5,299,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#a71d0430cb87b04ecc7ee3163fbdc0297" title="Entity::GetBoard" alt="" coords="181,56,299,83"/>
+<area shape="rect" id="node7" href="$class_board.html#a993a7af8f4d341d7f5eba7bb8302c789" title="Board::ObjectOfType" alt="" coords="169,107,311,133"/>
+<area shape="rect" id="node9" href="$class_game_object.html#a69f06a0c022f5e3810c35b580147b60f" title="GameObject::GetPosition" alt="" coords="155,157,325,184"/>
+</map>

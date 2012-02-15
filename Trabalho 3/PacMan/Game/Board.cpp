@@ -268,7 +268,7 @@ void Board::Update(int deltaTimeMilis)
 		else if(timeLeftGates <= 0)
 		{
 			timeLeftGates = 2000;
-			if(!gateOpening)
+			if(gateOpening)
 				gatesChangesPending = false;
 		}
 		else if(gatesChangesPending && !gateOpening)

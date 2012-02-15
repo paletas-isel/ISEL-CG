@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_animated_game_object_8cpp.html" title="PacMan/Game/AnimatedGameObject.cpp" alt="" coords="5,80,272,107"/>
+<area shape="rect" id="node5" href="$_gate_8h.html" title="PacMan/Game/Gate.h" alt="" coords="296,80,448,107"/>
+<area shape="rect" id="node7" href="$_board_8cpp.html" title="PacMan/Game/Board.cpp" alt="" coords="93,155,264,181"/>
+<area shape="rect" id="node9" href="$_gate_8cpp.html" title="PacMan/Game/Gate.cpp" alt="" coords="289,155,455,181"/>
+<area shape="rect" id="node11" href="$_scatter_a_i_8h.html" title="PacMan/Game/ScatterAI.h" alt="" coords="480,155,659,181"/>
+<area shape="rect" id="node13" href="$_ghost_8cpp.html" title="PacMan/Game/Ghost.cpp" alt="" coords="379,229,552,256"/>
+<area shape="rect" id="node15" href="$_scatter_a_i_8cpp.html" title="PacMan/Game/ScatterAI.cpp" alt="" coords="576,229,768,256"/>
+</map>

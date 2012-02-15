@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_model_provider_8h.html" title="ModelProvider.h" alt="" coords="757,80,872,107"/>
+<area shape="rect" id="node45" href="$_game_static_settings_8h.html" title="GameStaticSettings.h" alt="" coords="887,304,1037,331"/>
+<area shape="rect" id="node53" href="$_food_model_8h.html" title="FoodModel.h" alt="" coords="1461,155,1557,181"/>
+<area shape="rect" id="node56" href="$_special_food_model_8h.html" title="SpecialFoodModel.h" alt="" coords="1431,80,1571,107"/>
+<area shape="rect" id="node59" href="$_gate_model_8h.html" title="GateModel.h" alt="" coords="1033,80,1129,107"/>
+<area shape="rect" id="node62" href="$_wall_model_8h.html" title="WallModel.h" alt="" coords="1215,155,1309,181"/>
+<area shape="rect" id="node65" href="$_portal_model_8h.html" title="PortalModel.h" alt="" coords="1334,155,1436,181"/>
+<area shape="rect" id="node69" href="$_pacman_model_8h.html" title="PacmanModel.h" alt="" coords="79,304,195,331"/>
+<area shape="rect" id="node72" href="$_ghost_model_8h.html" title="GhostModel.h" alt="" coords="5,80,107,107"/>
+<area shape="rect" id="node5" href="$_entity_model_8h.html" title="EntityModel.h" alt="" coords="182,379,284,405"/>
+<area shape="rect" id="node11" href="$_object_model_8h.html" title="ObjectModel.h" alt="" coords="1113,304,1220,331"/>
+<area shape="rect" id="node14" href="$_animated_object_model_8h.html" title="AnimatedObjectModel.h" alt="" coords="978,155,1139,181"/>
+<area shape="rect" id="node18" href="$_board_8h.html" title="Board.h" alt="" coords="620,155,687,181"/>
+<area shape="rect" id="node30" href="$_entity_8h.html" title="Entity.h" alt="" coords="452,304,519,331"/>
+<area shape="rect" id="node7" href="$_animated_model_8h.html" title="AnimatedModel.h" alt="" coords="527,453,649,480"/>
+<area shape="rect" id="node9" href="$_model_8h.html" title="Model.h" alt="" coords="834,528,901,555"/>
+<area shape="rect" id="node35" href="$_board_coordinates_8h.html" title="BoardCoordinates.h" alt="" coords="423,379,559,405"/>
+<area shape="rect" id="node39" href="$_game_object_8h.html" title="GameObject.h" alt="" coords="791,229,897,256"/>
+<area shape="rect" id="node49" href="$_pac_man_8h.html" title="PacMan.h" alt="" coords="361,229,441,256"/>
+</map>

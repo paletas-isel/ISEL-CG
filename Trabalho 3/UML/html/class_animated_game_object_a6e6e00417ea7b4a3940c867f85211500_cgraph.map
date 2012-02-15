@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_animated_game_object.html#a5b4f0a4c4066007e62344ddef237fcc6" title="AnimatedGameObject::HasAnimationStarted" alt="" coords="254,5,535,32"/>
+<area shape="rect" id="node5" href="$class_animated_game_object.html#ae84cbcaabdedd324364d5ff00b04b598" title="AnimatedGameObject::GetAnimatedModel" alt="" coords="260,56,529,83"/>
+<area shape="rect" id="node7" href="$class_animated_model.html#a3f37832563d4b912156431ad3aed821d" title="AnimatedModel::AddAnimationTime" alt="" coords="280,107,509,133"/>
+<area shape="rect" id="node9" href="$class_animated_game_object.html#a22bbd4e8c0b6e6ddd6107e405394f0af" title="AnimatedGameObject::DoUpdate" alt="" coords="287,157,502,184"/>
+</map>

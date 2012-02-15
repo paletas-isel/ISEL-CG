@@ -1,0 +1,24 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_board_8h.html" title="Board.h" alt="" coords="627,155,693,181"/>
+<area shape="rect" id="node35" href="$_game_static_settings_8h.html" title="GameStaticSettings.h" alt="" coords="219,304,369,331"/>
+<area shape="rect" id="node44" href="$_food_8h.html" title="Food.h" alt="" coords="479,155,541,181"/>
+<area shape="rect" id="node51" href="$_special_food_8h.html" title="SpecialFood.h" alt="" coords="458,80,563,107"/>
+<area shape="rect" id="node55" href="$_wall_8h.html" title="Wall.h" alt="" coords="912,155,971,181"/>
+<area shape="rect" id="node60" href="$_portal_8h.html" title="Portal.h" alt="" coords="697,80,764,107"/>
+<area shape="rect" id="node64" href="$_gate_8h.html" title="Gate.h" alt="" coords="993,80,1055,107"/>
+<area shape="rect" id="node73" href="$_ghost_spawner_8h.html" title="GhostSpawner.h" alt="" coords="769,155,887,181"/>
+<area shape="rect" id="node77" href="$_ghost_8h.html" title="Ghost.h" alt="" coords="314,155,381,181"/>
+<area shape="rect" id="node84" href="$_model_provider_8h.html" title="ModelProvider.h" alt="" coords="1137,80,1252,107"/>
+<area shape="rect" id="node15" href="$_entity_8h.html" title="Entity.h" alt="" coords="836,304,903,331"/>
+<area shape="rect" id="node20" href="$_board_coordinates_8h.html" title="BoardCoordinates.h" alt="" coords="905,379,1041,405"/>
+<area shape="rect" id="node29" href="$_game_object_8h.html" title="GameObject.h" alt="" coords="1009,229,1116,256"/>
+<area shape="rect" id="node41" href="$_pac_man_8h.html" title="PacMan.h" alt="" coords="387,229,468,256"/>
+<area shape="rect" id="node23" href="$_entity_model_8h.html" title="EntityModel.h" alt="" coords="1306,379,1408,405"/>
+<area shape="rect" id="node25" href="$_animated_model_8h.html" title="AnimatedModel.h" alt="" coords="1287,453,1409,480"/>
+<area shape="rect" id="node27" href="$_model_8h.html" title="Model.h" alt="" coords="1363,528,1431,555"/>
+<area shape="rect" id="node37" href="$_object_model_8h.html" title="ObjectModel.h" alt="" coords="1320,304,1427,331"/>
+<area shape="rect" id="node47" href="$_effect_8h.html" title="Effect.h" alt="" coords="296,229,363,256"/>
+<area shape="rect" id="node66" href="$_animated_game_object_8h.html" title="AnimatedGameObject.h" alt="" coords="995,155,1156,181"/>
+<area shape="rect" id="node69" href="$_animated_object_model_8h.html" title="AnimatedObjectModel.h" alt="" coords="1242,229,1403,256"/>
+<area shape="rect" id="node81" href="$_a_i_behaviour_8h.html" title="AIBehaviour.h" alt="" coords="93,304,195,331"/>
+</map>

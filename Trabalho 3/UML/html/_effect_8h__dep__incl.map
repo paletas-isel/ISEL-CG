@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_food_8h.html" title="PacMan/Game/Food.h" alt="" coords="50,80,203,107"/>
+<area shape="rect" id="node14" href="$_effect_8cpp.html" title="PacMan/Game/Effect.cpp" alt="" coords="228,80,399,107"/>
+<area shape="rect" id="node16" href="$_food_effect_8h.html" title="PacMan/Game/FoodEffect.h" alt="" coords="423,80,609,107"/>
+<area shape="rect" id="node5" href="$_board_8cpp.html" title="PacMan/Game/Board.cpp" alt="" coords="5,229,176,256"/>
+<area shape="rect" id="node7" href="$_special_food_8h.html" title="PacMan/Game/SpecialFood.h" alt="" coords="61,155,256,181"/>
+<area shape="rect" id="node12" href="$_food_8cpp.html" title="PacMan/Game/Food.cpp" alt="" coords="281,155,447,181"/>
+<area shape="rect" id="node10" href="$_special_food_8cpp.html" title="PacMan/Game/SpecialFood.cpp" alt="" coords="291,229,501,256"/>
+<area shape="rect" id="node19" href="$_food_effect_8cpp.html" title="PacMan/Game/FoodEffect.cpp" alt="" coords="523,155,723,181"/>
+</map>

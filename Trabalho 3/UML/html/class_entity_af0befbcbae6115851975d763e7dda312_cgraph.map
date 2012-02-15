@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a6dae4b0b6356a0a361c04b46889f891b" title="Entity::GetPosition" alt="" coords="185,5,317,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#ad2860e3ed7d9381574920e56e3e96560" title="Entity::GetRotation" alt="" coords="184,56,317,83"/>
+<area shape="rect" id="node7" href="$class_entity.html#a2d25b1f6bf7d5cc551ca1c607696114b" title="Entity::GetModel" alt="" coords="191,107,311,133"/>
+<area shape="rect" id="node9" href="$class_entity.html#a31afad7698e3cf000a6ad747b6dc661b" title="Entity::IsEntityWalking" alt="" coords="173,157,328,184"/>
+<area shape="rect" id="node11" href="$class_animated_model.html#a14f762841dfb1b02c80fb01e4fdd4513" title="AnimatedModel::DrawAnimation" alt="" coords="147,208,354,235"/>
+<area shape="rect" id="node19" href="$class_entity_model.html#a320be2b4451efa0aad74007658923546" title="EntityModel::Draw" alt="" coords="187,259,315,285"/>
+<area shape="rect" id="node13" href="$class_animated_model.html#a0e83d78011864a7d15549574b445f69d" title="AnimatedModel::GetAnimationTime" alt="" coords="413,157,640,184"/>
+<area shape="rect" id="node15" href="$class_animated_model.html#a8db92daca2649fc4ffcba106281ee31c" title="AnimatedModel::GetAnimationDuration" alt="" coords="403,208,650,235"/>
+<area shape="rect" id="node17" href="$class_animated_model.html#a70d349c69b7c80bf26eef056003633bf" title="AnimatedModel::DoDrawAnimation" alt="" coords="415,259,638,285"/>
+</map>

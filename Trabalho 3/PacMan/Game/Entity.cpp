@@ -29,7 +29,7 @@ void Entity::Draw()
 
 		Vector3& position = GetPosition() + inBetweenPosition;	
 
-		glTranslated(position.x + inBetweenPosition.x, position.y + inBetweenPosition.y, position.z + inBetweenPosition.z);
+		glTranslated(position.x, position.y, position.z);
 		
 		glRotatef(GetRotation(), 0, 1, 0);
 		

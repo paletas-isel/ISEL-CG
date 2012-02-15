@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#a31afad7698e3cf000a6ad747b6dc661b" title="Entity::IsEntityWalking" alt="" coords="165,5,320,32"/>
+<area shape="rect" id="node5" href="$class_entity.html#a9c90542b9f942856e2537cdbef1fb1a6" title="Entity::CanMoveUp" alt="" coords="176,107,309,133"/>
+<area shape="rect" id="node7" href="$class_entity.html#a6dae4b0b6356a0a361c04b46889f891b" title="Entity::GetPosition" alt="" coords="466,56,598,83"/>
+<area shape="rect" id="node9" href="$struct_board_coordinates.html#a67ae9e88950a9c4f7d306d9f74b8aafd" title="BoardCoordinates::ConvertWorldToBoardCoordinates" alt="" coords="369,107,695,133"/>
+</map>

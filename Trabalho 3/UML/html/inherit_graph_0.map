@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_a_i_behaviour.html" title="AIBehaviour" alt="" coords="5,31,96,57"/>
+<area shape="rect" id="node3" href="$class_chase_a_i.html" title="ChaseAI" alt="" coords="147,5,218,32"/>
+<area shape="rect" id="node5" href="$class_scatter_a_i.html" title="ScatterAI" alt="" coords="145,56,221,83"/>
+</map>

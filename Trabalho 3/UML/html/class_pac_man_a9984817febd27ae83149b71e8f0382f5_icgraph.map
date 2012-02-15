@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_pac_man.html#ad2d9aa72c1734b1da449b3e9eebccab9" title="PacMan::OnCollision" alt="" coords="200,5,344,32"/>
+<area shape="rect" id="node5" href="$class_board.html#ac86644925dfd94c81b2e587dcb3ed95a" title="Board::Update" alt="" coords="393,5,498,32"/>
+</map>

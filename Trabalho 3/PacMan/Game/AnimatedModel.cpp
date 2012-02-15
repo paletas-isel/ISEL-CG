@@ -16,8 +16,12 @@ void AnimatedModel::DrawAnimation()
 {
 	float p = GetAnimationTime() / (float) GetAnimationDuration();
 
-	if(p < 1)
+	if(p <= 1)
 		DoDrawAnimation(p);
 	else
+	{
 		animationCompleted = true;
+		animationTime = 0;
+		Draw();
+	}
 }

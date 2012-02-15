@@ -6,8 +6,11 @@
 class Gate : public AnimatedGameObject
 {
 private:
-	bool isOpened;
+	bool isOpened, isChanging;
 	void ChangeGateStatus(bool open);
+
+protected:
+	void DoUpdate(int deltaTimeMilis);
 
 public:
 	Gate(AnimatedObjectModel * model, BoardCoordinates& coords);
@@ -16,7 +19,7 @@ public:
 	void Open();
 	void Close();
 
-	bool IsOpen() { return isOpened; }
+	bool IsOpen() { return true; } //Portão avariado
 };
 
 #endif

@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_animated_game_object_8h.html" title="PacMan/Game/AnimatedGameObject.h" alt="" coords="61,80,312,107"/>
+<area shape="rect" id="node19" href="$_animated_object_model_8cpp.html" title="PacMan/Game/AnimatedObjectModel.cpp" alt="" coords="337,80,604,107"/>
+<area shape="rect" id="node21" href="$_model_provider_8h.html" title="PacMan/Game/ModelProvider.h" alt="" coords="628,80,833,107"/>
+<area shape="rect" id="node28" href="$_gate_model_8h.html" title="PacMan/Game/GateModel.h" alt="" coords="857,80,1044,107"/>
+<area shape="rect" id="node5" href="$_animated_game_object_8cpp.html" title="PacMan/Game/AnimatedGameObject.cpp" alt="" coords="287,155,553,181"/>
+<area shape="rect" id="node7" href="$_gate_8h.html" title="PacMan/Game/Gate.h" alt="" coords="111,155,263,181"/>
+<area shape="rect" id="node9" href="$_board_8cpp.html" title="PacMan/Game/Board.cpp" alt="" coords="402,229,573,256"/>
+<area shape="rect" id="node11" href="$_gate_8cpp.html" title="PacMan/Game/Gate.cpp" alt="" coords="5,229,171,256"/>
+<area shape="rect" id="node13" href="$_scatter_a_i_8h.html" title="PacMan/Game/ScatterAI.h" alt="" coords="196,229,375,256"/>
+<area shape="rect" id="node15" href="$_ghost_8cpp.html" title="PacMan/Game/Ghost.cpp" alt="" coords="96,304,269,331"/>
+<area shape="rect" id="node17" href="$_scatter_a_i_8cpp.html" title="PacMan/Game/ScatterAI.cpp" alt="" coords="293,304,485,331"/>
+<area shape="rect" id="node24" href="$_game_8cpp.html" title="PacMan/Game/Game.cpp" alt="" coords="640,155,813,181"/>
+<area shape="rect" id="node26" href="$_model_provider_8cpp.html" title="PacMan/Game/ModelProvider.cpp" alt="" coords="837,155,1056,181"/>
+<area shape="rect" id="node30" href="$_gate_model_8cpp.html" title="PacMan/Game/GateModel.cpp" alt="" coords="1081,155,1281,181"/>
+</map>

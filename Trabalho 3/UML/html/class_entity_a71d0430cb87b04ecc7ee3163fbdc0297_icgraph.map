@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_entity.html#aeb4db738ce59b8c2b52bb2a3693d2326" title="Entity::Update" alt="" coords="182,5,287,32"/>
+<area shape="rect" id="node7" href="$class_ghost.html#aa0af23f899b083d5a52e84b0d69adac4" title="Ghost::Ghost" alt="" coords="185,56,285,83"/>
+<area shape="rect" id="node9" href="$class_ghost.html#a274949dfcb7eecd114fb5e7dbbcc7c14" title="Ghost::DoUpdate" alt="" coords="173,107,296,133"/>
+<area shape="rect" id="node5" href="$class_board.html#ac86644925dfd94c81b2e587dcb3ed95a" title="Board::Update" alt="" coords="345,5,450,32"/>
+</map>

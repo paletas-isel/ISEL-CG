@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_animated_game_object.html#a2fb1e7f0b3676a1433dd5dea02fdc6c6" title="AnimatedGameObject::Draw" alt="" coords="224,5,411,32"/>
+<area shape="rect" id="node5" href="$class_ghost.html#aa0af23f899b083d5a52e84b0d69adac4" title="Ghost::Ghost" alt="" coords="267,56,367,83"/>
+<area shape="rect" id="node7" href="$class_scatter_a_i.html#a0c416a2be91039fa63c0062ba16039d9" title="ScatterAI::ApplyAI" alt="" coords="253,107,382,133"/>
+</map>
